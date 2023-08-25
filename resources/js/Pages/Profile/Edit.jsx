@@ -6,7 +6,6 @@ import UpdateProfileInformation from "./Partials/UpdateProfileInformationForm";
 import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
 import { Avatar, IconButton, Typography } from "@mui/material";
 import DeleteUserForm from "./Partials/DeleteUserForm";
-import { Image } from "@mui/icons-material";
 
 export default function Edit({ auth }) {
      const [value, setValue] = React.useState("personalInformation");
@@ -16,7 +15,7 @@ export default function Edit({ auth }) {
      };
     return (
         <MainLayout user={auth.user}>
-            <div className="grid grid-cols-3 gap-4 lg:grid align-center">
+            <div className="grid lg:grid-cols-3 gap-4 lg:grid align-center">
                 <div className="p-10 shadow-lg">
                     <center>
                         <IconButton sx={{ width: 100, height: 100 }}>
@@ -51,9 +50,7 @@ export default function Edit({ auth }) {
                     </Tabs>
 
                     <div className="mt-10">
-                        {value === "personalInformation" && (
-                            <UpdateProfileInformation />
-                        )}
+                        {value === "personalInformation" && <UpdateProfileInformation /> }
                         {value === "changePassword" && <UpdatePasswordForm />}
                         {value === "accountSettings" && <DeleteUserForm />}
                     </div>
