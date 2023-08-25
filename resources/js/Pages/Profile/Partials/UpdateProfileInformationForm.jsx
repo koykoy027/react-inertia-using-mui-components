@@ -1,7 +1,6 @@
 import { useForm, usePage } from '@inertiajs/react';
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
-import { Button } from "@mui/material";
+import { Button, Typography, TextField } from "@mui/material";
+
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
@@ -70,7 +69,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         type="submit"
                         disabled={processing}
                     >
-                        Submit changes
+                        Submit
                     </Button>
                 </div>
             </form>
