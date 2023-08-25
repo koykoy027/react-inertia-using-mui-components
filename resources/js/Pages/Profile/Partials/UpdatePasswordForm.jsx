@@ -18,8 +18,10 @@ export default function UpdatePasswordForm({ className = '' }) {
 
     const updatePassword = (e) => {
         e.preventDefault();
+        const confirmation = window.confirm('Do you want to change password?');
 
-        put(route('password.update'), {
+        if (confirmation){
+            put(route('password.update'), {
             preserveScroll: true,
             onSuccess: () => reset(),
             onError: (errors) => {
@@ -34,6 +36,9 @@ export default function UpdatePasswordForm({ className = '' }) {
                 }
             },
         });
+
+        };
+
     };
 
     return (

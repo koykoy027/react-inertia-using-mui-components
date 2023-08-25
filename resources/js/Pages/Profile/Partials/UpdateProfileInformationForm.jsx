@@ -64,7 +64,12 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     </div>
                 </div>
                 <div className="flex justify-end my-5">
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={processing}
+                    >
                         Submit changes
                     </Button>
                 </div>
