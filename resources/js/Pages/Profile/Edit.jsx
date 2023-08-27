@@ -1,21 +1,19 @@
 import MainLayout from "@/Layouts/MainLayout";
 import React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import UpdateProfileInformation from "./Partials/UpdateProfileInformationForm";
-import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
-import { Avatar, IconButton, Typography } from "@mui/material";
-import DeleteUserForm from "./Partials/DeleteUserForm";
+import UpdateProfile from "./Partials/UpdateProfile";
+import UpdatePassword from "./Partials/UpdatePassword";
+import DeleteAccount from "./Partials/DeleteAccount";
+import { Avatar, IconButton, Typography, Tabs, Tab } from "@mui/material";
 
 export default function Edit({ auth }) {
-     const [value, setValue] = React.useState("personalInformation");
+    const [value, setValue] = React.useState("personalInformation");
 
-     const handleChange = (event, newValue) => {
-         setValue(newValue);
-     };
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return (
         <MainLayout user={auth.user}>
-            <div className="grid lg:grid-cols-3 gap-4 lg:grid align-center">
+            <div className="grid gap-4 lg:grid-cols-3 lg:grid align-center">
                 <div className="p-10 shadow-lg">
                     <center>
                         <IconButton sx={{ width: 100, height: 100 }}>
@@ -50,9 +48,9 @@ export default function Edit({ auth }) {
                     </Tabs>
 
                     <div className="mt-10">
-                        {value === "personalInformation" && <UpdateProfileInformation /> }
-                        {value === "changePassword" && <UpdatePasswordForm />}
-                        {value === "accountSettings" && <DeleteUserForm />}
+                        {value === "personalInformation" && <UpdateProfile />}
+                        {value === "changePassword" && <UpdatePassword />}
+                        {value === "accountSettings" && <DeleteAccount />}
                     </div>
                 </div>
             </div>

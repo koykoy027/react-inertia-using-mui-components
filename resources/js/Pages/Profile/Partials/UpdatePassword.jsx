@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useForm } from "@inertiajs/react";
 import { Button, TextField, Typography } from "@mui/material";
 
-export default function UpdatePasswordForm() {
+export default function UpdatePassword() {
     const passwordInput = useRef();
     const currentPasswordInput = useRef();
 
