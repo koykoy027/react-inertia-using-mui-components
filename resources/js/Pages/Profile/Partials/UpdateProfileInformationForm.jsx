@@ -33,7 +33,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </Typography>
             </div>
             <form onSubmit={submit}>
-                <div className="grid gap-4 lg:grid-cols-2">
+                <div className="grid gap-2 lg:grid-cols-2">
                     <div>
                         <TextField
                             id="name"
