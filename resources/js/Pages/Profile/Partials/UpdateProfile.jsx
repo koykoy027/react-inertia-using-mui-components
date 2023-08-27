@@ -28,7 +28,7 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
                 <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
                     Personal Information
                 </Typography>
-                <Typography variant="caption">
+                <Typography variant="body2">
                     Update your account's profile information and email address.
                 </Typography>
             </div>
@@ -69,7 +69,7 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
                         type="submit"
                         disabled={processing}
                     >
-                        Submit
+                        Save
                     </Button>
                 </div>
             </form>

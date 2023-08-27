@@ -49,7 +49,7 @@ export default function UpdatePassword() {
                 <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
                     Update Password
                 </Typography>
-                <Typography variant="caption">
+                <Typography variant="body2">
                     Ensure your account is using a long, random password to stay
                     secure.
                 </Typography>
@@ -101,14 +101,14 @@ export default function UpdatePassword() {
                     {errors.password_confirmation}
                 </Typography>
 
-                <div className="flex items-center gap-4">
+                <div className="flex justify-end my-5">
                     <Button
                         variant="contained"
                         color="primary"
                         type="submit"
                         disabled={processing}
                     >
-                        Submit Changes
+                        Save
                     </Button>
                 </div>
             </form>
