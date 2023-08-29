@@ -31,7 +31,7 @@ export default function Index({ auth }) {
                     <Tab value="religion" label="Religion" />
                 </Tabs>
 
-                <div className="mt-10">
+                <div>
                     {value === "gender" && <Gender />}
                     {value === "religion" && <Religion />}
                 </div>
