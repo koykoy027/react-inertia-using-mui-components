@@ -164,7 +164,7 @@ export default function MainLayout({ user, children }) {
                                     </Typography>
                                 </MenuItem>
                             </Link>
-                           
+
                             <Link onClick={handleLogout}>
                                 <MenuItem onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">
@@ -213,6 +213,19 @@ export default function MainLayout({ user, children }) {
                     </Link>
                 </List>
                 <Divider />
+
+                <List>
+                    <Link href={route("library.index")}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Settings" />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+                </List>
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />

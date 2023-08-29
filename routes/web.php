@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Library\GenderController;
+use App\Http\Controllers\Library\LibraryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,11 +31,23 @@ Route::get('/', function () {
     ]);
 });
 Route::prefix('administrator')->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Admin/Dashboard/Index');
-    })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
+
+        Route::get('/', function () {
+            return Inertia::render('Admin/Dashboard/Index');
+        })->name('dashboard');
+
+
+
+        // library
+        Route::resource('/library', LibraryController::class);
+
+
+
+
+
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

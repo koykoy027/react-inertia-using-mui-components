@@ -1,0 +1,35 @@
+import MainLayout from "@/Layouts/MainLayout";
+import { Tab, Tabs } from "@mui/material";
+import React from "react";
+import Gender from "./Gender/Index";
+import Religion from "./Religion/Index";
+
+export default function Index({ auth }) {
+    const [value, setValue] = React.useState("gender");
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+    return (
+        <MainLayout user={auth.user}>
+            <div className="card">
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    textColor="primary"
+                    indicatorColor="primary"
+                    variant="scrollable"
+                    scrollButtons="auto"
+                >
+                    <Tab value="gender" label="Gender" />
+                    <Tab value="religion" label="Religion" />
+                </Tabs>
+
+                <div className="mt-10">
+                    {value === "gender" && <Gender />}
+                    {value === "religion" && <Religion />}
+                </div>
+            </div>
+        </MainLayout>
+    );
+}
