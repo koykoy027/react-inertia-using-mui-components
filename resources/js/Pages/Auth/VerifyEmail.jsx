@@ -1,6 +1,6 @@
 import GuestLayout from '@/Layouts/GuestLayout';
-import PrimaryButton from '@/Components/PrimaryButton';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
+import { Button } from '@mui/material';
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm({});
@@ -13,8 +13,6 @@ export default function VerifyEmail({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Email Verification" />
-
             <div className="mb-4 text-sm text-gray-600">
                 Thanks for signing up! Before getting started, could you verify
                 your email address by clicking on the link we just emailed to
@@ -31,9 +29,9 @@ export default function VerifyEmail({ status }) {
 
             <form onSubmit={handleSubmit}>
                 <div className="flex items-center justify-between mt-4">
-                    <PrimaryButton disabled={processing}>
+                    <Button variant="contained" type="submit" disabled={processing}>
                         Resend Verification Email
-                    </PrimaryButton>
+                    </Button>
 
                     <Link
                         href={route("logout")}

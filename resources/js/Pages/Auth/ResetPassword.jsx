@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import { Head, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { Button, TextField } from "@mui/material";
 
 export default function ResetPassword({ token, email }) {
@@ -55,7 +51,7 @@ export default function ResetPassword({ token, email }) {
                     error={!!errors.password}
                 />
 
-                <TextInput
+                <TextField
                     label="Password"
                     type="password"
                     name="password_confirmation"

@@ -1,17 +1,12 @@
 import { useEffect } from "react";
-import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import {
     Button,
+    Checkbox,
     FormControlLabel,
     FormGroup,
     TextField,
-    Typography,
 } from "@mui/material";
 
 export default function Login({ status, canResetPassword }) {
@@ -68,7 +63,7 @@ export default function Login({ status, canResetPassword }) {
                     error={!!errors.password}
                 />
 
-                <FormGroup sx={{ paddingLeft: 2 }}>
+                <FormGroup>
                     <FormControlLabel
                         control={<Checkbox />}
                         label=" Remember me"
