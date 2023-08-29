@@ -10,16 +10,15 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
         email: user.email,
     });
 
-    const submit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const confirmation = window.confirm("Save changes?");
 
         if (confirmation) {
-            patch(route('profile.update'), {
+            patch(route("profile.update"), {
                 preserveScroll: true,
             });
         }
-
     };
 
     return (
@@ -32,7 +31,7 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
                     Update your account's profile information and email address.
                 </Typography>
             </div>
-            <form onSubmit={submit}>
+            <form onSubmit={handleSubmit}>
                 <div className="grid gap-2 lg:grid-cols-2">
                     <div>
                         <TextField
