@@ -204,28 +204,28 @@ export default function MainLayout({ user, children }) {
                             vertical: "bottom",
                         }}
                     >
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem>
                             <Avatar /> {user.name}
                         </MenuItem>
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem>
                             <Avatar /> My account
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem>
                             <ListItemIcon>
                                 <PersonAdd fontSize="small" />
                             </ListItemIcon>
                             Add another account
                         </MenuItem>
                         <Link href={route("profile.edit")}>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem>
                                 <ListItemIcon>
                                     <Settings fontSize="small" />
                                 </ListItemIcon>
                                 Settings
                             </MenuItem>
                         </Link>
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem onClick={handleLogout}>
                             <ListItemIcon>
                                 <Logout fontSize="small" />
                             </ListItemIcon>
