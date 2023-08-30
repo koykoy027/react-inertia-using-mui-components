@@ -1,6 +1,6 @@
-import MainLayout from '@/Layouts/MainLayout'
-import { Typography } from '@mui/material';
-import React from 'react'
+import MainLayout from "@/Layouts/MainLayout";
+import { Typography } from "@mui/material";
+import React from "react";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     return (

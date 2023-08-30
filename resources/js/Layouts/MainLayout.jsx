@@ -25,6 +25,7 @@ import {
     styled,
     useTheme,
 } from "@mui/material";
+import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -103,6 +104,19 @@ export default function MainLayout({ user, children }) {
         setOpen(false);
     };
 
+    // Start account Avatar
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const openAvatar = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // End account avatar
+
     return (
         <Box sx={{ display: "flex" }}>
             <CssBaseline />
@@ -124,11 +138,23 @@ export default function MainLayout({ user, children }) {
                     <div style={{ flexGrow: 1 }}></div>
 
                     {/* account menu start */}
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            textAlign: "center",
+                        }}
+                    >
+                        <Tooltip title="Account settings">
                             <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
+                                onClick={handleClick}
+                                size="small"
+                                sx={{ ml: 2 }}
+                                aria-controls={
+                                    openAvatar ? "account-menu" : undefined
+                                }
+                                aria-haspopup="true"
+                                aria-expanded={openAvatar ? "true" : undefined}
                             >
                                 <Avatar
                                     alt={user.name}
@@ -136,44 +162,76 @@ export default function MainLayout({ user, children }) {
                                 />
                             </IconButton>
                         </Tooltip>
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center" variant="button">
-                                    {user.name}
-                                </Typography>
-                            </MenuItem>
-                            <Link href={route("profile.edit")}>
-                                <MenuItem onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">
-                                        Account Settings
-                                    </Typography>
-                                </MenuItem>
-                            </Link>
-
-                            <Link onClick={handleLogout}>
-                                <MenuItem onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">
-                                        Logout
-                                    </Typography>
-                                </MenuItem>
-                            </Link>
-                        </Menu>
                     </Box>
+                    <Menu
+                        anchorEl={anchorEl}
+                        id="account-menu"
+                        open={openAvatar}
+                        onClose={handleClose}
+                        onClick={handleClose}
+                        PaperProps={{
+                            elevation: 0,
+                            sx: {
+                                overflow: "visible",
+                                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                mt: 1.5,
+                                "& .MuiAvatar-root": {
+                                    width: 32,
+                                    height: 32,
+                                    ml: -0.5,
+                                    mr: 1,
+                                },
+                                "&:before": {
+                                    content: '""',
+                                    display: "block",
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 14,
+                                    width: 10,
+                                    height: 10,
+                                    bgcolor: "background.paper",
+                                    transform: "translateY(-50%) rotate(45deg)",
+                                    zIndex: 0,
+                                },
+                            },
+                        }}
+                        transformOrigin={{
+                            horizontal: "right",
+                            vertical: "top",
+                        }}
+                        anchorOrigin={{
+                            horizontal: "right",
+                            vertical: "bottom",
+                        }}
+                    >
+                        <MenuItem>
+                            <Avatar /> {user.name}
+                        </MenuItem>
+                        <MenuItem>
+                            <Avatar /> My account
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem>
+                            <ListItemIcon>
+                                <PersonAdd fontSize="small" />
+                            </ListItemIcon>
+                            Add another account
+                        </MenuItem>
+                        <Link href={route("profile.edit")}>
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <Settings fontSize="small" />
+                                </ListItemIcon>
+                                Settings
+                            </MenuItem>
+                        </Link>
+                        <MenuItem onClick={handleLogout}>
+                            <ListItemIcon>
+                                <Logout fontSize="small" />
+                            </ListItemIcon>
+                            Logout
+                        </MenuItem>
+                    </Menu>
                     {/* account menu end */}
                 </Toolbar>
             </AppBar>
