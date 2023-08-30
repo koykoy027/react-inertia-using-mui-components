@@ -14,7 +14,7 @@ export default function Edit({ auth }) {
     return (
         <MainLayout user={auth.user}>
             <div className="grid gap-4 lg:grid-cols-3 lg:grid align-center">
-                <div className="p-10 shadow-lg">
+                <div className="card">
                     <center>
                         <IconButton sx={{ width: 100, height: 100 }}>
                             <Avatar
@@ -30,7 +30,7 @@ export default function Edit({ auth }) {
                         </Typography>
                     </center>
                 </div>
-                <div className="col-span-2 p-10 shadow-lg">
+                <div className="col-span-2 card">
                     <Tabs
                         value={value}
                         onChange={handleChange}
