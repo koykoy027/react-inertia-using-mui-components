@@ -287,7 +287,7 @@ export default function MainLayout({ user, children }) {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
-                {children}
+                <div className="sm:mx-5 md:mx-2 lg:mx-10">{children}</div>
             </Main>
         </Box>
     );
