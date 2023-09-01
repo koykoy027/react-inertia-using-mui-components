@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
+use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,8 @@ Route::prefix('administrator')->group(function () {
 
         // library
         Route::resource('/library', LibraryController::class);
+        // Management
+        Route::resource('/management', UserManagementController::class);
 
 
 

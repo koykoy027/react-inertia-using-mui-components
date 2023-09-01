@@ -312,36 +312,23 @@ export default function MainLayout({ user, children }) {
                         {expanded ? <ExpandLess /> : <ExpandMore />}
                     </ListItemButton>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <PersonSharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="User" />
-                            </ListItemButton>
-                        </List>
-                        <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <PersonSharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Add user" />
-                            </ListItemButton>
-                        </List>
+                        <Link href={route("management.index")}>
+                            <List component="div" disablePadding>
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <PersonSharpIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="User" />
+                                </ListItemButton>
+                            </List>
+                        </Link>
+
                         <List component="div" disablePadding>
                             <ListItemButton sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <InventorySharpIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Products" />
-                            </ListItemButton>
-                        </List>
-                        <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <InventorySharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Add Products" />
                             </ListItemButton>
                         </List>
                     </Collapse>
