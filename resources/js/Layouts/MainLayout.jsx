@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
@@ -15,7 +15,16 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import SendIcon from "@mui/icons-material/Send";
 import { Link, useForm } from "@inertiajs/react";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import StarBorder from "@mui/icons-material/StarBorder";
+import DraftsIcon from "@mui/icons-material/Drafts";
+import SettingsApplicationsSharpIcon from "@mui/icons-material/SettingsApplicationsSharp";
+import DashboardSharpIcon from "@mui/icons-material/DashboardSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
+import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import {
     Avatar,
     Menu,
@@ -24,6 +33,8 @@ import {
     Box,
     styled,
     useTheme,
+    ListSubheader,
+    Collapse,
 } from "@mui/material";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
@@ -115,7 +126,19 @@ export default function MainLayout({ user, children }) {
         setAnchorEl(null);
     };
 
-    // End account avatar
+    // expand list dropdown in side nav
+    // start
+    const [expanded, setExpanded] = useState(true); // Initially expanded
+
+    const listSideNav = () => {
+        setExpanded(!expanded);
+    };
+    const [QrSideNav, setQrSideNav] = useState(false);
+
+    const toggleQrSideNav = () => {
+        setQrSideNav(!QrSideNav);
+    };
+    // end
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -207,9 +230,6 @@ export default function MainLayout({ user, children }) {
                         <MenuItem>
                             <Avatar /> {user.name}
                         </MenuItem>
-                        <MenuItem>
-                            <Avatar /> My account
-                        </MenuItem>
                         <Divider />
                         <MenuItem>
                             <ListItemIcon>
@@ -263,7 +283,7 @@ export default function MainLayout({ user, children }) {
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <InboxIcon />
+                                    <DashboardSharpIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Dashboard" />
                             </ListItemButton>
@@ -272,12 +292,87 @@ export default function MainLayout({ user, children }) {
                 </List>
                 <Divider />
 
+                {/* another sidenav list */}
+
+                {/* start */}
+                <List
+                    sx={{
+                        width: "100%",
+                        maxWidth: 360,
+                        bgcolor: "background.paper",
+                    }}
+                    component="nav"
+                    aria-labelledby="nested-list-subheader"
+                >
+                    <ListItemButton onClick={listSideNav}>
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Management" />
+                        {expanded ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <PersonSharpIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="User" />
+                            </ListItemButton>
+                        </List>
+                        <List component="div" disablePadding>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <PersonSharpIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Add user" />
+                            </ListItemButton>
+                        </List>
+                        <List component="div" disablePadding>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <InventorySharpIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Products" />
+                            </ListItemButton>
+                        </List>
+                        <List component="div" disablePadding>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <InventorySharpIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Add Products" />
+                            </ListItemButton>
+                        </List>
+                    </Collapse>
+                    <List>
+                        <ListItemButton onClick={toggleQrSideNav}>
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Storage" />
+                            {QrSideNav ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={QrSideNav} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <StarBorder />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Starred" />
+                                </ListItemButton>
+                            </List>
+                        </Collapse>
+                    </List>
+                </List>
+                {/* end */}
+
                 <List>
                     <Link href={route("library.index")}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <InboxIcon />
+                                    <SettingsApplicationsSharpIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Settings" />
                             </ListItemButton>
