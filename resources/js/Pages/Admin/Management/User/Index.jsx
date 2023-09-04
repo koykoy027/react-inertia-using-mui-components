@@ -69,6 +69,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
+                                    required
                                 />
 
                                 <BasicTextFields
