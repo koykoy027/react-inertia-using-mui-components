@@ -28,6 +28,7 @@ import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import PostAddIcon from "@mui/icons-material/PostAdd";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import {
     Avatar,
     Menu,
@@ -346,7 +347,7 @@ export default function MainLayout({ user, children }) {
                     <List>
                         <ListItemButton onClick={toggleQrSideNav}>
                             <ListItemIcon>
-                                <InboxIcon />
+                                <AddBoxIcon />
                             </ListItemIcon>
                             <ListItemText primary="Storage" />
                             {QrSideNav ? <ExpandLess /> : <ExpandMore />}

@@ -53,36 +53,27 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                         </div>
                     }
                     content={
-                        <div className="flex flex-col gap-5 ">
-                            <div className="grid grid-col lg:grid-cols-3 gap-2">
+                        <div className="flex flex-col gap-10 ">
+                            <div className="grid grid-col gap-5">
                                 <BasicTextFields
-                                    label="Last Name"
+                                    label="Product Name"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
                                 />
 
                                 <BasicTextFields
-                                    label="First Name"
+                                    label="Product ID"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
                                 />
 
                                 <BasicTextFields
-                                    label="Middle Name"
+                                    label="Department"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
-                                />
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                                <BasicTextFields
-                                    label="Age"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type="number"
                                 />
                                 <FormControl
                                     sx={{ minWidth: 120 }}
@@ -106,41 +97,18 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         <MenuItem value={30}>Widow</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <BasicTextFields
-                                label="Email"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <BasicTextFields
-                                label="Address"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <div className="grid grid-cols-2 gap-2">
                                 <BasicTextFields
-                                    label="Password"
+                                    label="Location"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
-                                    type={"password"}
+                                    type={"email"}
                                 />
-                                <BasicTextFields
-                                    label="Confirm Password"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"password"}
-                                />
-                            </div>
-                            <div className="lg:pt-28 pt-10">
-                                <Button variant="contained" fullWidth>
-                                    Submit
-                                </Button>
+                                <div className="lg:pt-28 pt-10">
+                                    <Button variant="contained" fullWidth>
+                                        Submit
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     }
