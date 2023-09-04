@@ -13,7 +13,7 @@ export default function Edit({ auth }) {
     };
     return (
         <MainLayout user={auth.user}>
-            <div className="grid gap-4 lg:grid-cols-3 lg:grid align-center">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 lg:grid align-center">
                 <div className="card">
                     <center>
                         <IconButton sx={{ width: 100, height: 100 }}>

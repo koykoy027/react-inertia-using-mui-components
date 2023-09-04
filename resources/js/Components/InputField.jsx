@@ -11,6 +11,7 @@ export default function BasicTextFields({
     type,
     value,
     onchange,
+    required,
 }) {
     return (
         <Box
@@ -31,6 +32,7 @@ export default function BasicTextFields({
                 type={type}
                 value={value}
                 onchange={onchange}
+                required={required}
             />
         </Box>
     );

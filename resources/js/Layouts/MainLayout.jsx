@@ -42,6 +42,13 @@ import {
 } from "@mui/material";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
+import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
+import SaveIcon from "@mui/icons-material/Save";
+import PrintIcon from "@mui/icons-material/Print";
+import ShareIcon from "@mui/icons-material/Share";
+import EditIcon from "@mui/icons-material/Edit";
+import CustomSpeedDial from "@/Components/CustomSpeedDial";
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -149,6 +156,15 @@ export default function MainLayout({ user, children }) {
     const generateQr = () => {
         setQr(!Qr);
     };
+
+    // speed dial
+
+    const actions = [
+        { icon: <FileCopyIcon />, name: "Copy" },
+        { icon: <SaveIcon />, name: "Save" },
+        { icon: <PrintIcon />, name: "Print" },
+        { icon: <ShareIcon />, name: "Share" },
+    ];
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -410,7 +426,15 @@ export default function MainLayout({ user, children }) {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
-                <div className="sm:mx-5 md:mx-2 lg:mx-10">{children}</div>
+                <div className="sm:mx-5 md:mx-2 lg:mx-10">
+                    {children}
+                    <div className="lg:hidden block">
+                        <CustomSpeedDial
+                            actions={actions}
+                            openIcon={<EditIcon />}
+                        />
+                    </div>
+                </div>
             </Main>
         </Box>
     );
