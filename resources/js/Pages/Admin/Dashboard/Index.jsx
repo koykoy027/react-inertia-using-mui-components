@@ -6,6 +6,8 @@ import LocalShippingSharpIcon from "@mui/icons-material/LocalShippingSharp";
 import CarCrashSharpIcon from "@mui/icons-material/CarCrashSharp";
 import ProductionQuantityLimitsSharpIcon from "@mui/icons-material/ProductionQuantityLimitsSharp";
 import MUIDataTable from "mui-datatables";
+import StackBars from "@/Components/StackBar";
+import BasicPie from "@/Components/BasicPie";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Name", "Age", "Status"];
@@ -42,12 +44,16 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     count="5"
                 />
             </div>
-            <div className="grid grid-cols-2 gap-5 ">
+            <div className="grid grid-col lg:grid-cols-2 gap-5">
                 <Card>
-                    <Typography paragraph>BarGraph</Typography>
+                    <Typography paragraph>
+                        <StackBars />
+                    </Typography>
                 </Card>
                 <Card>
-                    <Typography paragraph>BarGraph</Typography>
+                    <Typography paragraph>
+                        <BasicPie />
+                    </Typography>
                 </Card>
             </div>
             <div className="py-6">
