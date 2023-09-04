@@ -25,6 +25,9 @@ import SettingsApplicationsSharpIcon from "@mui/icons-material/SettingsApplicati
 import DashboardSharpIcon from "@mui/icons-material/DashboardSharp";
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
+import QrCodeIcon from "@mui/icons-material/QrCode";
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import {
     Avatar,
     Menu,
@@ -139,6 +142,12 @@ export default function MainLayout({ user, children }) {
         setQrSideNav(!QrSideNav);
     };
     // end
+
+    const [Qr, setQr] = useState(false);
+
+    const generateQr = () => {
+        setQr(!Qr);
+    };
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -324,12 +333,14 @@ export default function MainLayout({ user, children }) {
                         </Link>
 
                         <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <InventorySharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Products" />
-                            </ListItemButton>
+                            <Link href={route("products.index")}>
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <InventorySharpIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Products" />
+                                </ListItemButton>
+                            </Link>
                         </List>
                     </Collapse>
                     <List>
@@ -353,6 +364,35 @@ export default function MainLayout({ user, children }) {
                     </List>
                 </List>
                 {/* end */}
+                <List>
+                    <ListItemButton onClick={generateQr}>
+                        <ListItemIcon>
+                            <QrCodeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="QR" />
+                        {Qr ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={Qr} timeout="auto" unmountOnExit>
+                        <Link href={route("qr.index")}>
+                            <List component="div" disablePadding>
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <PostAddIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Add Records" />
+                                </ListItemButton>
+                            </List>
+                        </Link>
+                        <Link href={route("generateqr.index")}>
+                            <ListItemButton sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <QrCodeScannerIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Genarate QR" />
+                            </ListItemButton>
+                        </Link>
+                    </Collapse>
+                </List>
 
                 <List>
                     <Link href={route("library.index")}>

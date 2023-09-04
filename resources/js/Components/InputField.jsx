@@ -3,7 +3,15 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
-export default function BasicTextFields({ label, variant, id, size, type }) {
+export default function BasicTextFields({
+    label,
+    variant,
+    id,
+    size,
+    type,
+    value,
+    onchange,
+}) {
     return (
         <Box
             component="form"
@@ -21,6 +29,8 @@ export default function BasicTextFields({ label, variant, id, size, type }) {
                 label={label}
                 variant={variant}
                 type={type}
+                value={value}
+                onchange={onchange}
             />
         </Box>
     );

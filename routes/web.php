@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
+use App\Http\Controllers\Management\ProductManagementController;
 use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Qr\GenerateQrController;
+use App\Http\Controllers\Qr\QrController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -45,6 +48,14 @@ Route::prefix('administrator')->group(function () {
         Route::resource('/library', LibraryController::class);
         // Management
         Route::resource('/management', UserManagementController::class);
+        Route::resource('/products', ProductManagementController::class);
+
+        // Qr code
+        Route::resource('/qr', QrController::class);
+        Route::resource('/generateqr', GenerateQrController::class);
+
+
+
 
 
 
@@ -55,11 +66,10 @@ Route::prefix('administrator')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-
 });
 
 
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
