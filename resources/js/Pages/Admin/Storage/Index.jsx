@@ -23,12 +23,18 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
+import VerticalTabs from "@/Components/TabPanel";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
 
     const data = [
         ["Lenovo laptop", "ABC1234", "Active"],
+        ["Lenovo PC", "ABC4321", "Pending"],
+    ];
+
+    const data1 = [
+        ["Lenovo laasdfasdfptop", "ABC1234", "Active"],
         ["Lenovo PC", "ABC4321", "Pending"],
     ];
 
@@ -66,94 +72,46 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         },
     ];
 
+    // Define an array of tab objects with label and content properties
+    const tabs = [
+        {
+            label: "Desktop",
+            content: (
+                <div className="">
+                    <Card>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </Card>
+                </div>
+            ),
+        },
+        {
+            label: "Laptops",
+            content: (
+                <div className="">
+                    <Card>
+                        <MUIDataTable
+                            data={data1}
+                            columns={columns}
+                            options={options}
+                        />
+                    </Card>
+                </div>
+            ),
+        },
+        // Add more tabs as needed
+    ];
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <div>
-                <ReusableModal
-                    icon={<AddSharpIcon />}
-                    title={"Add Record"}
-                    header={
-                        <div className="hidden lg:block">
-                            <Avatar
-                                style={{ width: 100, height: 100 }}
-                            ></Avatar>
-                        </div>
-                    }
-                    content={
-                        <div className="flex flex-col gap-5 ">
-                            <div className="grid grid-col gap-5">
-                                <BasicTextFields
-                                    label="Product Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-
-                                <BasicTextFields
-                                    label="Product ID"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-
-                                <BasicTextFields
-                                    label="Department"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-                                <FormControl
-                                    sx={{ minWidth: 120 }}
-                                    size="medium"
-                                >
-                                    <InputLabel id="demo-select-medium-label">
-                                        Status
-                                    </InputLabel>
-                                    <Select
-                                        labelId="demo-select-medium-label"
-                                        id="demo-select-medium"
-                                        value={age}
-                                        label="Age"
-                                        onChange={handleChange}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Single</MenuItem>
-                                        <MenuItem value={20}>Married</MenuItem>
-                                        <MenuItem value={30}>Widow</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <BasicTextFields
-                                    label="Location"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"email"}
-                                />
-                                <div className="lg:pt-28 pt-10">
-                                    <CustomizedSnackbars
-                                        title={"Submit"}
-                                        alertMessage={"The Item was Recorded!"}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    }
-                />
-            </div>
-            <div className="py-6">
-                <Card>
-                    <MUIDataTable
-                        data={data}
-                        columns={columns}
-                        options={options}
-                    />
-                </Card>
-            </div>
+            {/* Pass the tabs array to the VerticalTabs component */}
+            <VerticalTabs tabs={tabs} />
         </MainLayout>
     );
 }
