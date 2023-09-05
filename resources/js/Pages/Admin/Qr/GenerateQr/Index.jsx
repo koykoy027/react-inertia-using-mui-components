@@ -18,6 +18,11 @@ import ReusableModal from "@/Components/Modal";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import BasicTextFields from "@/Components/InputField";
 import QRCodeGenerator from "@/Components/QRCodeGenerator";
+import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
+import HomeIcon from "@mui/icons-material/Home";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import GrainIcon from "@mui/icons-material/Grain";
+import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -40,8 +45,32 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         setAge(event.target.value);
     };
 
+    const breadcrumbItems = [
+        {
+            icon: (
+                <Link href={route("dashboard")}>
+                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                </Link>
+            ),
+            text: <Link href={route("dashboard")}>Home</Link>,
+            url: (
+                <Link href={route("dashboard")}>
+                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                </Link>
+            ),
+        },
+        {
+            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            text: "QR",
+            url: "/material-ui/getting-started/installation/",
+        },
+    ];
+
     return (
         <MainLayout user={auth.user}>
+            <div className="pb-10">
+                <CustomBreadcrumbs items={breadcrumbItems} />
+            </div>
             <QRCodeGenerator />
         </MainLayout>
     );

@@ -29,6 +29,7 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 import {
     Avatar,
     Menu,
@@ -48,6 +49,10 @@ import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
 import EditIcon from "@mui/icons-material/Edit";
 import CustomSpeedDial from "@/Components/CustomSpeedDial";
+import HomeIcon from "@mui/icons-material/Home";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import GrainIcon from "@mui/icons-material/Grain";
+import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 
 const drawerWidth = 240;
 
@@ -166,10 +171,26 @@ export default function MainLayout({ user, children }) {
         { icon: <ShareIcon />, name: "Share" },
     ];
 
+    const breadcrumbItems = [
+        {
+            icon: <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            text: "MUI",
+            url: "/",
+        },
+        {
+            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            text: "Core",
+            url: "/material-ui/getting-started/installation/",
+        },
+        {
+            icon: <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            text: "Breadcrumb",
+        },
+    ];
+
     return (
         <Box sx={{ display: "flex" }}>
             <CssBaseline />
-
             <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton
@@ -281,6 +302,9 @@ export default function MainLayout({ user, children }) {
                     {/* account menu end */}
                 </Toolbar>
             </AppBar>
+
+            {/* breadCrumbs */}
+
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -361,23 +385,16 @@ export default function MainLayout({ user, children }) {
                         </List>
                     </Collapse>
                     <List>
-                        <ListItemButton onClick={toggleQrSideNav}>
-                            <ListItemIcon>
-                                <AddBoxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Storage" />
-                            {QrSideNav ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={QrSideNav} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 4 }}>
+                        <Link href={route("storage.index")}>
+                            <ListItem disablePadding>
+                                <ListItemButton>
                                     <ListItemIcon>
-                                        <StarBorder />
+                                        <WidgetsIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Starred" />
+                                    <ListItemText primary="Storage" />
                                 </ListItemButton>
-                            </List>
-                        </Collapse>
+                            </ListItem>
+                        </Link>
                     </List>
                 </List>
                 {/* end */}
@@ -426,6 +443,7 @@ export default function MainLayout({ user, children }) {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
+
                 <div className="sm:mx-5 md:mx-2 lg:mx-10">
                     {children}
                     <div className="lg:hidden block">

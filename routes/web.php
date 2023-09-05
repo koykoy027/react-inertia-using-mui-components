@@ -7,6 +7,7 @@ use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Qr\GenerateQrController;
 use App\Http\Controllers\Qr\QrController;
+use App\Http\Controllers\Storage\StorageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -53,6 +54,10 @@ Route::prefix('administrator')->group(function () {
         // Qr code
         Route::resource('/qr', QrController::class);
         Route::resource('/generateqr', GenerateQrController::class);
+
+        // storage
+
+        Route::resource('/storage', StorageController::class);
 
 
 

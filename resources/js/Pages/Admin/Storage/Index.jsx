@@ -25,11 +25,11 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
-    const columns = ["Name", "Age", "Status"];
+    const columns = ["Product Name", "Product ID", "Status"];
 
     const data = [
-        ["Jhunriz", "23", "Active"],
-        ["Joshua", "22", "Active"],
+        ["Lenovo laptop", "ABC1234", "Active"],
+        ["Lenovo PC", "ABC4321", "Pending"],
     ];
 
     const options = {
@@ -61,7 +61,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         },
         {
             icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "User",
+            text: "Storage",
             url: "/material-ui/getting-started/installation/",
         },
     ];
@@ -74,7 +74,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             <div>
                 <ReusableModal
                     icon={<AddSharpIcon />}
-                    title={"Add User"}
+                    title={"Add Record"}
                     header={
                         <div className="hidden lg:block">
                             <Avatar
@@ -84,36 +84,26 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     }
                     content={
                         <div className="flex flex-col gap-5 ">
-                            <div className="grid grid-col lg:grid-cols-3 gap-2">
+                            <div className="grid grid-col gap-5">
                                 <BasicTextFields
-                                    label="Last Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    required
-                                />
-
-                                <BasicTextFields
-                                    label="First Name"
+                                    label="Product Name"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
                                 />
 
                                 <BasicTextFields
-                                    label="Middle Name"
+                                    label="Product ID"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
                                 />
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
+
                                 <BasicTextFields
-                                    label="Age"
+                                    label="Department"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
-                                    type="number"
                                 />
                                 <FormControl
                                     sx={{ minWidth: 120 }}
@@ -137,42 +127,19 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         <MenuItem value={30}>Widow</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <BasicTextFields
-                                label="Email"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <BasicTextFields
-                                label="Address"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <div className="grid grid-cols-2 gap-2">
                                 <BasicTextFields
-                                    label="Password"
+                                    label="Location"
                                     variant="outlined"
                                     id="Last Name"
                                     size={"medium"}
-                                    type={"password"}
+                                    type={"email"}
                                 />
-                                <BasicTextFields
-                                    label="Confirm Password"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"password"}
-                                />
-                            </div>
-                            <div className="lg:pt-28 pt-10">
-                                <CustomizedSnackbars
-                                    title={"Submit"}
-                                    alertMessage={"The user was add"}
-                                />
+                                <div className="lg:pt-28 pt-10">
+                                    <CustomizedSnackbars
+                                        title={"Submit"}
+                                        alertMessage={"The Item was Recorded!"}
+                                    />
+                                </div>
                             </div>
                         </div>
                     }

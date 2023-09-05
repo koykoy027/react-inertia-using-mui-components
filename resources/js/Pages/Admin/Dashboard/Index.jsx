@@ -8,6 +8,11 @@ import ProductionQuantityLimitsSharpIcon from "@mui/icons-material/ProductionQua
 import MUIDataTable from "mui-datatables";
 import StackBars from "@/Components/StackBar";
 import BasicPie from "@/Components/BasicPie";
+import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
+import HomeIcon from "@mui/icons-material/Home";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import GrainIcon from "@mui/icons-material/Grain";
+import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Name", "Age", "Status"];
@@ -23,8 +28,26 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         responsive: "standard",
         selectableRows: false,
     };
+
+    const breadcrumbItems = [
+        {
+            icon: (
+                <Link href={route("dashboard")}>
+                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                </Link>
+            ),
+            text: "Home",
+            url: "/",
+        },
+        {
+            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            text: "Administrator",
+            url: "/material-ui/getting-started/installation/",
+        },
+    ];
     return (
         <MainLayout user={auth.user}>
+            <CustomBreadcrumbs items={breadcrumbItems} />
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-7 w-full">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
