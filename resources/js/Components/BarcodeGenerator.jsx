@@ -3,11 +3,15 @@ import Barcode from "react-barcode";
 import { Box, TextField } from "@mui/material";
 
 const BarcodeGenerator = () => {
-    const [barcodeValue, setBarcodeValue] = useState("");
+    // const [barcodeValue, setBarcodeValue] = useState("");
+
+    const [ProductName, setProductName] = useState("");
 
     const handleInputChange = (e) => {
-        setBarcodeValue(e.target.value);
+        setProductName(e.target.value);
     };
+
+    const value = ProductName;
 
     return (
         <div className="grid grid-col lg:grid-cols-2 gap-2 items-center px-24 justify-start h-screen lg:h-96 bg-fre shadow-md">
@@ -28,7 +32,7 @@ const BarcodeGenerator = () => {
                             label="Barcode Value"
                             variant="outlined"
                             size="small"
-                            value={barcodeValue}
+                            value={ProductName}
                             fullWidth
                             onChange={handleInputChange}
                         />
@@ -37,8 +41,8 @@ const BarcodeGenerator = () => {
             </div>
             <div className="">
                 <div className="flex justify-center rounded border-2 py-10 border-gray-400">
-                    {barcodeValue && (
-                        <Barcode value={barcodeValue} width={2} height={80} />
+                    {ProductName && (
+                        <Barcode value={value} width={2} height={80} />
                     )}
                 </div>
             </div>

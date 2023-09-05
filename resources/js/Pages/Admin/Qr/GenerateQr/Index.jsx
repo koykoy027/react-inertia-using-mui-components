@@ -23,12 +23,19 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
+import VerticalTabs from "@/Components/TabPanel";
+import BarcodeGenerator from "@/Components/BarcodeGenerator";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
 
     const data = [
         ["Lenovo laptop", "ABC1234", "Active"],
+        ["Lenovo PC", "ABC4321", "Pending"],
+    ];
+
+    const data1 = [
+        ["Lenovo laasdfasdfptop", "ABC1234", "Active"],
         ["Lenovo PC", "ABC4321", "Pending"],
     ];
 
@@ -66,12 +73,35 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         },
     ];
 
+    // Define an array of tab objects with label and content properties
+    const tabs = [
+        {
+            label: "Barcode",
+            content: (
+                <div className="">
+                    <Card>
+                        <BarcodeGenerator />
+                    </Card>
+                </div>
+            ),
+        },
+        {
+            label: "QR-Code",
+            content: (
+                <div className="">
+                    <QRCodeGenerator />
+                </div>
+            ),
+        },
+        // Add more tabs as needed
+    ];
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <QRCodeGenerator />
+            <VerticalTabs tabs={tabs} />
         </MainLayout>
     );
 }
