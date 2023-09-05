@@ -17,6 +17,7 @@ import TransitionsModal from "@/Components/Modal";
 import ReusableModal from "@/Components/Modal";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import BasicTextFields from "@/Components/InputField";
+import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -105,9 +106,10 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     type={"email"}
                                 />
                                 <div className="lg:pt-28 pt-10">
-                                    <Button variant="contained" fullWidth>
-                                        Submit
-                                    </Button>
+                                    <CustomizedSnackbars
+                                        title={"Submit"}
+                                        alertMessage={"The Item was Recorded!"}
+                                    />
                                 </div>
                             </div>
                         </div>

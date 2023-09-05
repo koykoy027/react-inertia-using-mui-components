@@ -24,13 +24,16 @@ const QRCodeGenerator = () => {
     };
 
     const value =
-        "Product Name:" +
+        "Product Name: " +
         ProductName +
         "\n" +
+        "Inventory: " +
         Inventory +
         "\n" +
+        "Department: " +
         Department +
         "\n" +
+        "Purchase. :" +
         Purchase;
 
     const DownloadButton = () => {

@@ -17,6 +17,7 @@ import TransitionsModal from "@/Components/Modal";
 import ReusableModal from "@/Components/Modal";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import BasicTextFields from "@/Components/InputField";
+import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Name", "Age", "Status"];
@@ -39,15 +40,6 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         setAge(event.target.value);
     };
 
-    const top100Films = [
-        { label: "The Shawshank Redemption", year: 1994 },
-        { label: "The Godfather", year: 1972 },
-        { label: "The Godfather: Part II", year: 1974 },
-        { label: "The Dark Knight", year: 2008 },
-        { label: "12 Angry Men", year: 1957 },
-        { label: "Schindler's List", year: 1993 },
-        { label: "Pulp Fiction", year: 1994 },
-    ];
     return (
         <MainLayout user={auth.user}>
             <div>
@@ -148,16 +140,17 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 />
                             </div>
                             <div className="lg:pt-28 pt-10">
-                                <Button variant="contained" fullWidth>
-                                    Submit
-                                </Button>
+                                <CustomizedSnackbars
+                                    title={"Submit"}
+                                    alertMessage={"The user was add"}
+                                />
                             </div>
                         </div>
                     }
                 />
             </div>
             <div className="py-6">
-                <Card clas>
+                <Card>
                     <MUIDataTable
                         data={data}
                         columns={columns}
