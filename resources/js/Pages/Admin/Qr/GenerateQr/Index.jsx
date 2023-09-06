@@ -25,6 +25,8 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import VerticalTabs from "@/Components/TabPanel";
 import BarcodeGenerator from "@/Components/BarcodeGenerator";
+import QRCodeScanner from "@/Components/QRCodeScanner";
+import BarcodeScanner from "@/Components/BarcodeScanner";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -81,6 +83,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                 <div className="">
                     <Card>
                         <BarcodeGenerator />
+                        <BarcodeScanner />
                     </Card>
                 </div>
             ),
@@ -90,6 +93,9 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             content: (
                 <div className="">
                     <QRCodeGenerator />
+                    <div className="p-24 w-auto">
+                        <QRCodeScanner />
+                    </div>
                 </div>
             ),
         },
