@@ -3,7 +3,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 export default function BasicPie() {
     return (
-        <div class="mx-auto w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+        <div className="mx-auto flex justify-center">
             <PieChart
                 series={[
                     {
@@ -14,8 +14,8 @@ export default function BasicPie() {
                         ],
                     },
                 ]}
-                width={300}
-                height={200}
+                width={400}
+                height={300}
             />
         </div>
     );

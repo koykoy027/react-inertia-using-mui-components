@@ -10,6 +10,7 @@ import {
     MenuItem,
     Select,
     TextField,
+    Typography,
 } from "@mui/material";
 import React from "react";
 import MUIDataTable from "mui-datatables";
@@ -78,7 +79,11 @@ export default function Index({ auth, mustVerifyEmail, status }) {
     // Define an array of tab objects with label and content properties
     const tabs = [
         {
-            label: "Barcode",
+            label: (
+                <Typography variant="button" display="block" gutterBottom>
+                    button text
+                </Typography>
+            ),
             content: (
                 <div className="">
                     <Card>
