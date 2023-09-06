@@ -14,9 +14,11 @@ const BarcodeGenerator = () => {
     const value = ProductName;
 
     return (
-        <div className="grid grid-col lg:grid-cols-2 gap-2 items-center px-24 justify-start h-screen lg:h-96 bg-fre shadow-md">
-            <div className="grid grid-row justify-start gap-5">
-                <h1 className="text-3xl font-bold mb-4">Barcode Generator</h1>
+        <div className="grid grid-col gap-2 items-center px-24 justify-center h-screen lg:h-96 bg-fre shadow-md">
+            <div className="grid grid-col justify-start gap-5">
+                <h1 className="text-3xl text-center font-bold mb-4">
+                    Generate Barcode
+                </h1>
                 <Box
                     sx={{
                         display: "flex",
@@ -40,7 +42,7 @@ const BarcodeGenerator = () => {
                 </Box>
             </div>
             <div className="">
-                <div className="flex justify-center rounded border-2 py-10 border-gray-400">
+                <div className="flex justify-center border-gray-400">
                     {ProductName && (
                         <Barcode value={value} width={2} height={80} />
                     )}

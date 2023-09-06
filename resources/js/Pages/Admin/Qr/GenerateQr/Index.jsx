@@ -28,6 +28,7 @@ import VerticalTabs from "@/Components/TabPanel";
 import BarcodeGenerator from "@/Components/BarcodeGenerator";
 import QRCodeScanner from "@/Components/QRCodeScanner";
 import BarcodeScanner from "@/Components/BarcodeScanner";
+import QrCodeSharpIcon from "@mui/icons-material/QrCodeSharp";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -81,26 +82,50 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         {
             label: (
                 <Typography variant="button" display="block" gutterBottom>
-                    button text
+                    Barcode
                 </Typography>
             ),
             content: (
                 <div className="">
+                    <div className="flex justify-center py-10">
+                        <ReusableModal
+                            icon={<QrCodeSharpIcon />}
+                            title={"Scan"}
+                            content={
+                                <div className="flex flex-col gap-10 ">
+                                    <BarcodeScanner />
+                                </div>
+                            }
+                        />
+                    </div>
                     <Card>
                         <BarcodeGenerator />
-                        <BarcodeScanner />
                     </Card>
                 </div>
             ),
         },
         {
-            label: "QR-Code",
+            label: (
+                <Typography variant="button" display="block" gutterBottom>
+                    QR-Code
+                </Typography>
+            ),
             content: (
                 <div className="">
-                    <QRCodeGenerator />
-                    <div className="p-24 w-auto">
-                        <QRCodeScanner />
+                    <div className="flex justify-center py-10">
+                        <ReusableModal
+                            icon={<QrCodeSharpIcon />}
+                            title={"Scan QR"}
+                            content={
+                                <div className="flex flex-col gap-10 ">
+                                    <QRCodeScanner />
+                                </div>
+                            }
+                        />
                     </div>
+                    <Card>
+                        <QRCodeGenerator />
+                    </Card>
                 </div>
             ),
         },

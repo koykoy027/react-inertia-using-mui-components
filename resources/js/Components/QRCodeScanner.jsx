@@ -14,7 +14,7 @@ const QRCodeScanner = () => {
     };
 
     return (
-        <div className="bg-gray-200 h-screen flex flex-col items-center justify-center">
+        <div className="bg-gray-200 h-96 flex flex-col items-center justify-center">
             <h1 className="text-2xl mb-4">QR Code Scanner</h1>
             <div className="w-2/3">
                 {/* <QrReader
