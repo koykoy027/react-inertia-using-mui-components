@@ -24,7 +24,7 @@ class BarcodeScanner extends Component {
     render() {
         return (
             <div>
-                <h1>Barcode Scanner</h1>
+                <h1 className="text-center absolute top-24">Barcode Scanner</h1>
                 {this.state.data && (
                     <div>
                         <p>Scanned Data:</p>
