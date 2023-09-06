@@ -428,18 +428,20 @@ export default function MainLayout({ user, children }) {
                     </Collapse>
                 </List>
 
-                <List>
-                    <Link href={route("library.index")}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <SettingsApplicationsSharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Settings" />
-                            </ListItemButton>
-                        </ListItem>
-                    </Link>
-                </List>
+                <div className="absolute bottom-0 w-full">
+                    <List>
+                        <Link href={route("library.index")}>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <SettingsApplicationsSharpIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Settings" />
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+                    </List>
+                </div>
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
