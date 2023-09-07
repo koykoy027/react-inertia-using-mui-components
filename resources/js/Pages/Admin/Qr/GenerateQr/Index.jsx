@@ -29,6 +29,7 @@ import BarcodeGenerator from "@/Components/BarcodeGenerator";
 import QRCodeScanner from "@/Components/QRCodeScanner";
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import QrCodeSharpIcon from "@mui/icons-material/QrCodeSharp";
+import CropFreeIcon from "@mui/icons-material/CropFree";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -89,7 +90,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                 <div className="">
                     <div className="flex justify-center py-10">
                         <ReusableModal
-                            icon={<QrCodeSharpIcon />}
+                            icon={<CropFreeIcon />}
                             title={"Scan"}
                             content={
                                 <div className="flex flex-col gap-10 ">
