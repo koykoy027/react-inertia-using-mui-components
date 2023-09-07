@@ -9,6 +9,8 @@ const BarcodeGenerator = () => {
 
     const handleInputChange = (e) => {
         setProductName(e.target.value);
+        const inputValue = event.target.value.replace(/\D/g, "").slice(0, 48);
+        setProductName(inputValue);
     };
 
     const downloadBarcode = () => {
@@ -39,7 +41,7 @@ const BarcodeGenerator = () => {
 
     return (
         <div className="grid grid-col gap-2 items-center px-24 justify-center h-screen lg:h-96 bg-fre shadow-md">
-            <div className="grid grid-col justify-start gap-5">
+            <div className="grid grid-col w-full justify-start gap-5">
                 <h1 className="text-3xl text-center font-bold mb-4">
                     Generate Barcode
                 </h1>
@@ -48,8 +50,7 @@ const BarcodeGenerator = () => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "center",
-                        width: 600,
-                        maxWidth: "100%",
+                        width: 900,
                     }}
                 >
                     <div className="grid grid-col gap-4 w-full">
@@ -57,7 +58,7 @@ const BarcodeGenerator = () => {
                             id="barcode-value-input"
                             label="Barcode Value"
                             variant="outlined"
-                            size="small"
+                            size="large"
                             value={productName}
                             fullWidth
                             onChange={handleInputChange}
@@ -70,7 +71,7 @@ const BarcodeGenerator = () => {
                 <div
                     ref={barcodeRef}
                     id="barcode-canvas"
-                    className="flex justify-center border-gray-400"
+                    className="flex justify-start border-gray-400 w-full"
                 >
                     {productName && (
                         <Barcode
