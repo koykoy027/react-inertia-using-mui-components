@@ -1,65 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Barcode from "react-barcode";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import html2canvas from "html2canvas";
 
 const BarcodeGenerator = () => {
-    // const [barcodeValue, setBarcodeValue] = useState("");
-
-    const [ProductName, setProductName] = useState("");
+    const [productName, setProductName] = useState("");
+    const barcodeRef = useRef(null);
 
     const handleInputChange = (e) => {
         setProductName(e.target.value);
     };
 
-    const value = ProductName;
-
-    const DownloadButton = () => {
-        const handleDownload = () => {
-            const canvas = document.getElementById("qrcode-canvas");
-            const a = document.createElement("a");
-            a.href = canvas.toDataURL("image/png");
-            a.download = "qrcode.png";
-            a.click();
-        };
-
-        return (
-            <button
-                onClick={handleDownload}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                disabled={!ProductName}
-            >
-                Download QR Code
-            </button>
-        );
+    const downloadBarcode = () => {
+        if (barcodeRef.current) {
+            html2canvas(barcodeRef.current).then((canvas) => {
+                // Create an "a" element to trigger the download
+                const a = document.createElement("a");
+                a.href = canvas.toDataURL("image/png");
+                a.download = "barcode.png";
+                a.click();
+            });
+        }
     };
 
-    const PrintButton = () => {
-        const handlePrint = () => {
-            const printWindow = window.open("", "", "width=600,height=600");
-            printWindow.document.open();
-            printWindow.document.write(
-                "<html><head><title>QR Code</title></head><body>"
-            );
-            printWindow.document.write(
-                `<img src="${document
-                    .getElementById("qrcode-canvas")
-                    .toDataURL()}" alt="QR Code" />`
-            );
-            printWindow.document.write("</body></html>");
-            printWindow.document.close();
-            printWindow.print();
-            printWindow.close();
-        };
-
-        return (
-            <button
-                onClick={handlePrint}
-                className="bg-green-500 text-white px-4 py-2 rounded-md"
-                disabled={!ProductName}
-            >
-                Print QR Code
-            </button>
+    const printBarcode = () => {
+        const barcodeCanvas = document.getElementById("barcode-canvas");
+        const printWindow = window.open("", "", "width=1000,height=1000");
+        printWindow.document.open();
+        printWindow.document.write(
+            "<html><head><title>Print</title></head><body>"
         );
+        printWindow.document.write(barcodeCanvas.innerHTML);
+        printWindow.document.write("</body></html>");
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.close();
     };
 
     return (
@@ -83,23 +58,45 @@ const BarcodeGenerator = () => {
                             label="Barcode Value"
                             variant="outlined"
                             size="small"
-                            value={ProductName}
+                            value={productName}
                             fullWidth
                             onChange={handleInputChange}
-                            type="number"
+                            type="text"
                         />
                     </div>
                 </Box>
             </div>
-            <div className="">
-                <div className="flex justify-center border-gray-400">
-                    {ProductName && (
-                        <Barcode value={value} width={2} height={80} />
+            <div>
+                <div
+                    ref={barcodeRef}
+                    id="barcode-canvas"
+                    className="flex justify-center border-gray-400"
+                >
+                    {productName && (
+                        <Barcode
+                            id="barcode-canvas"
+                            value={productName}
+                            width={1}
+                            height={80}
+                            canvas
+                        />
                     )}
                 </div>
                 <div className="grid grid-cols-2 gap-5 py-10">
-                    <DownloadButton />
-                    <PrintButton />
+                    <Button
+                        color="success"
+                        variant="contained"
+                        onClick={downloadBarcode}
+                    >
+                        Download
+                    </Button>
+                    <Button
+                        color="success"
+                        variant="contained"
+                        onClick={printBarcode}
+                    >
+                        Print
+                    </Button>
                 </div>
             </div>
         </div>

@@ -1,37 +1,50 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import Camera, { FACING_MODES } from "react-html5-camera-photo";
+import "react-html5-camera-photo/build/css/index.css";
 
-const QRCodeScanner = () => {
-    const [result, setResult] = useState(null);
+class QRCodeScanner extends Component {
+    constructor(props) {
+        super(props);
 
-    const handleScan = (data) => {
-        if (data) {
-            setResult(data);
+        this.state = {
+            data: null,
+            error: null,
+        };
+    }
+
+    // Add a function to handle the QR code scan result
+    handleQRCodeScan(result) {
+        if (result) {
+            this.setState({ data: result });
+        } else {
+            this.setState({ error: "No QR code found" });
         }
-    };
+    }
 
-    const handleError = (error) => {
-        console.error(error);
-    };
+    onCameraError(error) {
+        this.setState({ error: `Camera error: ${error.message}` });
+    }
 
-    return (
-        <div className="bg-gray-200 h-96 flex flex-col items-center justify-center">
-            <h1 className="text-2xl mb-4">QR Code Scanner</h1>
-            <div className="w-2/3">
-                {/* <QrReader
-                    delay={300}
-                    onError={handleError}
-                    onScan={handleScan}
-                    style={{ width: "100%" }}
-                /> */}
+    render() {
+        return (
+            <div>
+                <h1 className="text-center absolute top-24">QR Code Scanner</h1>
+                {this.state.data && (
+                    <div>
+                        <p>Scanned QR Code:</p>
+                        <p>{this.state.data}</p>
+                    </div>
+                )}
+                {this.state.error && <p>{this.state.error}</p>}
+                <Camera
+                    idealFacingMode={FACING_MODES.ENVIRONMENT} // Use the back camera (you can change this to FACING_MODES.USER for the front camera)
+                    onTakePhoto={(dataUri) => this.handleQRCodeScan(dataUri)} // Pass the dataUri to the scan handler
+                    onCameraError={(error) => this.onCameraError(error)}
+                    isImageMirror={false} // To prevent mirroring of the camera feed
+                />
             </div>
-            {result && (
-                <div className="mt-4">
-                    <p className="text-xl font-semibold">Scanned Result:</p>
-                    <p className="text-lg">{result}</p>
-                </div>
-            )}
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default QRCodeScanner;
