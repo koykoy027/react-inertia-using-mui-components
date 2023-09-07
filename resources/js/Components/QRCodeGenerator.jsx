@@ -36,6 +36,27 @@ const QRCodeGenerator = () => {
         "Purchase. :" +
         Purchase;
 
+    const DownloadButton = () => {
+        const handleDownload = () => {
+            const canvas = document.getElementById("qrcode-canvas");
+            const a = document.createElement("a");
+            a.href = canvas.toDataURL("image/png");
+            a.download = "qrcode.png";
+            a.click();
+        };
+
+        return (
+            <Button
+                onClick={handleDownload}
+                variant="contained"
+                color="primary"
+                disabled={!ProductName}
+            >
+                Download QR Code
+            </Button>
+        );
+    };
+
     const PrintButton = () => {
         const handlePrint = () => {
             const printWindow = window.open("", "", "width=600,height=600");
