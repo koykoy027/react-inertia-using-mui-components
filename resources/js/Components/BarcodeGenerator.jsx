@@ -76,7 +76,7 @@ const BarcodeGenerator = () => {
                         <Barcode
                             id="barcode-canvas"
                             value={productName}
-                            width={1}
+                            width={3}
                             height={80}
                             canvas
                         />
