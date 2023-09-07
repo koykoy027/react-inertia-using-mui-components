@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import QRCode from "qrcode.react";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const QRCodeGenerator = () => {
     const [ProductName, setProductName] = useState("");
@@ -36,26 +36,6 @@ const QRCodeGenerator = () => {
         "Purchase. :" +
         Purchase;
 
-    const DownloadButton = () => {
-        const handleDownload = () => {
-            const canvas = document.getElementById("qrcode-canvas");
-            const a = document.createElement("a");
-            a.href = canvas.toDataURL("image/png");
-            a.download = "qrcode.png";
-            a.click();
-        };
-
-        return (
-            <button
-                onClick={handleDownload}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                disabled={!ProductName}
-            >
-                Download QR Code
-            </button>
-        );
-    };
-
     const PrintButton = () => {
         const handlePrint = () => {
             const printWindow = window.open("", "", "width=600,height=600");
@@ -75,13 +55,14 @@ const QRCodeGenerator = () => {
         };
 
         return (
-            <button
+            <Button
                 onClick={handlePrint}
-                className="bg-green-500 text-white px-4 py-2 rounded-md"
                 disabled={!ProductName}
+                variant="contained"
+                color="success"
             >
                 Print QR Code
-            </button>
+            </Button>
         );
     };
 
