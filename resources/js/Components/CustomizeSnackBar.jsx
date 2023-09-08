@@ -8,7 +8,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function CustomizedSnackbars({ title, alertMessage }) {
+export default function CustomizedSnackbars({
+    title,
+    color,
+    startIcon,
+    alertMessage,
+}) {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
@@ -28,7 +33,12 @@ export default function CustomizedSnackbars({ title, alertMessage }) {
     return (
         <>
             <Stack spacing={2} sx={{ width: "100%" }}>
-                <Button variant="contained" onClick={handleClick}>
+                <Button
+                    variant="contained"
+                    color={color}
+                    startIcon={startIcon}
+                    onClick={handleClick}
+                >
                     {title}
                 </Button>
             </Stack>

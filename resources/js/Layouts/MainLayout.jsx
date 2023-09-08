@@ -53,6 +53,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
+import DarkModeToggle from "@/Components/Darkmode";
 
 const drawerWidth = 240;
 

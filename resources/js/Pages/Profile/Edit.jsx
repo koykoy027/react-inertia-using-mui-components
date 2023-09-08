@@ -7,6 +7,8 @@ import { Avatar, IconButton, Typography, Tabs, Tab, Box } from "@mui/material";
 import SupervisedUserCircleSharpIcon from "@mui/icons-material/SupervisedUserCircleSharp";
 import ChangeCircleSharpIcon from "@mui/icons-material/ChangeCircleSharp";
 import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
+import { DarkMode } from "@mui/icons-material";
+import Darkmode from "./Partials/Darkmode";
 
 export default function Edit({ auth }) {
     const [value, setValue] = React.useState("personalInformation");
@@ -69,12 +71,19 @@ export default function Edit({ auth }) {
                                 icon={<ManageAccountsSharpIcon />}
                                 iconPosition="start"
                             />
+                            <Tab
+                                value="Dark Mode"
+                                label="Dark Mode"
+                                icon={<ManageAccountsSharpIcon />}
+                                iconPosition="start"
+                            />
                         </Tabs>
                     </div>
                     <div className="mt-2 col-span-5">
                         {value === "personalInformation" && <UpdateProfile />}
                         {value === "changePassword" && <UpdatePassword />}
                         {value === "accountSettings" && <DeleteAccount />}
+                        {value === "Dark Mode" && <Darkmode />}
                     </div>
                 </div>
             </div>

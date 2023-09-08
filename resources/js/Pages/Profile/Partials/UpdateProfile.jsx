@@ -36,7 +36,7 @@ export default function UpdateProfile({
                 </Typography>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className="grid gap-2 lg:grid-col">
+                <div className="grid gap-2 lg:grid-col py-10">
                     <div>
                         <TextField
                             id="name"
@@ -71,7 +71,6 @@ export default function UpdateProfile({
                         color="primary"
                         type="submit"
                         disabled={processing}
-                        fullWidth
                     >
                         Save
                     </Button>

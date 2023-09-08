@@ -55,7 +55,7 @@ export default function UpdatePassword() {
                 </Typography>
             </div>
 
-            <form onSubmit={updatePassword} className="grid gap-2">
+            <form onSubmit={updatePassword} className="grid gap-2 py-10">
                 <TextField
                     label="Current Password"
                     type="password"
@@ -107,7 +107,6 @@ export default function UpdatePassword() {
                         color="primary"
                         type="submit"
                         disabled={processing}
-                        fullWidth
                     >
                         Save
                     </Button>
