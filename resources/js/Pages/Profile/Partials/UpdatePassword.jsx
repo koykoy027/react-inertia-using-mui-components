@@ -107,6 +107,7 @@ export default function UpdatePassword() {
                         color="primary"
                         type="submit"
                         disabled={processing}
+                        fullWidth
                     >
                         Save
                     </Button>

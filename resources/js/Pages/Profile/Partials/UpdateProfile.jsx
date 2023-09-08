@@ -1,14 +1,18 @@
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm, usePage } from "@inertiajs/react";
 import { Button, Typography, TextField } from "@mui/material";
 
-
-export default function UpdateProfile({ mustVerifyEmail, status, className = '' }) {
+export default function UpdateProfile({
+    mustVerifyEmail,
+    status,
+    className = "",
+}) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: user.name,
-        email: user.email,
-    });
+    const { data, setData, patch, errors, processing, recentlySuccessful } =
+        useForm({
+            name: user.name,
+            email: user.email,
+        });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +36,7 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
                 </Typography>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className="grid gap-2 lg:grid-cols-2">
+                <div className="grid gap-2 lg:grid-col">
                     <div>
                         <TextField
                             id="name"
@@ -67,6 +71,7 @@ export default function UpdateProfile({ mustVerifyEmail, status, className = '' 
                         color="primary"
                         type="submit"
                         disabled={processing}
+                        fullWidth
                     >
                         Save
                     </Button>
