@@ -55,8 +55,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
-
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -306,30 +306,16 @@ export default function MainLayout({ user, children }) {
                                     <Avatar /> {user.name}
                                 </MenuItem>
                                 <MenuItem>
-                                    <div
-                                        className={
-                                            DarkMode
-                                                ? "dark-mode"
-                                                : "light-mode"
-                                        }
-                                    >
-                                        <h1>Dark Mode</h1>
-                                        <Switch
-                                            checked={DarkMode}
-                                            onChange={toggleDarkMode}
-                                            color="primary"
-                                            name="darkModeToggle"
-                                        />
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={toggleDarkMode}
-                                        >
-                                            {DarkMode
-                                                ? "Switch to Light Mode"
-                                                : "Switch to Dark Mode"}
-                                        </Button>
-                                    </div>
+                                    <CustomizedSwitches
+                                        checked={DarkMode}
+                                        onChange={toggleDarkMode}
+                                    />
+                                    {/* <Switch
+                                        checked={DarkMode}
+                                        onChange={toggleDarkMode}
+                                        color="primary"
+                                        // name="darkModeToggle"
+                                    /> */}
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem>
