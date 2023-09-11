@@ -40,6 +40,8 @@ import {
     useTheme,
     ListSubheader,
     Collapse,
+    Switch,
+    Button,
 } from "@mui/material";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
@@ -52,8 +54,8 @@ import CustomSpeedDial from "@/Components/CustomSpeedDial";
 import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
-import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
-import DarkModeToggle from "@/Components/Darkmode";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CustomizedSwitches from "@/Components/CustomizedSwitches";
 
 const drawerWidth = 240;
 
@@ -188,275 +190,332 @@ export default function MainLayout({ user, children }) {
             text: "Breadcrumb",
         },
     ];
+    // Initialize DarkMode state with a default value from localStorage if available
+    const [DarkMode, SetDarkMode] = useState(
+        localStorage.getItem("DarkMode") === "true"
+    );
+
+    // Function to toggle DarkMode and store the preference in localStorage
+    const toggleDarkMode = () => {
+        const newDarkMode = !DarkMode;
+        SetDarkMode(newDarkMode);
+        localStorage.setItem("DarkMode", newDarkMode);
+    };
+
+    // Create the theme based on DarkMode state
+    const darkTheme = createTheme({
+        palette: {
+            mode: DarkMode ? "dark" : "light",
+        },
+    });
 
     return (
-        <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{ mr: 2, ...(open && { display: "none" }) }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Inventory Management System
-                    </Typography>
-                    <div style={{ flexGrow: 1 }}></div>
-
-                    {/* account menu start */}
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            textAlign: "center",
-                        }}
-                    >
-                        <Tooltip title="Account settings">
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline>
+                <Box sx={{ display: "flex" }}>
+                    <CssBaseline />
+                    <AppBar position="fixed" open={open}>
+                        <Toolbar>
                             <IconButton
-                                onClick={handleClick}
-                                size="small"
-                                sx={{ ml: 2 }}
-                                aria-controls={
-                                    openAvatar ? "account-menu" : undefined
-                                }
-                                aria-haspopup="true"
-                                aria-expanded={openAvatar ? "true" : undefined}
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={handleDrawerOpen}
+                                edge="start"
+                                sx={{ mr: 2, ...(open && { display: "none" }) }}
                             >
-                                <Avatar
-                                    alt={user.name}
-                                    src="/static/images/avatar/2.jpg"
-                                />
+                                <MenuIcon />
                             </IconButton>
-                        </Tooltip>
-                    </Box>
-                    <Menu
-                        anchorEl={anchorEl}
-                        id="account-menu"
-                        open={openAvatar}
-                        onClose={handleClose}
-                        onClick={handleClose}
-                        PaperProps={{
-                            elevation: 0,
-                            sx: {
-                                overflow: "visible",
-                                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                                mt: 1.5,
-                                "& .MuiAvatar-root": {
-                                    width: 32,
-                                    height: 32,
-                                    ml: -0.5,
-                                    mr: 1,
-                                },
-                                "&:before": {
-                                    content: '""',
-                                    display: "block",
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 14,
-                                    width: 10,
-                                    height: 10,
-                                    bgcolor: "background.paper",
-                                    transform: "translateY(-50%) rotate(45deg)",
-                                    zIndex: 0,
-                                },
+                            <Typography variant="h6" noWrap component="div">
+                                Inventory Management System
+                            </Typography>
+                            <div style={{ flexGrow: 1 }}></div>
+
+                            {/* account menu start */}
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    textAlign: "center",
+                                }}
+                            >
+                                <Tooltip title="Account settings">
+                                    <IconButton
+                                        onClick={handleClick}
+                                        size="small"
+                                        sx={{ ml: 2 }}
+                                        aria-controls={
+                                            openAvatar
+                                                ? "account-menu"
+                                                : undefined
+                                        }
+                                        aria-haspopup="true"
+                                        aria-expanded={
+                                            openAvatar ? "true" : undefined
+                                        }
+                                    >
+                                        <Avatar
+                                            alt={user.name}
+                                            src="/static/images/avatar/2.jpg"
+                                        />
+                                    </IconButton>
+                                </Tooltip>
+                            </Box>
+                            <Menu
+                                anchorEl={anchorEl}
+                                id="account-menu"
+                                open={openAvatar}
+                                onClose={handleClose}
+                                onClick={handleClose}
+                                PaperProps={{
+                                    elevation: 0,
+                                    sx: {
+                                        overflow: "visible",
+                                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                        mt: 1.5,
+                                        "& .MuiAvatar-root": {
+                                            width: 32,
+                                            height: 32,
+                                            ml: -0.5,
+                                            mr: 1,
+                                        },
+                                        "&:before": {
+                                            content: '""',
+                                            display: "block",
+                                            position: "absolute",
+                                            top: 0,
+                                            right: 14,
+                                            width: 10,
+                                            height: 10,
+                                            bgcolor: "background.paper",
+                                            transform:
+                                                "translateY(-50%) rotate(45deg)",
+                                            zIndex: 0,
+                                        },
+                                    },
+                                }}
+                                transformOrigin={{
+                                    horizontal: "right",
+                                    vertical: "top",
+                                }}
+                                anchorOrigin={{
+                                    horizontal: "right",
+                                    vertical: "bottom",
+                                }}
+                            >
+                                <MenuItem>
+                                    <Avatar /> {user.name}
+                                </MenuItem>
+                                <MenuItem>
+                                    <div
+                                        className={
+                                            DarkMode
+                                                ? "dark-mode"
+                                                : "light-mode"
+                                        }
+                                    >
+                                        <h1>Dark Mode</h1>
+                                        <Switch
+                                            checked={DarkMode}
+                                            onChange={toggleDarkMode}
+                                            color="primary"
+                                            name="darkModeToggle"
+                                        />
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={toggleDarkMode}
+                                        >
+                                            {DarkMode
+                                                ? "Switch to Light Mode"
+                                                : "Switch to Dark Mode"}
+                                        </Button>
+                                    </div>
+                                </MenuItem>
+                                <Divider />
+                                <MenuItem>
+                                    <ListItemIcon>
+                                        <PersonAdd fontSize="small" />
+                                    </ListItemIcon>
+                                    Add another account
+                                </MenuItem>
+                                <Link href={route("profile.edit")}>
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <Settings fontSize="small" />
+                                        </ListItemIcon>
+                                        Settings
+                                    </MenuItem>
+                                </Link>
+                                <MenuItem onClick={handleLogout}>
+                                    <ListItemIcon>
+                                        <Logout fontSize="small" />
+                                    </ListItemIcon>
+                                    Logout
+                                </MenuItem>
+                            </Menu>
+                            {/* account menu end */}
+                        </Toolbar>
+                    </AppBar>
+
+                    {/* breadCrumbs */}
+
+                    <Drawer
+                        sx={{
+                            width: drawerWidth,
+                            flexShrink: 0,
+                            "& .MuiDrawer-paper": {
+                                width: drawerWidth,
+                                boxSizing: "border-box",
                             },
                         }}
-                        transformOrigin={{
-                            horizontal: "right",
-                            vertical: "top",
-                        }}
-                        anchorOrigin={{
-                            horizontal: "right",
-                            vertical: "bottom",
-                        }}
+                        variant="persistent"
+                        anchor="left"
+                        open={open}
                     >
-                        <MenuItem>
-                            <Avatar /> {user.name}
-                        </MenuItem>
+                        <DrawerHeader>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === "ltr" ? (
+                                    <ChevronLeftIcon />
+                                ) : (
+                                    <ChevronRightIcon />
+                                )}
+                            </IconButton>
+                        </DrawerHeader>
                         <Divider />
-                        <MenuItem>
-                            <ListItemIcon>
-                                <PersonAdd fontSize="small" />
-                            </ListItemIcon>
-                            Add another account
-                        </MenuItem>
-                        <Link href={route("profile.edit")}>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <Settings fontSize="small" />
-                                </ListItemIcon>
-                                Settings
-                            </MenuItem>
-                        </Link>
-                        <MenuItem onClick={handleLogout}>
-                            <ListItemIcon>
-                                <Logout fontSize="small" />
-                            </ListItemIcon>
-                            Logout
-                        </MenuItem>
-                    </Menu>
-                    {/* account menu end */}
-                </Toolbar>
-            </AppBar>
-
-            {/* breadCrumbs */}
-
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    "& .MuiDrawer-paper": {
-                        width: drawerWidth,
-                        boxSizing: "border-box",
-                    },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === "ltr" ? (
-                            <ChevronLeftIcon />
-                        ) : (
-                            <ChevronRightIcon />
-                        )}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-                    <Link href={route("dashboard")}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <DashboardSharpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Dashboard" />
-                            </ListItemButton>
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-
-                {/* another sidenav list */}
-
-                {/* start */}
-                <List
-                    sx={{
-                        width: "100%",
-                        maxWidth: 360,
-                        bgcolor: "background.paper",
-                    }}
-                    component="nav"
-                    aria-labelledby="nested-list-subheader"
-                >
-                    <ListItemButton onClick={listSideNav}>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Management" />
-                        {expanded ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <Link href={route("management.index")}>
-                            <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <PersonSharpIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="User" />
-                                </ListItemButton>
-                            </List>
-                        </Link>
-
-                        <List component="div" disablePadding>
-                            <Link href={route("products.index")}>
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <InventorySharpIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Products" />
-                                </ListItemButton>
+                        <List>
+                            <Link href={route("dashboard")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <DashboardSharpIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Dashboard" />
+                                    </ListItemButton>
+                                </ListItem>
                             </Link>
                         </List>
-                    </Collapse>
-                    <List>
-                        <Link href={route("storage.index")}>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <WidgetsIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Storage" />
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </List>
-                </List>
-                {/* end */}
-                <List>
-                    <ListItemButton onClick={generateQr}>
-                        <ListItemIcon>
-                            <QrCodeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="QR" />
-                        {Qr ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-                    <Collapse in={Qr} timeout="auto" unmountOnExit>
-                        <Link href={route("qr.index")}>
-                            <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <PostAddIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Add Records" />
-                                </ListItemButton>
-                            </List>
-                        </Link>
-                        <Link href={route("generateqr.index")}>
-                            <ListItemButton sx={{ pl: 4 }}>
+                        <Divider />
+
+                        {/* another sidenav list */}
+
+                        {/* start */}
+                        <List
+                            sx={{
+                                width: "100%",
+                                maxWidth: 360,
+                                bgcolor: "background.paper",
+                            }}
+                            component="nav"
+                            aria-labelledby="nested-list-subheader"
+                        >
+                            <ListItemButton onClick={listSideNav}>
                                 <ListItemIcon>
-                                    <QrCodeScannerIcon />
+                                    <InboxIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Genarate QR" />
+                                <ListItemText primary="Management" />
+                                {expanded ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
-                        </Link>
-                    </Collapse>
-                </List>
+                            <Collapse
+                                in={expanded}
+                                timeout="auto"
+                                unmountOnExit
+                            >
+                                <Link href={route("management.index")}>
+                                    <List component="div" disablePadding>
+                                        <ListItemButton sx={{ pl: 4 }}>
+                                            <ListItemIcon>
+                                                <PersonSharpIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="User" />
+                                        </ListItemButton>
+                                    </List>
+                                </Link>
 
-                <div className="absolute bottom-0 w-full">
-                    <List>
-                        <Link href={route("library.index")}>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <SettingsApplicationsSharpIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Settings" />
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </List>
-                </div>
-            </Drawer>
-            <Main open={open}>
-                <DrawerHeader />
+                                <List component="div" disablePadding>
+                                    <Link href={route("products.index")}>
+                                        <ListItemButton sx={{ pl: 4 }}>
+                                            <ListItemIcon>
+                                                <InventorySharpIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Products" />
+                                        </ListItemButton>
+                                    </Link>
+                                </List>
+                            </Collapse>
+                            <List>
+                                <Link href={route("storage.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <WidgetsIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Storage" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+                            </List>
+                        </List>
+                        {/* end */}
+                        <List>
+                            <ListItemButton onClick={generateQr}>
+                                <ListItemIcon>
+                                    <QrCodeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="QR" />
+                                {Qr ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+                            <Collapse in={Qr} timeout="auto" unmountOnExit>
+                                <Link href={route("qr.index")}>
+                                    <List component="div" disablePadding>
+                                        <ListItemButton sx={{ pl: 4 }}>
+                                            <ListItemIcon>
+                                                <PostAddIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Add Records" />
+                                        </ListItemButton>
+                                    </List>
+                                </Link>
+                                <Link href={route("generateqr.index")}>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemIcon>
+                                            <QrCodeScannerIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Genarate QR" />
+                                    </ListItemButton>
+                                </Link>
+                            </Collapse>
+                        </List>
 
-                <div className="sm:mx-5 md:mx-2 lg:mx-10">
-                    {children}
-                    <div className="lg:hidden block">
-                        <CustomSpeedDial
-                            actions={actions}
-                            openIcon={<EditIcon />}
-                        />
-                    </div>
-                </div>
-            </Main>
-        </Box>
+                        <div className="absolute bottom-0 w-full">
+                            <List>
+                                <Link href={route("library.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <SettingsApplicationsSharpIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Settings" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+                            </List>
+                        </div>
+                    </Drawer>
+                    <Main open={open}>
+                        <DrawerHeader />
+
+                        <div className="sm:mx-5 md:mx-2 lg:mx-10">
+                            {children}
+                            <div className="lg:hidden block">
+                                <CustomSpeedDial
+                                    actions={actions}
+                                    openIcon={<EditIcon />}
+                                />
+                            </div>
+                        </div>
+                    </Main>
+                </Box>
+            </CssBaseline>
+        </ThemeProvider>
     );
 }
