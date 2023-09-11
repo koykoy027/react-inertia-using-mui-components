@@ -310,12 +310,15 @@ export default function MainLayout({ user, children }) {
                                         checked={DarkMode}
                                         onChange={toggleDarkMode}
                                     />
-                                    {/* <Switch
-                                        checked={DarkMode}
-                                        onChange={toggleDarkMode}
-                                        color="primary"
-                                        // name="darkModeToggle"
-                                    /> */}
+
+                                    <Typography
+                                        variant="overline"
+                                        onClick={toggleDarkMode}
+                                    >
+                                        {DarkMode
+                                            ? "Switch to Light Mode"
+                                            : "Switch to Dark Mode"}
+                                    </Typography>
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem>
