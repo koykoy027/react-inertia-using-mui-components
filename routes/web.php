@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
+use App\Http\Controllers\library\SettingController;
 use App\Http\Controllers\Management\ProductManagementController;
 use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
@@ -47,6 +48,8 @@ Route::prefix('administrator')->group(function () {
 
         // library
         Route::resource('/library', LibraryController::class);
+
+
         // Management
         Route::resource('/management', UserManagementController::class);
         Route::resource('/products', ProductManagementController::class);
@@ -58,6 +61,10 @@ Route::prefix('administrator')->group(function () {
         // storage
 
         Route::resource('/storage', StorageController::class);
+
+        // Setting navigationbar
+        Route::resource('/settings', SettingController::class);
+
 
 
 

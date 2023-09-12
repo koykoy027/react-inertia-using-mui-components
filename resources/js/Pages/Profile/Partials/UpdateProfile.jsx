@@ -76,30 +76,6 @@ export default function UpdateProfile({
                     </Button>
                 </div>
             </form>
-
-            {/* {mustVerifyEmail && user.email_verified_at === null && (
-                        <div>
-                            <p className="mt-2 text-sm text-gray-800">
-                                Your email address is unverified.
-                                <Link
-                                    href={route("verification.send")}
-                                    method="post"
-                                    as="button"
-                                    className="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    Click here to re-send the verification
-                                    email.
-                                </Link>
-                            </p>
-
-                            {status === "verification-link-sent" && (
-                                <div className="mt-2 text-sm font-medium text-green-600">
-                                    A new verification link has been sent to
-                                    your email address.
-                                </div>
-                            )}
-                        </div>
-                    )} */}
         </>
     );
 }

@@ -27,16 +27,16 @@ export default function Edit({ auth }) {
                                 src="/static/images/avatar/2.jpg"
                             />
                         </IconButton>
-                        <Typography variant="h6" color="initial">
+                        <Typography variant="h6" color="inherit">
                             {auth.user.name}
                         </Typography>
-                        <Typography variant="body2" color="initial">
+                        <Typography variant="body2" color="inherit">
                             {auth.user.email}
                         </Typography>
                     </center>
                 </div>
-                <div>
-                    <Typography variant="h5" color="initial">
+                <div className="px-10">
+                    <Typography variant="h6" color="inherit">
                         Account Settings
                     </Typography>
                 </div>
@@ -70,19 +70,12 @@ export default function Edit({ auth }) {
                                 icon={<ManageAccountsSharpIcon />}
                                 iconPosition="start"
                             />
-                            <Tab
-                                value="Dark Mode"
-                                label="Dark Mode"
-                                icon={<ManageAccountsSharpIcon />}
-                                iconPosition="start"
-                            />
                         </Tabs>
                     </div>
                     <div className="mt-2 col-span-5">
                         {value === "personalInformation" && <UpdateProfile />}
                         {value === "changePassword" && <UpdatePassword />}
                         {value === "accountSettings" && <DeleteAccount />}
-                        {value === "Dark Mode" && <DarkMode />}
                     </div>
                 </div>
             </div>
