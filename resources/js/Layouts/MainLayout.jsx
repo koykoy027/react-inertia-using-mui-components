@@ -477,7 +477,7 @@ export default function MainLayout({ user, children }) {
 
                         <div className="absolute bottom-0 w-full">
                             <List>
-                                <Link href={route("settings.index")}>
+                                <Link href={route("library.index")}>
                                     <ListItem disablePadding>
                                         <ListItemButton>
                                             <ListItemIcon>
