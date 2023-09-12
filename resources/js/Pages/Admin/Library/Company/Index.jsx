@@ -39,7 +39,7 @@ export default function Index({ genders }) {
     return (
         <>
             <MUIDataTable
-                title={"Gender List"}
+                title={"Company List"}
                 data={data}
                 columns={columns}
                 options={options}
