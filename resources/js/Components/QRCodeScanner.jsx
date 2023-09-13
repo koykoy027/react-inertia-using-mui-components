@@ -1,5 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react"; // Import useRef
+
 // import "./styles.css"; // Import your CSS file
 
 function QRCodeScanner() {
@@ -80,10 +81,6 @@ function QRCodeScanner() {
         }
     }, []);
 
-    const style = {
-        backgroundColor: "green",
-    };
-
     return (
         <div id="container">
             <a id="btn-scan-qr">
@@ -92,8 +89,15 @@ function QRCodeScanner() {
 
             <canvas hidden id="qr-canvas"></canvas>
 
-            <div id="qr-result" hidden>
+            <div
+                id="qr-result"
+                className="grid grid-cols justify-start gap-2"
+                hidden
+            >
                 <b>Data:</b> <span id="outputData"></span>
+                <Button variant="contained" size="small" onclick="myFunction()">
+                    Copy
+                </Button>
             </div>
 
             <div className="flex justify-center items-center">
