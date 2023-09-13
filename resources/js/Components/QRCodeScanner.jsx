@@ -81,6 +81,18 @@ function QRCodeScanner() {
         }
     }, []);
 
+    function copy() {
+        // Get the text you want to copy
+        // Get the text field
+        var copyText = document.getElementById("outputData");
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + copyText.value);
+    }
+
     return (
         <div id="container">
             <a id="btn-scan-qr">
@@ -95,7 +107,7 @@ function QRCodeScanner() {
                 hidden
             >
                 <b>Data:</b> <span id="outputData"></span>
-                <Button variant="contained" size="small" onclick="myFunction()">
+                <Button variant="contained" size="small" onClick={copy}>
                     Copy
                 </Button>
             </div>
