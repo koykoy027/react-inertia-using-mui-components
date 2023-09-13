@@ -1,67 +1,112 @@
-import React, { useState, useCallback } from "react";
-import { QrReader } from "react-qr-reader";
+import { Button, Typography } from "@mui/material";
+import React, { useEffect, useRef } from "react"; // Import useRef
+// import "./styles.css"; // Import your CSS file
 
-const QRCodeScanner = () => {
-    const [selected, setSelected] = useState("environment");
-    const [startScan, setStartScan] = useState(false);
-    const [loadingScan, setLoadingScan] = useState(false);
-    const [data, setData] = useState("");
+function QRCodeScanner() {
+    const videoRef = useRef(null); // Create a ref for the video element
 
-    const handleScan = useCallback(
-        (scanData) => {
-            setLoadingScan(true);
-            console.log("Scanned Data:", scanData);
-            if (scanData) {
-                setData(scanData);
-                setStartScan(false);
-                setLoadingScan(false);
+    useEffect(() => {
+        const qrcode = window.qrcode;
+
+        const canvasElement = document.getElementById("qr-canvas");
+        const canvas = canvasElement.getContext("2d");
+
+        const qrResult = document.getElementById("qr-result");
+        const outputData = document.getElementById("outputData");
+        const btnScanQR = document.getElementById("btn-scan-qr");
+
+        let scanning = false;
+
+        qrcode.callback = (res) => {
+            if (res) {
+                outputData.innerText = res;
+                scanning = false;
+
+                if (videoRef.current) {
+                    const stream = videoRef.current.srcObject;
+                    const tracks = stream.getTracks();
+
+                    tracks.forEach((track) => {
+                        track.stop();
+                    });
+                }
+
+                qrResult.hidden = false;
+                canvasElement.hidden = true;
+                btnScanQR.hidden = false;
             }
-        },
-        [setData, setStartScan, setLoadingScan]
-    );
+        };
 
-    const handleError = (err) => {
-        console.error(err);
+        btnScanQR.onclick = () => {
+            navigator.mediaDevices
+                .getUserMedia({ video: { facingMode: "environment" } })
+                .then(function (stream) {
+                    scanning = true;
+                    qrResult.hidden = true;
+                    btnScanQR.hidden = true;
+                    canvasElement.hidden = false;
+                    if (videoRef.current) {
+                        videoRef.current.setAttribute("playsinline", true);
+                        videoRef.current.srcObject = stream;
+                        videoRef.current.play();
+                        tick();
+                        scan();
+                    }
+                });
+        };
+
+        function tick() {
+            if (videoRef.current) {
+                canvasElement.width = 400; // Set your desired width here
+                canvasElement.height = 300; // Set your desired height here
+                canvas.drawImage(
+                    videoRef.current,
+                    0,
+                    0,
+                    canvasElement.width,
+                    canvasElement.height
+                );
+
+                scanning && requestAnimationFrame(tick);
+            }
+        }
+
+        function scan() {
+            try {
+                qrcode.decode();
+            } catch (e) {
+                setTimeout(scan, 300);
+            }
+        }
+    }, []);
+
+    const style = {
+        backgroundColor: "green",
     };
 
     return (
-        <div className="font-montserrat text-center flex flex-col justify-center items-center">
-            <h1 className="text-3xl font-bold mb-4">QR Code Scanner</h1>
-            <h2 className="mb-4">Last Scan: {selected}</h2>
+        <div id="container">
+            <a id="btn-scan-qr">
+                <Button>Start</Button>
+            </a>
 
-            <button
-                className="bg-blue-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-1000 ease-in-out"
-                onClick={() => {
-                    setStartScan(!startScan);
-                }}
-            >
-                {startScan ? "Stop Scan" : "Start Scan"}
-            </button>
-            {startScan && (
-                <>
-                    <select
-                        className="mb-4"
-                        value={selected}
-                        onChange={(e) => {
-                            setSelected(e.target.value);
-                        }}
-                    >
-                        <option value={"environment"}>Back Camera</option>
-                        <option value={"user"}>Front Camera</option>
-                    </select>
-                    <QrReader
-                        facingMode={selected}
-                        delay={1000}
-                        onError={handleError}
-                        onScan={handleScan}
-                        className="w-72"
-                    />
-                </>
-            )}
-            {loadingScan && <p>Loading</p>}
-            {data !== "" && <p>{data}</p>}
+            <canvas hidden id="qr-canvas"></canvas>
+
+            <div id="qr-result" hidden>
+                <b>Data:</b> <span id="outputData"></span>
+            </div>
+
+            <div className="flex justify-center items-center">
+                <video
+                    ref={videoRef}
+                    style={{
+                        width: "100%", // Set your desired width here, or use a percentage for responsiveness
+                        height: "auto", // This will maintain the aspect ratio
+                    }}
+                ></video>
+            </div>
         </div>
     );
-};
+}
 
 export default QRCodeScanner;
