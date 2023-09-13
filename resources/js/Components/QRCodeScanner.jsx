@@ -1,50 +1,67 @@
-import React, { Component } from "react";
-import Camera, { FACING_MODES } from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
+import React, { useState, useCallback } from "react";
+import { QrReader } from "react-qr-reader";
 
-class QRCodeScanner extends Component {
-    constructor(props) {
-        super(props);
+const QRCodeScanner = () => {
+    const [selected, setSelected] = useState("environment");
+    const [startScan, setStartScan] = useState(false);
+    const [loadingScan, setLoadingScan] = useState(false);
+    const [data, setData] = useState("");
 
-        this.state = {
-            data: null,
-            error: null,
-        };
-    }
+    const handleScan = useCallback(
+        (scanData) => {
+            setLoadingScan(true);
+            console.log("Scanned Data:", scanData);
+            if (scanData) {
+                setData(scanData);
+                setStartScan(false);
+                setLoadingScan(false);
+            }
+        },
+        [setData, setStartScan, setLoadingScan]
+    );
 
-    // Add a function to handle the QR code scan result
-    handleQRCodeScan(result) {
-        if (result) {
-            this.setState({ data: result });
-        } else {
-            this.setState({ error: "No QR code found" });
-        }
-    }
+    const handleError = (err) => {
+        console.error(err);
+    };
 
-    onCameraError(error) {
-        this.setState({ error: `Camera error: ${error.message}` });
-    }
+    return (
+        <div className="font-montserrat text-center flex flex-col justify-center items-center">
+            <h1 className="text-3xl font-bold mb-4">QR Code Scanner</h1>
+            <h2 className="mb-4">Last Scan: {selected}</h2>
 
-    render() {
-        return (
-            <div>
-                <h1 className="text-center absolute top-24">QR Code Scanner</h1>
-                {this.state.data && (
-                    <div>
-                        <p>Scanned QR Code:</p>
-                        <p>{this.state.data}</p>
-                    </div>
-                )}
-                {this.state.error && <p>{this.state.error}</p>}
-                <Camera
-                    idealFacingMode={FACING_MODES.ENVIRONMENT} // Use the back camera (you can change this to FACING_MODES.USER for the front camera)
-                    onTakePhoto={(dataUri) => this.handleQRCodeScan(dataUri)} // Pass the dataUri to the scan handler
-                    onCameraError={(error) => this.onCameraError(error)}
-                    isImageMirror={false} // To prevent mirroring of the camera feed
-                />
-            </div>
-        );
-    }
-}
+            <button
+                className="bg-blue-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-1000 ease-in-out"
+                onClick={() => {
+                    setStartScan(!startScan);
+                }}
+            >
+                {startScan ? "Stop Scan" : "Start Scan"}
+            </button>
+            {startScan && (
+                <>
+                    <select
+                        className="mb-4"
+                        value={selected}
+                        onChange={(e) => {
+                            setSelected(e.target.value);
+                        }}
+                    >
+                        <option value={"environment"}>Back Camera</option>
+                        <option value={"user"}>Front Camera</option>
+                    </select>
+                    <QrReader
+                        facingMode={selected}
+                        delay={1000}
+                        onError={handleError}
+                        onScan={handleScan}
+                        className="w-72"
+                    />
+                </>
+            )}
+            {loadingScan && <p>Loading</p>}
+            {data !== "" && <p>{data}</p>}
+        </div>
+    );
+};
 
 export default QRCodeScanner;
