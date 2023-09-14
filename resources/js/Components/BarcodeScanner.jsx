@@ -1,45 +1,38 @@
-import React, { Component } from "react";
-import Camera, { FACING_MODES } from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
+import React, { useEffect, useState } from "react";
 
-class BarcodeScanner extends Component {
-    constructor(props) {
-        super(props);
+export default function BarcodeScanner() {
+    const [decodedResult, setDecodedResult] = useState(null);
 
-        this.state = {
-            data: null,
-            error: null,
+    useEffect(() => {
+        const quaggaScript = document.createElement("script");
+        quaggaScript.src =
+            "https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js";
+
+        quaggaScript.onload = () => {
+            const html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+                fps: 10,
+                qrbox: 250,
+            });
+
+            function onScanSuccess(decodedText, decodedResult) {
+                // console.log(`Code scanned = ${decodedText}`, decodedResult);
+                setDecodedResult(decodedText); // Update the state with the scanned result
+            }
+
+            html5QrcodeScanner.render(onScanSuccess);
         };
-    }
 
-    onTakePhoto(dataUri) {
-        // Here, you can process the barcode dataUri.
-        this.setState({ data: dataUri });
-    }
+        document.body.appendChild(quaggaScript);
 
-    onCameraError(error) {
-        this.setState({ error: `Camera error: ${error.message}` });
-    }
+        return () => {
+            document.body.removeChild(quaggaScript);
+        };
+    }, []);
 
-    render() {
-        return (
-            <div>
-                <h1 className="text-center absolute top-24">Barcode Scanner</h1>
-                {this.state.data && (
-                    <div>
-                        <p>Scanned Data:</p>
-                        <p>{this.state.data}</p>
-                    </div>
-                )}
-                {this.state.error && <p>{this.state.error}</p>}
-                <Camera
-                    idealFacingMode={FACING_MODES.ENVIRONMENT} // Use the back camera (you can change this to FACING_MODES.USER for the front camera)
-                    onTakePhoto={(dataUri) => this.onTakePhoto(dataUri)}
-                    onCameraError={(error) => this.onCameraError(error)}
-                />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <p>Decoded Result: {decodedResult}</p>
+            <div id="qr-reader" style={{ width: "500px" }}></div>
+        </div>
+    );
 }
-
-export default BarcodeScanner;
