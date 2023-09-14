@@ -32,7 +32,11 @@ export default function BarcodeScanner() {
     return (
         <div>
             <p>Decoded Result: {decodedResult}</p>
-            <div id="qr-reader" style={{ width: "500px" }}></div>
+            <div
+                className="grid justify-center"
+                id="qr-reader"
+                style={{ width: "550px" }}
+            ></div>
         </div>
     );
 }
