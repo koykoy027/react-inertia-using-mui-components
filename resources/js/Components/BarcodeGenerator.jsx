@@ -53,7 +53,7 @@ const BarcodeGenerator = () => {
                         width: "100%",
                     }}
                 >
-                    <div className="grid grid-col gap-4 w-full">
+                    <div className="grid grid-col w-full">
                         <TextField
                             id="barcode-value-input"
                             label="Barcode Value"

@@ -88,7 +88,7 @@ const QRCodeGenerator = () => {
     };
 
     return (
-        <div className="grid grid-col lg:grid-cols-2 gap-2 items-center lg:items-start px-4 justify-center lg:justify-start lg:px-24 py-24 lg:min-h-96 bg-fre shadow-md">
+        <div className="grid grid-col lg:grid-cols-2 gap-2 items-center lg:items-start px-4 justify-center lg:justify-start lg:px-24 py-24 lg:min-h-96  shadow-md">
             <div className="grid grid-row justify-start gap-5">
                 <h1 className="text-2xl lg:text-3xl font-bold mb-4">
                     QR Code Generator
