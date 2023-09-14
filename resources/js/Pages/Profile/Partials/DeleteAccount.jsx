@@ -10,7 +10,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Typography } from "@mui/material";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
-import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 
 export default function DeleteAccount({ className = "" }) {
     const [open, setOpen] = React.useState(false);

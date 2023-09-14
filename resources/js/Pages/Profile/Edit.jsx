@@ -3,11 +3,7 @@ import React from "react";
 import UpdateProfile from "./Partials/UpdateProfile";
 import UpdatePassword from "./Partials/UpdatePassword";
 import DeleteAccount from "./Partials/DeleteAccount";
-import { Avatar, IconButton, Typography, Tabs, Tab, Box } from "@mui/material";
-import SupervisedUserCircleSharpIcon from "@mui/icons-material/SupervisedUserCircleSharp";
-import ChangeCircleSharpIcon from "@mui/icons-material/ChangeCircleSharp";
-import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
-import DarkMode from "./Partials/DarkMode";
+import { Avatar, IconButton, Typography, Tabs, Tab } from "@mui/material";
 
 export default function Edit({ auth }) {
     const [value, setValue] = React.useState("personalInformation");
@@ -15,10 +11,9 @@ export default function Edit({ auth }) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     return (
         <MainLayout user={auth.user}>
-            <div className="grid grid-col gap-4 lg:grid lg:grid-col ">
+            <div className="grid gap-4 lg:grid-cols-3 lg:grid align-center">
                 <div className="card">
                     <center>
                         <IconButton sx={{ width: 100, height: 100 }}>
@@ -27,52 +22,32 @@ export default function Edit({ auth }) {
                                 src="/static/images/avatar/2.jpg"
                             />
                         </IconButton>
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" color="initial">
                             {auth.user.name}
                         </Typography>
-                        <Typography variant="body2" color="inherit">
+                        <Typography variant="body2" color="initial">
                             {auth.user.email}
                         </Typography>
                     </center>
                 </div>
-                <div className="px-10">
-                    <Typography variant="h6" color="inherit">
-                        Account Settings
-                    </Typography>
-                </div>
-                <div className="card grid grid-cols-6 gap-4">
-                    <div className=" grid justify-start">
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            textColor="primary"
-                            indicatorColor="primary"
-                            variant="scrollable"
-                            scrollButtons="auto"
-                            orientation="vertical"
-                            sx={{ borderRight: 1, borderColor: "divider" }}
-                        >
-                            <Tab
-                                value="personalInformation"
-                                label="Personal Information"
-                                icon={<SupervisedUserCircleSharpIcon />}
-                                iconPosition="start"
-                            />
-                            <Tab
-                                value="changePassword"
-                                label="Change Password"
-                                icon={<ChangeCircleSharpIcon />}
-                                iconPosition="start"
-                            />
-                            <Tab
-                                value="accountSettings"
-                                label="Account Settings"
-                                icon={<ManageAccountsSharpIcon />}
-                                iconPosition="start"
-                            />
-                        </Tabs>
-                    </div>
-                    <div className="mt-2 col-span-5">
+                <div className="col-span-2 card">
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        textColor="primary"
+                        indicatorColor="primary"
+                        variant="scrollable"
+                        scrollButtons="auto"
+                    >
+                        <Tab
+                            value="personalInformation"
+                            label="Personal Information"
+                        />
+                        <Tab value="changePassword" label="Change Password" />
+                        <Tab value="accountSettings" label="Account Settings" />
+                    </Tabs>
+
+                    <div className="mt-10">
                         {value === "personalInformation" && <UpdateProfile />}
                         {value === "changePassword" && <UpdatePassword />}
                         {value === "accountSettings" && <DeleteAccount />}
