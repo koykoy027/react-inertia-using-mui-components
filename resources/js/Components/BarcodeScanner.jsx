@@ -15,7 +15,6 @@ export default function BarcodeScanner() {
             });
 
             function onScanSuccess(decodedText, decodedResult) {
-                // console.log(`Code scanned = ${decodedText}`, decodedResult);
                 setDecodedResult(decodedText); // Update the state with the scanned result
             }
 
