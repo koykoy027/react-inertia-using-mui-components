@@ -115,13 +115,7 @@ function QRCodeScanner() {
             </div>
 
             <div className="flex justify-center items-center">
-                <video
-                    ref={videoRef}
-                    style={{
-                        width: "100%", // Set your desired width here, or use a percentage for responsiveness
-                        height: "auto", // This will maintain the aspect ratio
-                    }}
-                ></video>
+                <video ref={videoRef} className="w-full"></video>
             </div>
         </div>
     );
