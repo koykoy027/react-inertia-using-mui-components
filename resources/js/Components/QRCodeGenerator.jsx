@@ -88,15 +88,17 @@ const QRCodeGenerator = () => {
     };
 
     return (
-        <div className="grid grid-col lg:grid-cols-2 gap-2 items-center px-24 justify-start h-screen lg:h-96 bg-fre shadow-md">
+        <div className="grid grid-col lg:grid-cols-2 gap-2 items-center lg:items-start px-4 justify-center lg:justify-start lg:px-24 py-24 lg:min-h-96 bg-fre shadow-md">
             <div className="grid grid-row justify-start gap-5">
-                <h1 className="text-3xl font-bold mb-4">QR Code Generator</h1>
+                <h1 className="text-2xl lg:text-3xl font-bold mb-4">
+                    QR Code Generator
+                </h1>
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "row", // or "column" depending on your desired layout
-                        alignItems: "center", // Adjust as needed
-                        width: 600,
+                        flexDirection: "column", // Adjust as needed for smaller screens
+                        alignItems: "center", // Adjust as needed for smaller screens
+                        width: "100%", // Adjusted for smaller screens
                         maxWidth: "100%",
                     }}
                 >
@@ -140,13 +142,13 @@ const QRCodeGenerator = () => {
                     </div>
                 </Box>
             </div>
-            <div className="">
-                <div className="flex justify-center rounded border-2 py-10 border-gray-400">
+            <div className="mt-4">
+                <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">
                     {ProductName && (
                         <QRCode id="qrcode-canvas" size={128} value={value} />
                     )}
                 </div>
-                <div className="mt-4 grid grid-col-1 gap-2 ">
+                <div className="mt-4 grid grid-cols-1 gap-2 lg:grid-cols-2">
                     <DownloadButton />
                     <PrintButton />
                 </div>

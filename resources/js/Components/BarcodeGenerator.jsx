@@ -40,17 +40,17 @@ const BarcodeGenerator = () => {
     };
 
     return (
-        <div className="grid grid-col gap-2 items-center px-24 justify-center h-screen lg:h-96 bg-fre shadow-md">
+        <div className="grid grid-col gap-2 items-center px-4 lg:px-24 justify-center h-screen lg:h-96 bg-fre shadow-md">
             <div className="grid grid-col w-full justify-start gap-5">
-                <h1 className="text-3xl text-center font-bold mb-4">
+                <h1 className="text-2xl lg:text-3xl text-center font-bold mb-4">
                     Generate Barcode
                 </h1>
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "row",
+                        flexDirection: "column", // Adjusted for smaller screens
                         alignItems: "center",
-                        width: 900,
+                        width: "100%",
                     }}
                 >
                     <div className="grid grid-col gap-4 w-full">
@@ -71,23 +71,24 @@ const BarcodeGenerator = () => {
                 <div
                     ref={barcodeRef}
                     id="barcode-canvas"
-                    className="flex justify-start border-gray-400 w-full"
+                    className="flex justify-center border-gray-400 w-full" // Centered for smaller screens
                 >
                     {productName && (
                         <Barcode
                             id="barcode-canvas"
                             value={productName}
                             width={3}
-                            height={80}
+                            height={60} // Adjusted for smaller screens
                             canvas
                         />
                     )}
                 </div>
-                <div className="grid grid-cols-2 gap-5 py-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 py-5 lg:py-10">
                     <Button
                         color="primary"
                         variant="contained"
                         onClick={downloadBarcode}
+                        fullWidth // Full width for smaller screens
                     >
                         Download
                     </Button>
@@ -95,6 +96,7 @@ const BarcodeGenerator = () => {
                         color="success"
                         variant="contained"
                         onClick={printBarcode}
+                        fullWidth // Full width for smaller screens
                     >
                         Print
                     </Button>
