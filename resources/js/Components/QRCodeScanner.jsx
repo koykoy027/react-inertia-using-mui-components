@@ -83,14 +83,16 @@ function QRCodeScanner() {
 
     function copy() {
         // Get the text you want to copy
-        // Get the text field
         var copyText = document.getElementById("outputData");
+        var copied = copyText.textContent; // Remove .value here
 
         // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
+        navigator.clipboard.writeText(copied); // Remove .value here
 
         // Alert the copied text
-        alert("Copied the text: " + copyText.value);
+        alert("Copied the text: " + copied);
+
+        console.log(copied);
     }
 
     return (
