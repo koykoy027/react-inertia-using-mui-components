@@ -155,35 +155,42 @@ export default function Index({ auth }) {
                         {value === "settings" && (
                             <div className="grid w-full">
                                 <div className="w">
-                                    <Tabs
-                                        value={secondForm}
-                                        onChange={handleChange1}
-                                        textColor="primary"
-                                        indicatorColor="primary"
-                                        variant="scrollable"
-                                        scrollButtons="auto"
+                                    <Box
+                                        sx={{
+                                            width: "100%",
+                                            backgroundColor: "#f5f5f5",
+                                        }}
                                     >
-                                        <Tab
-                                            value="personalInformation"
-                                            label="Personal Information"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="changePassword"
-                                            label="Change Password"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="accountSettings"
-                                            label="Account Settings"
-                                            iconPosition="start"
-                                        />
-                                    </Tabs>
+                                        <Tabs
+                                            value={secondForm}
+                                            onChange={handleChange1}
+                                            textColor="primary"
+                                            indicatorColor="primary"
+                                            variant="scrollable"
+                                            scrollButtons="auto"
+                                        >
+                                            <Tab
+                                                value="personalInformation"
+                                                label="Personal Information"
+                                                iconPosition="start"
+                                            />
+                                            <Tab
+                                                value="changePassword"
+                                                label="Change Password"
+                                                iconPosition="start"
+                                            />
+                                            <Tab
+                                                value="accountSettings"
+                                                label="Account Settings"
+                                                iconPosition="start"
+                                            />
+                                        </Tabs>
+                                    </Box>
                                 </div>
-                                <div className="w-screen">
+                                <div className="w-96 lg:w-screen">
                                     {secondForm === "personalInformation" && (
                                         <div className="w-full lg:w-2/3">
-                                            <Religion />
+                                            <Gender />
                                         </div>
                                     )}
                                     {secondForm === "changePassword" && (
@@ -200,32 +207,39 @@ export default function Index({ auth }) {
                             </div>
                         )}
                         {value === "sample" && (
-                            <div className="grid w-full">
+                            <div className="grid">
                                 <div className="w">
-                                    <Tabs
-                                        value={secondForm}
-                                        onChange={handleChange1}
-                                        textColor="primary"
-                                        indicatorColor="primary"
-                                        variant="scrollable"
-                                        scrollButtons="auto"
+                                    <Box
+                                        sx={{
+                                            width: "100%",
+                                            backgroundColor: "#f5f5f5",
+                                        }}
                                     >
-                                        <Tab
-                                            value="personalInformation"
-                                            label="sample 1"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="changePassword"
-                                            label="sample2"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="accountSettings"
-                                            label="sample 3"
-                                            iconPosition="start"
-                                        />
-                                    </Tabs>
+                                        <Tabs
+                                            value={secondForm}
+                                            onChange={handleChange1}
+                                            textColor="primary"
+                                            indicatorColor="primary"
+                                            variant="scrollable"
+                                            scrollButtons="auto"
+                                        >
+                                            <Tab
+                                                value="personalInformation"
+                                                label="sample 1"
+                                                iconPosition="start"
+                                            />
+                                            <Tab
+                                                value="changePassword"
+                                                label="sample2"
+                                                iconPosition="start"
+                                            />
+                                            <Tab
+                                                value="accountSettings"
+                                                label="sample 3"
+                                                iconPosition="start"
+                                            />
+                                        </Tabs>
+                                    </Box>
                                 </div>
                                 <div className="w-screen">
                                     {secondForm === "personalInformation" && (
@@ -246,9 +260,6 @@ export default function Index({ auth }) {
                                 </div>
                             </div>
                         )}
-                        {/* {value === "religion" && <Religion />}
-                        {value === "companies" && <Company />}
-                        {value === "position" && <Position />} */}
                     </div>
                 </Box>
             </div>
