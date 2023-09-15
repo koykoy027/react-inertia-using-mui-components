@@ -60,6 +60,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import AbcSharpIcon from "@mui/icons-material/AbcSharp";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -290,27 +291,35 @@ export default function MainLayout({ user, children }) {
                                     textAlign: "center",
                                 }}
                             >
-                                <Tooltip title="Account settings">
-                                    <IconButton
-                                        onClick={handleClick}
-                                        size="small"
-                                        sx={{ ml: 2 }}
-                                        aria-controls={
-                                            openAvatar
-                                                ? "account-menu"
-                                                : undefined
-                                        }
-                                        aria-haspopup="true"
-                                        aria-expanded={
-                                            openAvatar ? "true" : undefined
-                                        }
-                                    >
-                                        <Avatar
-                                            alt={user.name}
-                                            src="/static/images/avatar/2.jpg"
+                                <div className="flex justify-center items-center">
+                                    <Badge badgeContent={4} color="primary">
+                                        <NotificationsActiveIcon
+                                            fontSize="medium"
+                                            color="action"
                                         />
-                                    </IconButton>
-                                </Tooltip>
+                                    </Badge>
+                                    <Tooltip title="Account settings">
+                                        <IconButton
+                                            onClick={handleClick}
+                                            size="small"
+                                            sx={{ ml: 2 }}
+                                            aria-controls={
+                                                openAvatar
+                                                    ? "account-menu"
+                                                    : undefined
+                                            }
+                                            aria-haspopup="true"
+                                            aria-expanded={
+                                                openAvatar ? "true" : undefined
+                                            }
+                                        >
+                                            <Avatar
+                                                alt={user.name}
+                                                src="/static/images/avatar/2.jpg"
+                                            />
+                                        </IconButton>
+                                    </Tooltip>
+                                </div>
                             </Box>
                             <Menu
                                 anchorEl={anchorEl}
