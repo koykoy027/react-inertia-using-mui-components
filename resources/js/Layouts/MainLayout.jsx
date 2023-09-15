@@ -28,7 +28,7 @@ import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import PostAddIcon from "@mui/icons-material/PostAdd";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import {
     Avatar,
@@ -57,8 +57,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import AbcSharpIcon from "@mui/icons-material/AbcSharp";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
+import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -170,10 +171,22 @@ export default function MainLayout({ user, children }) {
     // speed dial
 
     const actions = [
-        { icon: <FileCopyIcon />, name: "Copy" },
-        { icon: <SaveIcon />, name: "Save" },
-        { icon: <PrintIcon />, name: "Print" },
-        { icon: <ShareIcon />, name: "Share" },
+        {
+            icon: (
+                <Link href={route("generateqr.index")}>
+                    <QrCode2SharpIcon />
+                </Link>
+            ),
+            name: "QR-CODE",
+        },
+        {
+            icon: (
+                <Link href={route("qr.index")}>
+                    <AbcSharpIcon />
+                </Link>
+            ),
+            name: "BARCODE",
+        },
     ];
 
     const breadcrumbItems = [
@@ -377,18 +390,12 @@ export default function MainLayout({ user, children }) {
                                     </Typography>
                                 </MenuItem>
                                 <Divider />
-                                <MenuItem>
-                                    <ListItemIcon>
-                                        <PersonAdd fontSize="small" />
-                                    </ListItemIcon>
-                                    Add another account
-                                </MenuItem>
                                 <Link href={route("profile.edit")}>
                                     <MenuItem>
                                         <ListItemIcon>
                                             <Settings fontSize="small" />
                                         </ListItemIcon>
-                                        Settings
+                                        Account Settings
                                     </MenuItem>
                                 </Link>
                                 <MenuItem onClick={handleLogout}>
@@ -539,7 +546,7 @@ export default function MainLayout({ user, children }) {
                                             <ListItemIcon>
                                                 <SettingsApplicationsSharpIcon />
                                             </ListItemIcon>
-                                            <ListItemText primary="Settings" />
+                                            <ListItemText primary="Library Setting" />
                                         </ListItemButton>
                                     </ListItem>
                                 </Link>
@@ -554,7 +561,7 @@ export default function MainLayout({ user, children }) {
                             <div className="lg:hidden block">
                                 <CustomSpeedDial
                                     actions={actions}
-                                    openIcon={<EditIcon />}
+                                    openIcon={<ExpandMoreSharpIcon />}
                                 />
                             </div>
                         </div>
