@@ -25,7 +25,6 @@
         "@mui/material": "^5.14.5",
         "@mui/x-charts": "^6.0.0-alpha.9",
         "html2canvas": "^1.4.1",
-        "modern-react-qr-reader": "^1.0.12",
         "mui-datatables": "^4.3.0",
         "qrcode.react": "^3.1.0",
         "react-barcode": "^1.4.6",
