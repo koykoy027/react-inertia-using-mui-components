@@ -98,7 +98,7 @@ export default function Edit({ auth }) {
                         Account Settings
                     </Typography>
                 </div>
-                <div className="card grid grid-cols-6 gap-4">
+                <div className="card">
                     <div className=" grid justify-start">
                         <Tabs
                             value={value}
@@ -107,8 +107,6 @@ export default function Edit({ auth }) {
                             indicatorColor="primary"
                             variant="scrollable"
                             scrollButtons="auto"
-                            orientation="vertical"
-                            sx={{ borderRight: 1, borderColor: "divider" }}
                         >
                             <Tab
                                 value="personalInformation"
