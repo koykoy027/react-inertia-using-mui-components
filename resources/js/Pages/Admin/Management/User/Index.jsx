@@ -20,7 +20,7 @@ import BasicTextFields from "@/Components/InputField";
 import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
+import PersonIcon from "@mui/icons-material/Person";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 
@@ -143,7 +143,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             ),
         },
         {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            icon: <PersonIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
             text: "User",
             url: "/material-ui/getting-started/installation/",
         },

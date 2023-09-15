@@ -23,6 +23,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
+import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = [
@@ -363,7 +364,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             ),
         },
         {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            icon: <QrCode2SharpIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
             text: "QR",
             url: "/material-ui/getting-started/installation/",
         },

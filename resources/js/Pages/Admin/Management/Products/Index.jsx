@@ -23,6 +23,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
+import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = [
@@ -99,7 +100,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             ),
         },
         {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            icon: <InventorySharpIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
             text: "Product",
             url: "/material-ui/getting-started/installation/",
         },

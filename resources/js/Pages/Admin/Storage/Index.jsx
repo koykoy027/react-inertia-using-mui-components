@@ -24,6 +24,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import VerticalTabs from "@/Components/TabPanel";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = [
@@ -136,7 +137,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             ),
         },
         {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            icon: <WidgetsIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
             text: "Storage",
             url: "/material-ui/getting-started/installation/",
         },
