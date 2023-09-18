@@ -185,14 +185,31 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     }
                 />
             </div>
-            <div className="py-6">
-                <Card>
-                    <MUIDataTable
-                        data={data}
-                        columns={columns}
-                        options={options}
-                    />
-                </Card>
+            <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
+                <div className="sm:hidden">
+                    {/* Mobile View */}
+                    <Card>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                            size={"small"}
+                            // You can apply the stickyHeader class if needed for mobile view
+                        />
+                    </Card>
+                </div>
+                <div className="hidden sm:block">
+                    {/* Desktop View */}
+                    <Card>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                            size={"small"}
+                            stickyHeader
+                        />
+                    </Card>
+                </div>
             </div>
         </MainLayout>
     );
