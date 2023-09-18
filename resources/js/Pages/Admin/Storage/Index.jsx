@@ -148,7 +148,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         {
             label: "Desktop",
             content: (
-                <div className="">
+                <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                     <Card>
                         <MUIDataTable
                             data={data}
@@ -162,7 +162,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         {
             label: "Laptops",
             content: (
-                <div className="">
+                <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                     <Card>
                         <MUIDataTable
                             data={data1}
