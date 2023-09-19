@@ -224,6 +224,9 @@ export default function MainLayout({ user, children }) {
         palette: {
             mode: DarkMode ? "dark" : "light",
         },
+        typography: {
+            fontFamily: "Roboto, sans-serif",
+        },
     });
 
     // active user
@@ -295,14 +298,14 @@ export default function MainLayout({ user, children }) {
                                 <div className="flex justify-center items-center">
                                     <Badge badgeContent={4} color="primary">
                                         <EmailIcon
-                                            fontSize="small"
+                                            fontSize="medium"
                                             color="action"
                                         />
                                     </Badge>
                                     <Tooltip title="Account settings">
                                         <IconButton
                                             onClick={handleClick}
-                                            size="small"
+                                            size="medium"
                                             sx={{ ml: 2 }}
                                             aria-controls={
                                                 openAvatar
