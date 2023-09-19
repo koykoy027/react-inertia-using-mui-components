@@ -449,7 +449,16 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     }
                 />
             </div>
-            <div className="py-6">
+            <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
+                <Card>
+                    <MUIDataTable
+                        data={data}
+                        columns={columns}
+                        options={options}
+                    />
+                </Card>
+            </div>
+            <div className="hidden sm:block">
                 <Card>
                     <MUIDataTable
                         data={data}

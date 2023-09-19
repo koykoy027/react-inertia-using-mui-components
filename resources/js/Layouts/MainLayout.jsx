@@ -61,6 +61,7 @@ import AbcSharpIcon from "@mui/icons-material/AbcSharp";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import EmailIcon from "@mui/icons-material/Email";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -293,8 +294,8 @@ export default function MainLayout({ user, children }) {
                             >
                                 <div className="flex justify-center items-center">
                                     <Badge badgeContent={4} color="primary">
-                                        <NotificationsActiveIcon
-                                            fontSize="medium"
+                                        <EmailIcon
+                                            fontSize="small"
                                             color="action"
                                         />
                                     </Badge>
