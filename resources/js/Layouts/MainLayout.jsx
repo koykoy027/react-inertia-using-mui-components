@@ -175,7 +175,7 @@ export default function MainLayout({ user, children }) {
     const actions = [
         {
             icon: (
-                <Link href={route("generateqr.index")}>
+                <Link href={route("generator.index")}>
                     <QrCode2SharpIcon />
                 </Link>
             ),
@@ -540,7 +540,7 @@ export default function MainLayout({ user, children }) {
                                         </ListItemButton>
                                     </List>
                                 </Link>
-                                <Link href={route("generateqr.index")}>
+                                <Link href={route("generator.index")}>
                                     <ListItemButton sx={{ pl: 4 }}>
                                         <ListItemIcon>
                                             <QrCodeScannerIcon />
