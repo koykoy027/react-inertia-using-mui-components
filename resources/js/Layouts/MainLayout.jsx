@@ -61,6 +61,7 @@ import AbcSharpIcon from "@mui/icons-material/AbcSharp";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import EmailIcon from "@mui/icons-material/Email";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -174,7 +175,7 @@ export default function MainLayout({ user, children }) {
     const actions = [
         {
             icon: (
-                <Link href={route("generateqr.index")}>
+                <Link href={route("generator.index")}>
                     <QrCode2SharpIcon />
                 </Link>
             ),
@@ -222,6 +223,9 @@ export default function MainLayout({ user, children }) {
     const darkTheme = createTheme({
         palette: {
             mode: DarkMode ? "dark" : "light",
+        },
+        typography: {
+            fontFamily: "Roboto, sans-serif",
         },
     });
 
@@ -293,7 +297,7 @@ export default function MainLayout({ user, children }) {
                             >
                                 <div className="flex justify-center items-center">
                                     <Badge badgeContent={4} color="primary">
-                                        <NotificationsActiveIcon
+                                        <EmailIcon
                                             fontSize="medium"
                                             color="action"
                                         />
@@ -301,7 +305,7 @@ export default function MainLayout({ user, children }) {
                                     <Tooltip title="Account settings">
                                         <IconButton
                                             onClick={handleClick}
-                                            size="small"
+                                            size="medium"
                                             sx={{ ml: 2 }}
                                             aria-controls={
                                                 openAvatar
@@ -536,7 +540,7 @@ export default function MainLayout({ user, children }) {
                                         </ListItemButton>
                                     </List>
                                 </Link>
-                                <Link href={route("generateqr.index")}>
+                                <Link href={route("generator.index")}>
                                     <ListItemButton sx={{ pl: 4 }}>
                                         <ListItemIcon>
                                             <QrCodeScannerIcon />

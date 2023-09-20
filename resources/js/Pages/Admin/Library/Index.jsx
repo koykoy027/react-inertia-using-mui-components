@@ -123,7 +123,7 @@ export default function Index({ auth }) {
 
     return (
         <MainLayout user={auth.user}>
-            <div className="card h-screen">
+            <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <Typography variant="h6" color="primary">
                     Settings Page
                 </Typography>
@@ -136,7 +136,6 @@ export default function Index({ auth }) {
                         flexGrow: 1,
                         bgcolor: "background.paper",
                         display: "flex",
-                        height: 224,
                     }}
                 >
                     <Tabs
@@ -154,11 +153,10 @@ export default function Index({ auth }) {
                     <div className="">
                         {value === "settings" && (
                             <div className="grid w-full">
-                                <div className="w">
+                                <div className="">
                                     <Box
                                         sx={{
                                             width: "100%",
-                                            backgroundColor: "#f5f5f5",
                                         }}
                                     >
                                         <Tabs
@@ -187,7 +185,7 @@ export default function Index({ auth }) {
                                         </Tabs>
                                     </Box>
                                 </div>
-                                <div className="w-96 lg:w-screen">
+                                <div className="w-screen lg:w-screen">
                                     {secondForm === "personalInformation" && (
                                         <div className="w-full lg:w-2/3">
                                             <Gender />
@@ -212,7 +210,6 @@ export default function Index({ auth }) {
                                     <Box
                                         sx={{
                                             width: "100%",
-                                            backgroundColor: "#f5f5f5",
                                         }}
                                     >
                                         <Tabs

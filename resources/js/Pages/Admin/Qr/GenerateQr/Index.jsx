@@ -30,6 +30,7 @@ import QRCodeScanner from "@/Components/QRCodeScanner";
 import BarcodeScanner from "@/Components/BarcodeScanner";
 import QrCodeSharpIcon from "@mui/icons-material/QrCodeSharp";
 import CropFreeIcon from "@mui/icons-material/CropFree";
+import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Product Name", "Product ID", "Status"];
@@ -72,7 +73,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
             ),
         },
         {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+            icon: <QrCode2SharpIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
             text: "QR",
             url: "/material-ui/getting-started/installation/",
         },
