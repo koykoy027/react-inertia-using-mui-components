@@ -36,7 +36,7 @@ export default function UpdateProfile({
                 </Typography>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className="grid gap-2 lg:grid-col py-10">
+                <div className="grid gap-10 lg:grid-col py-10">
                     <div>
                         <TextField
                             id="name"
