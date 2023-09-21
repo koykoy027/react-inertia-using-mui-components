@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
+use Faker\Factory as Faker;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -14,15 +18,17 @@ class ProductsTableSeeder extends Seeder
     public function run()
 
     {
+        for ($i = 0; $i < 10; $i++) {
+            Product::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'itemName' => fake()->word(), "status" => true]);
+        }
 
-        
-    \App\Models\User::factory()->create([
-        'productName' => 'Product 1',
-        'productId' => 'PROD001',
-        'ItemName' => 'Item 1',
-        'Status' => true,
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
+
+
+        // \App\Models\User::factory()->create([
+        //     'productName' => 'Product 1',
+        //     'productId' => 'PROD001',
+        //     'itemName' => 'Item 1',
+        //     'status' => true,
+        // ]);
     }
 }

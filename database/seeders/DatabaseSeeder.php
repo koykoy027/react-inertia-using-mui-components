@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'jhunriz14@gmail.com',
             'password' => '123456789'
         ]);
+
+        $this->call([
+            ProductsTableSeeder::class,
+        ]);
     }
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('productName');
             $table->string('productId');
-            $table->string('ItemName');
-            $table->boolean('Status')->default(true); // Default to active
+            $table->string('itemName');
+            $table->boolean('status')->default(true); // Default to active
             $table->timestamps();
         });
     }

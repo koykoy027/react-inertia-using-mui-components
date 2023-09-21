@@ -90,7 +90,7 @@ function Create() {
 
                 <div>
                     <textarea
-                        className="rounded"
+                        className="rounded bg-inherit"
                         name=""
                         placeholder="Description"
                         id=""
