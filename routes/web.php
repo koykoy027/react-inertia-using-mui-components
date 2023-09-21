@@ -56,7 +56,7 @@ Route::prefix('administrator')->group(function () {
 
         // Qr code
         Route::resource('/qr', QrController::class);
-        Route::resource('/generateqr', GenerateQrController::class);
+        Route::resource('/generator', GenerateQrController::class);
 
         // storage
 

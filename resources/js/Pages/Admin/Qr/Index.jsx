@@ -458,6 +458,15 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     />
                 </Card>
             </div>
+            <div className="hidden sm:block">
+                <Card>
+                    <MUIDataTable
+                        data={data}
+                        columns={columns}
+                        options={options}
+                    />
+                </Card>
+            </div>
         </MainLayout>
     );
 }
