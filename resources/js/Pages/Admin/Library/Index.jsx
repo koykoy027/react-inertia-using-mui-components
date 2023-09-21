@@ -16,7 +16,7 @@ export default function Index({ auth }) {
         setValue(newValue);
     };
 
-    const [secondForm, setSecondForm] = useState("personalInformation");
+    const [secondForm, setSecondForm] = useState("gender");
     const handleChange1 = (event1, newValue1) => {
         setSecondForm(newValue1);
     };
@@ -55,34 +55,34 @@ export default function Index({ auth }) {
                                     scrollButtons="auto"
                                 >
                                     <Tab
-                                        value="personalInformation"
-                                        label="Personal Info"
+                                        value="gender"
+                                        label="Gender"
                                         iconPosition="start"
                                     />
                                     <Tab
-                                        value="changePassword"
-                                        label="Change Password"
+                                        value="company List"
+                                        label="Company List"
                                         iconPosition="start"
                                     />
                                     <Tab
-                                        value="accountSettings"
-                                        label="Account Settings"
+                                        value="position List"
+                                        label="Position List"
                                         iconPosition="start"
                                     />
                                 </Tabs>
                             </div>
                             <div className="">
-                                {secondForm === "personalInformation" && (
+                                {secondForm === "gender" && (
                                     <div className="">
                                         <Gender />
                                     </div>
                                 )}
-                                {secondForm === "changePassword" && (
+                                {secondForm === "company List" && (
                                     <div className="">
                                         <Company />
                                     </div>
                                 )}
-                                {secondForm === "accountSettings" && (
+                                {secondForm === "position List" && (
                                     <div className="">
                                         <Position />
                                     </div>
