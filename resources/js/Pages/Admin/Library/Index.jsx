@@ -42,127 +42,55 @@ export default function Index({ auth }) {
                 <Typography variant="caption">
                     Add or update settings or global parameters
                 </Typography>
-
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        bgcolor: "background.paper",
-                        display: "flex",
-                        width: "100%",
-                    }}
-                >
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        textColor="primary"
-                        indicatorColor="primary"
-                        scrollButtons="auto"
-                        orientation="vertical"
-                    >
-                        <Tab value="settings" label="Settings" />
-                        <Tab value="sample" label="Sample" />
-                    </Tabs>
-                    <div className="">
-                        {value === "settings" && (
-                            <div className="grid w-24 ">
-                                <div className="">
-                                    <Tabs
-                                        value={secondForm}
-                                        onChange={handleChange1}
-                                        textColor="primary"
-                                        indicatorColor="primary"
-                                        variant="scrollable"
-                                        scrollButtons="auto"
-                                    >
-                                        <Tab
-                                            value="personalInformation"
-                                            label="Personal Info"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="changePassword"
-                                            label="Change Password"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="accountSettings"
-                                            label="Account Settings"
-                                            iconPosition="start"
-                                        />
-                                    </Tabs>
-                                </div>
-                                <div className="w-screen lg:w-screen ">
-                                    {secondForm === "personalInformation" && (
-                                        <div className=" lg:w-2/3">
-                                            <Gender />
-                                        </div>
-                                    )}
-                                    {secondForm === "changePassword" && (
-                                        <div className=" lg:w-2/3">
-                                            <Company />
-                                        </div>
-                                    )}
-                                    {secondForm === "accountSettings" && (
-                                        <div className=" lg:w-2/3">
-                                            <Position />
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                        {value === "sample" && (
-                            <div className="grid ">
-                                <Box
-                                    sx={{
-                                        width: "20%",
-                                    }}
+                <div className="">
+                    {value === "settings" && (
+                        <div className="grid ">
+                            <div className="">
+                                <Tabs
+                                    value={secondForm}
+                                    onChange={handleChange1}
+                                    textColor="primary"
+                                    indicatorColor="primary"
+                                    variant="scrollable"
+                                    scrollButtons="auto"
                                 >
-                                    <Tabs
-                                        value={secondForm}
-                                        onChange={handleChange1}
-                                        textColor="primary"
-                                        indicatorColor="primary"
-                                        variant="standard"
-                                        scrollButtons="auto"
-                                    >
-                                        <Tab
-                                            value="personalInformation"
-                                            label="Sample 1"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="changePassword"
-                                            label="Sample 2"
-                                            iconPosition="start"
-                                        />
-                                        <Tab
-                                            value="accountSettings"
-                                            label="Sample 3"
-                                            iconPosition="start"
-                                        />
-                                    </Tabs>
-                                </Box>
-                                <div className="w-screen">
-                                    {secondForm === "personalInformation" && (
-                                        <div className=" lg:w-2/3">
-                                            <Religion />
-                                        </div>
-                                    )}
-                                    {secondForm === "changePassword" && (
-                                        <div className=" lg:w-2/3">
-                                            <Company />
-                                        </div>
-                                    )}
-                                    {secondForm === "accountSettings" && (
-                                        <div className=" lg:w-2/3">
-                                            <Position />
-                                        </div>
-                                    )}
-                                </div>
+                                    <Tab
+                                        value="personalInformation"
+                                        label="Personal Info"
+                                        iconPosition="start"
+                                    />
+                                    <Tab
+                                        value="changePassword"
+                                        label="Change Password"
+                                        iconPosition="start"
+                                    />
+                                    <Tab
+                                        value="accountSettings"
+                                        label="Account Settings"
+                                        iconPosition="start"
+                                    />
+                                </Tabs>
                             </div>
-                        )}
-                    </div>
-                </Box>
+                            <div className="">
+                                {secondForm === "personalInformation" && (
+                                    <div className="">
+                                        <Gender />
+                                    </div>
+                                )}
+                                {secondForm === "changePassword" && (
+                                    <div className="">
+                                        <Company />
+                                    </div>
+                                )}
+                                {secondForm === "accountSettings" && (
+                                    <div className="">
+                                        <Position />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </MainLayout>
     );
