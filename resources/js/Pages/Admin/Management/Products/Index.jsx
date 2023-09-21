@@ -24,6 +24,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
+import Create from "./Create";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = [
@@ -124,63 +125,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     }
                     content={
                         <div className="flex flex-col gap-10 ">
-                            <div className="grid grid-col gap-5">
-                                <BasicTextFields
-                                    label="Product Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-
-                                <BasicTextFields
-                                    label="Product ID"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-
-                                <BasicTextFields
-                                    label="Department"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-                                <FormControl
-                                    sx={{ minWidth: 120 }}
-                                    size="medium"
-                                >
-                                    <InputLabel id="demo-select-medium-label">
-                                        Status
-                                    </InputLabel>
-                                    <Select
-                                        labelId="demo-select-medium-label"
-                                        id="demo-select-medium"
-                                        value={age}
-                                        label="Age"
-                                        onChange={handleChange}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Single</MenuItem>
-                                        <MenuItem value={20}>Married</MenuItem>
-                                        <MenuItem value={30}>Widow</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <BasicTextFields
-                                    label="Location"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"email"}
-                                />
-                                <div className="lg:pt-28 pt-10">
-                                    <CustomizedSnackbars
-                                        title={"Submit"}
-                                        alertMessage={"The user was add"}
-                                    />
-                                </div>
-                            </div>
+                            <Create />
                         </div>
                     }
                 />
