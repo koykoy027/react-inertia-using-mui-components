@@ -2,18 +2,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 import MUIDataTable from "mui-datatables";
 
-export default function Index({ genders }) {
-    const columns = ["Name", "Status"];
-
-    //   const data = genders.map((data) => [
-    //       data.gender,
-    //       data.isActive ? "Active" : "Inactive",
-    //   ]);
-
-    const data = [
-        ["Male", "Active"],
-        ["Female", "Active"],
-    ];
+export default function Index({ columns, data }) {
 
     const options = {
         filterType: "checkBox",

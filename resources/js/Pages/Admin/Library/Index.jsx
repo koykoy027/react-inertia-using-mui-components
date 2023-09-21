@@ -1,16 +1,16 @@
 import MainLayout from "@/Layouts/MainLayout";
-import { Box, Card, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Gender from "./Gender/Index";
 import Religion from "./Religion/Index";
 import Company from "./Company/Index";
 import Position from "./Position/Index";
-import SupervisedUserCircleSharpIcon from "@mui/icons-material/SupervisedUserCircleSharp";
-import ChangeCircleSharpIcon from "@mui/icons-material/ChangeCircleSharp";
-import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
-import MUIDataTable from "mui-datatables";
+import { Button } from "@mui/material";
 
-export default function Index({ auth }) {
+export default function Index({ auth, gender }) {
+    const openModal = () => {
+        window.confirm("dapat mag oopen yung modal, para pwede ma edit yung information");
+    }
     const [value, setValue] = useState("settings"); // Changed default value
 
     const handleChange = (event, newValue) => {
@@ -23,103 +23,15 @@ export default function Index({ auth }) {
         setSecondForm(newValue1); // Fixed variable name here
     };
 
-    const columns = ["Name", "Age", "Status"];
-
-    const data = [
-        ["Jhunriz", "23", "Active"],
-        ["Joshua", "22", "Active"],
-        ["Emily", "25", "Inactive"],
-        ["Liam", "28", "Active"],
-        ["Sophia", "20", "Inactive"],
-        ["Noah", "30", "Active"],
-        ["Olivia", "24", "Inactive"],
-        ["Aiden", "27", "Active"],
-        ["Mia", "29", "Inactive"],
-        ["Ella", "26", "Active"],
-        ["Jackson", "31", "Active"],
-        ["Ava", "19", "Inactive"],
-        ["Logan", "27", "Active"],
-        ["Emma", "22", "Inactive"],
-        ["Landon", "24", "Active"],
-        ["Grace", "28", "Inactive"],
-        ["Carter", "25", "Active"],
-        ["Zoe", "23", "Inactive"],
-        ["Ethan", "26", "Active"],
-        ["Lily", "21", "Inactive"],
-        ["Mason", "29", "Active"],
-        ["Sophie", "30", "Inactive"],
-        ["Lucas", "23", "Active"],
-        ["Evelyn", "27", "Inactive"],
-        ["Oliver", "25", "Active"],
-        ["Harper", "24", "Inactive"],
-        ["Liam", "28", "Active"],
-        ["Abigail", "22", "Inactive"],
-        ["Benjamin", "31", "Active"],
-        ["Aria", "20", "Inactive"],
-        ["Henry", "29", "Active"],
-        ["Charlotte", "26", "Inactive"],
-        ["Elijah", "30", "Active"],
-        ["Amelia", "23", "Inactive"],
-        ["William", "24", "Active"],
-        ["Mila", "27", "Inactive"],
-        ["James", "25", "Active"],
-        ["Sofia", "28", "Inactive"],
-        ["Daniel", "22", "Active"],
-        ["Avery", "29", "Inactive"],
-        ["Alexander", "26", "Active"],
-        ["Chloe", "30", "Inactive"],
-        ["Michael", "21", "Active"],
-        ["Madison", "31", "Inactive"],
-        ["Evelyn", "23", "Active"],
-        ["Emily", "25", "Inactive"],
-        ["Ella", "28", "Active"],
-        ["Grace", "24", "Inactive"],
-        ["Liam", "27", "Active"],
-        ["Harper", "22", "Inactive"],
-        ["Ethan", "29", "Active"],
-        ["Aria", "20", "Inactive"],
-        ["Lucas", "26", "Active"],
-        ["Zoe", "30", "Inactive"],
-        ["Oliver", "23", "Active"],
-        ["Ava", "27", "Inactive"],
-        ["Mason", "25", "Active"],
-        ["Sofia", "28", "Inactive"],
-        ["William", "30", "Active"],
-        ["Charlotte", "21", "Inactive"],
-        ["James", "29", "Active"],
-        ["Amelia", "22", "Inactive"],
-        ["Benjamin", "31", "Active"],
-        ["Chloe", "24", "Inactive"],
-        ["Daniel", "26", "Active"],
-        ["Mila", "23", "Inactive"],
-        ["Michael", "28", "Active"],
-        ["Madison", "25", "Inactive"],
-        ["Evelyn", "30", "Active"],
-        ["Lily", "27", "Inactive"],
-        ["Ella", "24", "Active"],
-        ["Avery", "22", "Inactive"],
-        ["Liam", "29", "Active"],
-        ["Harper", "21", "Inactive"],
-        ["Ethan", "26", "Active"],
-        ["Aria", "30", "Inactive"],
-        ["Lucas", "25", "Active"],
-        ["Zoe", "28", "Inactive"],
-        ["Oliver", "23", "Active"],
-        ["Ava", "27", "Inactive"],
-        ["Mason", "30", "Active"],
-        ["Sofia", "22", "Inactive"],
-        ["William", "29", "Active"],
-        ["Charlotte", "26", "Inactive"],
-        ["James", "21", "Active"],
-        ["Amelia", "25", "Inactive"],
-    ];
-
-    const options = {
-        filterType: "checkBox",
-        elevation: 0,
-        responsive: "standard",
-        selectableRows: false,
-    };
+    // for gender
+    const genderColumns = ["name", "status", "action"];
+    const genderDatas = gender.map((data) => ({
+        id: data.id,
+        name: data.name,
+        status: data.is_active ? "Active": "Inactive", // palitan mo nalang din ng design toy na kapag active color green kapag inactive red
+        action: (<Button onClick={openModal}>Open modal</Button>) // palitan mo nalang ng icon 
+        
+    }));
 
     return (
         <MainLayout user={auth.user}>
@@ -188,7 +100,7 @@ export default function Index({ auth }) {
                                 <div className="w-screen lg:w-screen">
                                     {secondForm === "personalInformation" && (
                                         <div className="w-full lg:w-2/3">
-                                            <Gender />
+                                            <Gender data={genderDatas} columns={genderColumns}/>
                                         </div>
                                     )}
                                     {secondForm === "changePassword" && (

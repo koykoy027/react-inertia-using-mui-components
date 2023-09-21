@@ -11,5 +11,10 @@ class Gender extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'genders';
-    protected $fillable = ['name', 'isActive'];
+    protected $fillable = [
+        'name',
+        'is_active',
+        'created_by',
+        'updated_by',
+    ];
 }
