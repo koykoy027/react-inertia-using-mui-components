@@ -6,9 +6,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { blue, yellow } from "@mui/material/colors";
-import { dark } from "@mui/material/styles/createPalette";
-import DarkModeToggle from "./Components/Darkmode";
+import { blue } from "@mui/material/colors";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
