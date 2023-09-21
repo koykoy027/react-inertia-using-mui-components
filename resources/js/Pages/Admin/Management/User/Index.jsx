@@ -23,6 +23,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
+import Create from "./Create";
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const columns = ["Name", "Age", "Status"];
@@ -165,100 +166,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                             ></Avatar>
                         </div>
                     }
-                    content={
-                        <div className="flex flex-col gap-5 ">
-                            <div className="grid grid-col lg:grid-cols-3 gap-2">
-                                <BasicTextFields
-                                    label="Last Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    required
-                                />
-
-                                <BasicTextFields
-                                    label="First Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-
-                                <BasicTextFields
-                                    label="Middle Name"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                />
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                                <BasicTextFields
-                                    label="Age"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type="number"
-                                />
-                                <FormControl
-                                    sx={{ minWidth: 120 }}
-                                    size="medium"
-                                >
-                                    <InputLabel id="demo-select-medium-label">
-                                        Status
-                                    </InputLabel>
-                                    <Select
-                                        labelId="demo-select-medium-label"
-                                        id="demo-select-medium"
-                                        value={age}
-                                        label="Age"
-                                        onChange={handleChange}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Single</MenuItem>
-                                        <MenuItem value={20}>Married</MenuItem>
-                                        <MenuItem value={30}>Widow</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <BasicTextFields
-                                label="Email"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <BasicTextFields
-                                label="Address"
-                                variant="outlined"
-                                id="Last Name"
-                                size={"medium"}
-                                type={"email"}
-                            />
-                            <div className="grid grid-cols-2 gap-2">
-                                <BasicTextFields
-                                    label="Password"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"password"}
-                                />
-                                <BasicTextFields
-                                    label="Confirm Password"
-                                    variant="outlined"
-                                    id="Last Name"
-                                    size={"medium"}
-                                    type={"password"}
-                                />
-                            </div>
-                            <div className="lg:pt-28 pt-10">
-                                <CustomizedSnackbars
-                                    title={"Submit"}
-                                    alertMessage={"The user was add"}
-                                />
-                            </div>
-                        </div>
-                    }
+                    content={<Create />}
                 />
             </div>
             <div className="py-6">
