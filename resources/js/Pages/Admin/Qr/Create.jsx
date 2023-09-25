@@ -185,7 +185,7 @@ function Create() {
 
                                 <div>
                                     <textarea
-                                        className="rounded bg-inherit"
+                                        className="rounded bg-inherit w-full"
                                         name=""
                                         placeholder="Description"
                                         id=""
