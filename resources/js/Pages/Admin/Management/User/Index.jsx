@@ -24,6 +24,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import Create from "./Create";
+import { useRef, useState } from "react";
+import { useForm } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
@@ -59,24 +61,95 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
         },
     ];
 
+    // test sample
+
+    const [region, setRegion] = React.useState("");
+
+    const regionChange = (event) => {
+        setRegion(event.target.value);
+    };
+
+    const regions = [
+        { label: "None", value: "" },
+        { label: "Ten", value: 10 },
+        { label: "Twenty", value: 20 },
+        { label: "Thirty", value: 30 },
+    ];
+
+    // test
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
+    const passwordInput = useRef();
+
+    const {
+        data1,
+        setData,
+        delete: destroy,
+        processing,
+        reset,
+        errors,
+    } = useForm({
+        password: "",
+    });
+
+    const confirmUserDeletion = () => {
+        setConfirmingUserDeletion(true);
+    };
+
+    const deleteUser = (e) => {
+        e.preventDefault();
+
+        const confirmation = window.confirm(
+            "Are you sure you want to delete your account?"
+        );
+        if (confirmation) {
+            destroy(route("profile.destroy"), {
+                preserveScroll: true,
+                onSuccess: () => closeModal(),
+                onError: () => passwordInput.current.focus(),
+                onFinish: () => reset(),
+            });
+        }
+    };
+
+    const closeModal = () => {
+        setConfirmingUserDeletion(false);
+
+        reset();
+    };
+
+    // department sample
+
+    const [department, setDepartment] = React.useState("");
+
+    const DepartmentChange = (event) => {
+        setDepartment(event.target.value);
+    };
+
+    const departmentoption = [
+        { label: "None", value: "" },
+        { label: "IT", value: 10 },
+        { label: "Computer-Science", value: 20 },
+        { label: "IS", value: 30 },
+    ];
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
             <div>
-                <ReusableModal
-                    icon={<AddSharpIcon />}
-                    title={"Add User"}
-                    header={
-                        <div className="hidden lg:block">
-                            <Avatar
-                                style={{ width: 100, height: 100 }}
-                            ></Avatar>
-                        </div>
-                    }
-                    content={<Create />}
-                />
+                <Create />
             </div>
             <div className="py-6">
                 <Card>
