@@ -28,7 +28,6 @@ import Create from "./Create";
 
 export default function Index({ auth, mustVerifyEmail, status, products }) {
     const data = products.map((product) => [
-        product.id,
         product.productName,
         product.productId,
         product.itemName,
@@ -39,7 +38,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         "Product Name",
         "Product ID",
         "Item Name",
-        "Quantity Needed",
+        // "Quantity Needed",
         "Status",
     ];
 

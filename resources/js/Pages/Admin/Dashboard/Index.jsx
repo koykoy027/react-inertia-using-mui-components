@@ -14,29 +14,11 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 
-export default function Index({ auth, mustVerifyEmail, status }) {
-    const columns = ["Name", "Age", "Status"];
+export default function Index({ auth, mustVerifyEmail, status, users }) {
+    // this variable data with the code .map is help determine the backend
+    const data = users.map((user) => [user.id, user.email]);
 
-    const data = [
-        ["Jhunriz", "23", "Active"],
-        ["Joshua", "22", "Active"],
-        ["Emily", "25", "Inactive"],
-        ["Liam", "28", "Active"],
-        ["Sophia", "20", "Inactive"],
-        ["Noah", "30", "Active"],
-        ["Olivia", "24", "Inactive"],
-        ["Aiden", "27", "Active"],
-        ["Mia", "29", "Inactive"],
-        ["Ella", "26", "Active"],
-        ["Jackson", "31", "Active"],
-        ["Ava", "19", "Inactive"],
-        ["Logan", "27", "Active"],
-        ["Emma", "22", "Inactive"],
-        ["Landon", "24", "Active"],
-        ["Grace", "28", "Inactive"],
-        ["Carter", "25", "Active"],
-        ["Zoe", "23", "Inactive"],
-    ];
+    const columns = ["ID", "Email"];
 
     // Now, you have a total of 108 rows in the `data` array.
 
