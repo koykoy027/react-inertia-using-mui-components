@@ -16,9 +16,9 @@ import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
-    const data = users.map((user) => [user.id, user.email]);
+    const data = users.map((user) => [user.id, user.name, user.email]);
 
-    const columns = ["ID", "Email"];
+    const columns = ["ID", "Name", "Email"];
 
     // Now, you have a total of 108 rows in the `data` array.
 
