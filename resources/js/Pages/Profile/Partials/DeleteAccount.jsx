@@ -9,6 +9,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Typography } from "@mui/material";
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 
 export default function DeleteAccount({ className = "" }) {
     const [open, setOpen] = React.useState(false);
@@ -63,20 +64,39 @@ export default function DeleteAccount({ className = "" }) {
 
     return (
         <>
-            <div className="mb-5">
-                <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-                    Delete Account
-                </Typography>
-                <Typography variant="body2">
-                    Once your account is deleted, all of its resources and data
-                    will be permanently deleted. Before deleting your account,
-                    please download any data or information that you wish to
-                    retain.
-                </Typography>
+            <div className="grid grid-rows-2">
+                <div className="mb-5">
+                    <Typography
+                        variant="h6"
+                        sx={{ textTransform: "uppercase" }}
+                    >
+                        Delete Account
+                    </Typography>
+                    <Typography variant="body2">
+                        Once your account is deleted, all of its resources and
+                        data will be permanently deleted. Before deleting your
+                        account, please download any data or information that
+                        you wish to retain.
+                    </Typography>
+                </div>
+                <div className="grid justify-start items-end">
+                    {/* <CustomizedSnackbars
+                        onClick={handleClickOpen}
+                        title={"Delete Account"}
+                        color={"error"}
+                        startIcon={<DeleteSharpIcon />}
+                    /> */}
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={handleClickOpen}
+                        startIcon={<DeleteSharpIcon />}
+                    >
+                        Delete Account
+                    </Button>
+                </div>
             </div>
-            <Button variant="contained" color="error" onClick={handleClickOpen}>
-                Delete Account
-            </Button>
+
             <Dialog open={open} onClose={handleClose}>
                 <form onSubmit={deleteUser}>
                     <DialogTitle>
@@ -109,7 +129,7 @@ export default function DeleteAccount({ className = "" }) {
                         </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="outlined" onClick={handleClose}>
+                        <Button variant="contained" onClick={handleClose}>
                             Cancel
                         </Button>
                         <Button variant="contained" color="error" type="submit">
