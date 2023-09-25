@@ -140,7 +140,7 @@ function Create() {
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
                 >
-                    Add User
+                    Add Product
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>

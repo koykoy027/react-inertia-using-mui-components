@@ -87,22 +87,7 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
             <div>
-                <ReusableModal
-                    icon={<AddSharpIcon />}
-                    title={"Add Record"}
-                    header={
-                        <div className="hidden lg:block">
-                            <Avatar
-                                style={{ width: 100, height: 100 }}
-                            ></Avatar>
-                        </div>
-                    }
-                    content={
-                        <div className="flex flex-col gap-5 ">
-                            <Create />
-                        </div>
-                    }
-                />
+                <Create />
             </div>
             <div className="py-6 overflow-x-auto max-w-[330px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <Card>
