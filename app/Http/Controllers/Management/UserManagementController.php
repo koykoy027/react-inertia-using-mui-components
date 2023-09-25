@@ -17,4 +17,14 @@ class UserManagementController extends Controller
             'users' => $users,
         ]);
     }
+
+    // public function store(Request $request)
+    // {
+    //     $users = User::create([
+    //         'name' => $request->LastName,
+    //         'email' => $request->email,
+    //     ]);
+
+    //     return 'success';
+    // }
 }

@@ -132,7 +132,8 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <form onSubmit={deleteUser}>
+                    <form action="" onSubmit={deleteUser}>
+                        {/* <form action="{{ route('save') }}" method="POST"> */}
                         <DialogTitle>
                             Are you sure want to add your account?
                         </DialogTitle>
@@ -144,6 +145,7 @@ function Create() {
                                         label="Last Name"
                                         variant="outlined"
                                         fullWidth
+                                        name="lastName"
                                         size="small"
                                         required
                                     />
@@ -168,6 +170,7 @@ function Create() {
                                         id="outlined-basic"
                                         label="Email Address"
                                         variant="outlined"
+                                        name="email"
                                         fullWidth
                                         size="small"
                                         required

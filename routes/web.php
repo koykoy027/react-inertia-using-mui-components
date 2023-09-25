@@ -60,6 +60,7 @@ Route::prefix('administrator')->group(function () {
 
         // Management
         Route::resource('/management', UserManagementController::class);
+        // Route::post('store', [UserManagementController::class, 'store'])->name('save');
         Route::resource('/products', ProductManagementController::class);
 
         // Qr code
