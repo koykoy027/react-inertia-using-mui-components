@@ -1,4 +1,4 @@
-import ShippingCard from "@/Components/Card";
+import CustomCard from "@/Components/CustomCard";
 import MainLayout from "@/Layouts/MainLayout";
 import {
     Autocomplete,

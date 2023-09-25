@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-const ShippingCard = ({ title, count, icon }) => {
+const CustomCard = ({ title, count, icon }) => {
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent className="flex flex-cols-3 gap-4 items-center">
@@ -28,10 +28,10 @@ const ShippingCard = ({ title, count, icon }) => {
     );
 };
 
-ShippingCard.propTypes = {
+CustomCard.propTypes = {
     icon: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     count: PropTypes.string.isRequired,
 };
 
-export default ShippingCard;
+export default CustomCard;

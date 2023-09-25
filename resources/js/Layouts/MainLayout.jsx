@@ -231,146 +231,105 @@ export default function MainLayout({ user, children }) {
 
     // active user
 
-    const StyledBadge = styled(Badge)(({ theme }) => ({
-        "& .MuiBadge-badge": {
-            backgroundColor: "#44b700",
-            color: "#44b700",
-            boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-            "&::after": {
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                borderRadius: "50%",
-                animation: "ripple 1.2s infinite ease-in-out",
-                border: "1px solid currentColor",
-                content: '""',
-            },
-        },
-        "@keyframes ripple": {
-            "0%": {
-                transform: "scale(.8)",
-                opacity: 1,
-            },
-            "100%": {
-                transform: "scale(2.4)",
-                opacity: 0,
-            },
-        },
-    }));
-
-    const SmallAvatar = styled(Avatar)(({ theme }) => ({
-        width: 22,
-        height: 22,
-        border: `2px solid ${theme.palette.background.paper}`,
-    }));
-
     return (
         <ThemeProvider theme={darkTheme}>
-            <CssBaseline>
-                <Box sx={{ display: "flex" }}>
-                    <CssBaseline />
-                    <AppBar position="fixed" open={open}>
-                        <Toolbar>
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={handleDrawerOpen}
-                                edge="start"
-                                sx={{ mr: 2, ...(open && { display: "none" }) }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" noWrap component="div">
-                                Inventory Management System
-                            </Typography>
-                            <div style={{ flexGrow: 1 }}></div>
+            <CssBaseline />
 
-                            {/* account menu start */}
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    textAlign: "center",
-                                }}
-                            >
-                                <div className="flex justify-center items-center">
-                                    <Badge badgeContent={4} color="primary">
-                                        <EmailIcon
-                                            fontSize="medium"
-                                            color="action"
+            <Box sx={{ display: "flex" }}>
+                <AppBar position="fixed" open={open}>
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            sx={{ mr: 2, ...(open && { display: "none" }) }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Inventory Management System
+                        </Typography>
+                        <div style={{ flexGrow: 1 }}></div>
+
+                        {/* account menu start */}
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                textAlign: "center",
+                            }}
+                        >
+                            <div className="flex justify-center items-center">
+                                <Tooltip title="Account settings">
+                                    <IconButton
+                                        onClick={handleClick}
+                                        size="medium"
+                                        sx={{ ml: 2 }}
+                                        aria-controls={
+                                            openAvatar
+                                                ? "account-menu"
+                                                : undefined
+                                        }
+                                        aria-haspopup="true"
+                                        aria-expanded={
+                                            openAvatar ? "true" : undefined
+                                        }
+                                    >
+                                        <Avatar
+                                            alt={user.name}
+                                            src="/static/images/avatar/2.jpg"
                                         />
-                                    </Badge>
-                                    <Tooltip title="Account settings">
-                                        <IconButton
-                                            onClick={handleClick}
-                                            size="medium"
-                                            sx={{ ml: 2 }}
-                                            aria-controls={
-                                                openAvatar
-                                                    ? "account-menu"
-                                                    : undefined
-                                            }
-                                            aria-haspopup="true"
-                                            aria-expanded={
-                                                openAvatar ? "true" : undefined
-                                            }
-                                        >
-                                            <Avatar
-                                                alt={user.name}
-                                                src="/static/images/avatar/2.jpg"
-                                            />
-                                        </IconButton>
-                                    </Tooltip>
-                                </div>
-                            </Box>
-                            <Menu
-                                anchorEl={anchorEl}
-                                id="account-menu"
-                                open={openAvatar}
-                                onClose={handleClose}
-                                onClick={handleClose}
-                                PaperProps={{
-                                    elevation: 0,
-                                    sx: {
-                                        overflow: "visible",
-                                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                                        mt: 1.5,
-                                        "& .MuiAvatar-root": {
-                                            width: 32,
-                                            height: 32,
-                                            ml: -0.5,
-                                            mr: 1,
-                                        },
-                                        "&:before": {
-                                            content: '""',
-                                            display: "block",
-                                            position: "absolute",
-                                            top: 0,
-                                            right: 14,
-                                            width: 10,
-                                            height: 10,
-                                            bgcolor: "background.paper",
-                                            transform:
-                                                "translateY(-50%) rotate(45deg)",
-                                            zIndex: 0,
-                                        },
-                                    },
-                                }}
-                                transformOrigin={{
-                                    horizontal: "right",
-                                    vertical: "top",
-                                }}
-                                anchorOrigin={{
-                                    horizontal: "right",
-                                    vertical: "bottom",
-                                }}
-                            >
-                                <MenuItem>
-                                    <Stack direction="row" spacing={2}>
-                                        <div className="flex justify-center items-center gap-5">
-                                            <StyledBadge
+                                    </IconButton>
+                                </Tooltip>
+                            </div>
+                        </Box>
+                        <Menu
+                            anchorEl={anchorEl}
+                            id="account-menu"
+                            open={openAvatar}
+                            onClose={handleClose}
+                            onClick={handleClose}
+                            // PaperProps={{
+                            //     elevation: 0,
+                            //     sx: {
+                            //         overflow: "visible",
+                            //         filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                            //         mt: 1.5,
+                            //         "& .MuiAvatar-root": {
+                            //             width: 32,
+                            //             height: 32,
+                            //             ml: -0.5,
+                            //             mr: 1,
+                            //         },
+                            //         "&:before": {
+                            //             content: '""',
+                            //             display: "block",
+                            //             position: "absolute",
+                            //             top: 0,
+                            //             right: 14,
+                            //             width: 10,
+                            //             height: 10,
+                            //             bgcolor: "background.paper",
+                            //             transform:
+                            //                 "translateY(-50%) rotate(45deg)",
+                            //             zIndex: 0,
+                            //         },
+                            //     },
+                            // }}
+                            // transformOrigin={{
+                            //     horizontal: "right",
+                            //     vertical: "top",
+                            // }}
+                            // anchorOrigin={{
+                            //     horizontal: "right",
+                            //     vertical: "bottom",
+                            // }}
+                        >
+                            <MenuItem>
+                                <Stack direction="row" spacing={2}>
+                                    <div className="flex justify-center items-center gap-5">
+                                        {/* <StyledBadge
                                                 overlap="circular"
                                                 anchorOrigin={{
                                                     vertical: "bottom",
@@ -382,205 +341,200 @@ export default function MainLayout({ user, children }) {
                                                     alt={user.name}
                                                     src="/static/images/avatar/1.jpg"
                                                 />
-                                            </StyledBadge>
-                                            {user.name}
-                                        </div>
-                                    </Stack>
-                                </MenuItem>
+                                            </StyledBadge> */}
+                                        {user.name}
+                                    </div>
+                                </Stack>
+                            </MenuItem>
+                            <MenuItem>
+                                <CustomizedSwitches
+                                    checked={DarkMode}
+                                    onChange={toggleDarkMode}
+                                />
+
+                                <Typography
+                                    variant="overline"
+                                    onClick={toggleDarkMode}
+                                >
+                                    {DarkMode
+                                        ? "Switch to Light Mode"
+                                        : "Switch to Dark Mode"}
+                                </Typography>
+                            </MenuItem>
+                            <Divider />
+                            <Link href={route("profile.edit")}>
                                 <MenuItem>
-                                    <CustomizedSwitches
-                                        checked={DarkMode}
-                                        onChange={toggleDarkMode}
-                                    />
-
-                                    <Typography
-                                        variant="overline"
-                                        onClick={toggleDarkMode}
-                                    >
-                                        {DarkMode
-                                            ? "Switch to Light Mode"
-                                            : "Switch to Dark Mode"}
-                                    </Typography>
-                                </MenuItem>
-                                <Divider />
-                                <Link href={route("profile.edit")}>
-                                    <MenuItem>
-                                        <ListItemIcon>
-                                            <Settings fontSize="small" />
-                                        </ListItemIcon>
-                                        Account Settings
-                                    </MenuItem>
-                                </Link>
-                                <MenuItem onClick={handleLogout}>
                                     <ListItemIcon>
-                                        <Logout fontSize="small" />
+                                        <Settings fontSize="small" />
                                     </ListItemIcon>
-                                    Logout
+                                    Account Settings
                                 </MenuItem>
-                            </Menu>
-                            {/* account menu end */}
-                        </Toolbar>
-                    </AppBar>
+                            </Link>
+                            <MenuItem onClick={handleLogout}>
+                                <ListItemIcon>
+                                    <Logout fontSize="small" />
+                                </ListItemIcon>
+                                Logout
+                            </MenuItem>
+                        </Menu>
+                        {/* account menu end */}
+                    </Toolbar>
+                </AppBar>
 
-                    {/* breadCrumbs */}
+                {/* breadCrumbs */}
 
-                    <Drawer
-                        sx={{
+                <Drawer
+                    sx={{
+                        width: drawerWidth,
+                        flexShrink: 0,
+                        "& .MuiDrawer-paper": {
                             width: drawerWidth,
-                            flexShrink: 0,
-                            "& .MuiDrawer-paper": {
-                                width: drawerWidth,
-                                boxSizing: "border-box",
-                            },
+                            boxSizing: "border-box",
+                        },
+                    }}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                >
+                    <DrawerHeader>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === "ltr" ? (
+                                <ChevronLeftIcon />
+                            ) : (
+                                <ChevronRightIcon />
+                            )}
+                        </IconButton>
+                    </DrawerHeader>
+                    <Divider />
+                    <List>
+                        <Link href={route("dashboard")}>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <DashboardSharpIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Dashboard" />
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+                    </List>
+                    <Divider />
+
+                    {/* another sidenav list */}
+
+                    {/* start */}
+                    <List
+                        sx={{
+                            width: "100%",
+                            maxWidth: 360,
+                            bgcolor: "background.paper",
                         }}
-                        variant="persistent"
-                        anchor="left"
-                        open={open}
+                        component="nav"
+                        aria-labelledby="nested-list-subheader"
                     >
-                        <DrawerHeader>
-                            <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === "ltr" ? (
-                                    <ChevronLeftIcon />
-                                ) : (
-                                    <ChevronRightIcon />
-                                )}
-                            </IconButton>
-                        </DrawerHeader>
-                        <Divider />
+                        <ListItemButton onClick={listSideNav}>
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Management" />
+                            {expanded ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <Link href={route("management.index")}>
+                                <List component="div" disablePadding>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemIcon>
+                                            <PersonSharpIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="User" />
+                                    </ListItemButton>
+                                </List>
+                            </Link>
+
+                            <List component="div" disablePadding>
+                                <Link href={route("products.index")}>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemIcon>
+                                            <InventorySharpIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Products" />
+                                    </ListItemButton>
+                                </Link>
+                            </List>
+                        </Collapse>
                         <List>
-                            <Link href={route("dashboard")}>
+                            <Link href={route("storage.index")}>
                                 <ListItem disablePadding>
                                     <ListItemButton>
                                         <ListItemIcon>
-                                            <DashboardSharpIcon />
+                                            <WidgetsIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="Dashboard" />
+                                        <ListItemText primary="Storage" />
                                     </ListItemButton>
                                 </ListItem>
                             </Link>
                         </List>
-                        <Divider />
-
-                        {/* another sidenav list */}
-
-                        {/* start */}
-                        <List
-                            sx={{
-                                width: "100%",
-                                maxWidth: 360,
-                                bgcolor: "background.paper",
-                            }}
-                            component="nav"
-                            aria-labelledby="nested-list-subheader"
-                        >
-                            <ListItemButton onClick={listSideNav}>
-                                <ListItemIcon>
-                                    <InboxIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Management" />
-                                {expanded ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse
-                                in={expanded}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <Link href={route("management.index")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <PersonSharpIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="User" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-
+                    </List>
+                    {/* end */}
+                    <List>
+                        <ListItemButton onClick={generateQr}>
+                            <ListItemIcon>
+                                <QrCodeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="QR" />
+                            {Qr ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={Qr} timeout="auto" unmountOnExit>
+                            <Link href={route("qr.index")}>
                                 <List component="div" disablePadding>
-                                    <Link href={route("products.index")}>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <InventorySharpIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Products" />
-                                        </ListItemButton>
-                                    </Link>
-                                </List>
-                            </Collapse>
-                            <List>
-                                <Link href={route("storage.index")}>
-                                    <ListItem disablePadding>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                <WidgetsIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Storage" />
-                                        </ListItemButton>
-                                    </ListItem>
-                                </Link>
-                            </List>
-                        </List>
-                        {/* end */}
-                        <List>
-                            <ListItemButton onClick={generateQr}>
-                                <ListItemIcon>
-                                    <QrCodeIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="QR" />
-                                {Qr ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse in={Qr} timeout="auto" unmountOnExit>
-                                <Link href={route("qr.index")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <PostAddIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add Records" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-                                <Link href={route("generator.index")}>
                                     <ListItemButton sx={{ pl: 4 }}>
                                         <ListItemIcon>
-                                            <QrCodeScannerIcon />
+                                            <PostAddIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary="Genarate QR" />
+                                        <ListItemText primary="Add Records" />
                                     </ListItemButton>
-                                </Link>
-                            </Collapse>
+                                </List>
+                            </Link>
+                            <Link href={route("generator.index")}>
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <QrCodeScannerIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Genarate QR" />
+                                </ListItemButton>
+                            </Link>
+                        </Collapse>
+                    </List>
+
+                    <div className="absolute bottom-0 w-full">
+                        <List>
+                            <Link href={route("library.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <SettingsApplicationsSharpIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Library Setting" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                         </List>
+                    </div>
+                </Drawer>
+                <Main open={open}>
+                    <DrawerHeader />
 
-                        <div className="absolute bottom-0 w-full">
-                            <List>
-                                <Link href={route("library.index")}>
-                                    <ListItem disablePadding>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                <SettingsApplicationsSharpIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Library Setting" />
-                                        </ListItemButton>
-                                    </ListItem>
-                                </Link>
-                            </List>
+                    <div className="sm:mx-5 md:mx-2 lg:mx-10">
+                        {children}
+                        <div className="lg:hidden block">
+                            <CustomSpeedDial
+                                actions={actions}
+                                openIcon={<ExpandMoreSharpIcon />}
+                            />
                         </div>
-                    </Drawer>
-                    <Main open={open}>
-                        <DrawerHeader />
-
-                        <div className="sm:mx-5 md:mx-2 lg:mx-10">
-                            {children}
-                            <div className="lg:hidden block">
-                                <CustomSpeedDial
-                                    actions={actions}
-                                    openIcon={<ExpandMoreSharpIcon />}
-                                />
-                            </div>
-                        </div>
-                    </Main>
-                </Box>
-            </CssBaseline>
+                    </div>
+                </Main>
+            </Box>
         </ThemeProvider>
     );
 }
