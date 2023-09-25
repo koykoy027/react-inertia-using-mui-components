@@ -139,6 +139,7 @@ function Create() {
                     color="primary"
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
+                    className="w-full lg:w-40"
                 >
                     Add Item QR
                 </Button>

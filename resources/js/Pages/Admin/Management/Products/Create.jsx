@@ -139,6 +139,7 @@ function Create() {
                     color="primary"
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
+                    className="w-full lg:w-36"
                 >
                     Add User
                 </Button>
