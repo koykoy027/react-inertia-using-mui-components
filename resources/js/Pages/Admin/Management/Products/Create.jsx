@@ -140,7 +140,7 @@ function Create() {
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
                 >
-                    Add Product
+                    Add User
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
@@ -149,7 +149,7 @@ function Create() {
                             Are you sure want to add your account?
                         </DialogTitle>
                         <DialogContent>
-                            <div className="grid grid-col gap-7 px-2">
+                            <div className="grid gap-2">
                                 <div className="grid grid-col gap-5">
                                     <TextField
                                         id="outlined-basic"
@@ -185,7 +185,7 @@ function Create() {
 
                                 <div>
                                     <textarea
-                                        className="rounded bg-inherit"
+                                        className="rounded bg-inherit w-full"
                                         name=""
                                         placeholder="Description"
                                         id=""
