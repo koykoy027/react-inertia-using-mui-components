@@ -11,15 +11,18 @@ import BasicPie from "@/Components/BasicPie";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import GrainIcon from "@mui/icons-material/Grain";
+
 import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
-    const data = users.map((user) => [user.id, user.name, user.email]);
+    const data = users.map(
+        (user) => [user.id, user.name, user.email],
+        <EastIcon />
+    );
 
-    const columns = ["ID", "Name", "Email"];
-
+    const columns = ["ID", "Name", "Email", " "];
+    z``;
     // Now, you have a total of 108 rows in the `data` array.
 
     const options = {
