@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('productName');
             $table->string('productId');
             $table->string('itemName');
-            $table->string('status')->default(true); // Default to true
+            $table->string('status')->nullable();
+
+            $table->boolean('is_active')->default(true);
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();

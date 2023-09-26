@@ -19,7 +19,9 @@ return new class extends Migration
             $table->integer('quantity_need');
             $table->string('qrcode');
             $table->string('barcode');
-            $table->boolean('status')->default(true);
+            $table->string('status')->nullable();
+
+            $table->boolean('is_active')->default(true);
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
