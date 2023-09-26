@@ -17,12 +17,14 @@ import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
-    const data = users.map(
-        (user) => [user.id, user.name, user.email],
-        <EastIcon />
-    );
+    const data = users.map((user) => [
+        user.id,
+        user.name,
+        user.email,
+        <EastIcon />, // Replace 'insert_icon_name_here' with the actual icon name
+    ]);
 
-    const columns = ["ID", "Name", "Email", " "];
+    const columns = ["ID", "Name", "Email", ""];
     // Now, you have a total of 108 rows in the `data` array.
 
     const options = {

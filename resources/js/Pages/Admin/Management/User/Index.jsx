@@ -32,11 +32,12 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
     const data = users.map((user) => [
         user.id,
+        user.name,
         user.email,
         <EastIcon />, // Replace 'insert_icon_name_here' with the actual icon name
     ]);
 
-    const columns = ["ID", "Email", ""];
+    const columns = ["ID", "Name", "Email", ""];
 
     const options = {
         filterType: "checkBox",
