@@ -6,18 +6,16 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-export default function MessageNotification() {
+export default function MessageNotification({ user }) {
     return (
         <List
             sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         >
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                    />
+                    <Avatar alt="Anita" src="/static/images/avatar/1.jpg" />
                 </ListItemAvatar>
                 <ListItemText
                     primary="Brunch this weekend?"
@@ -64,7 +62,7 @@ export default function MessageNotification() {
                 />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="flex-start" divider>
                 <ListItemAvatar>
                     <Avatar
                         alt="Cindy Baker"
@@ -90,6 +88,11 @@ export default function MessageNotification() {
                     }
                 />
             </ListItem>
+            <div className="flex justify-center pt-5 px-3">
+                <Button color="primary" variant="contained" fullWidth>
+                    See more
+                </Button>
+            </div>
         </List>
     );
 }
