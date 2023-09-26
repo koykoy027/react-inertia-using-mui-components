@@ -24,109 +24,25 @@ import PersonIcon from "@mui/icons-material/Person";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import Create from "./Create";
+import { useRef, useState } from "react";
+import { useForm } from "@inertiajs/react";
+import EastIcon from "@mui/icons-material/East";
 
-export default function Index({ auth, mustVerifyEmail, status }) {
-    const columns = ["Name", "Age", "Status"];
+export default function Index({ auth, mustVerifyEmail, status, users }) {
+    // this variable data with the code .map is help determine the backend
+    const data = users.map((user) => [
+        user.id,
+        user.email,
+        <EastIcon />, // Replace 'insert_icon_name_here' with the actual icon name
+    ]);
 
-    const data = [
-        ["Jhunriz", "23", "Active"],
-        ["Joshua", "22", "Active"],
-        ["Emily", "25", "Inactive"],
-        ["Liam", "28", "Active"],
-        ["Sophia", "20", "Inactive"],
-        ["Noah", "30", "Active"],
-        ["Olivia", "24", "Inactive"],
-        ["Aiden", "27", "Active"],
-        ["Mia", "29", "Inactive"],
-        ["Ella", "26", "Active"],
-        ["Jackson", "31", "Active"],
-        ["Ava", "19", "Inactive"],
-        ["Logan", "27", "Active"],
-        ["Emma", "22", "Inactive"],
-        ["Landon", "24", "Active"],
-        ["Grace", "28", "Inactive"],
-        ["Carter", "25", "Active"],
-        ["Zoe", "23", "Inactive"],
-        ["Ethan", "26", "Active"],
-        ["Lily", "21", "Inactive"],
-        ["Mason", "29", "Active"],
-        ["Sophie", "30", "Inactive"],
-        ["Lucas", "23", "Active"],
-        ["Evelyn", "27", "Inactive"],
-        ["Oliver", "25", "Active"],
-        ["Harper", "24", "Inactive"],
-        ["Liam", "28", "Active"],
-        ["Abigail", "22", "Inactive"],
-        ["Benjamin", "31", "Active"],
-        ["Aria", "20", "Inactive"],
-        ["Henry", "29", "Active"],
-        ["Charlotte", "26", "Inactive"],
-        ["Elijah", "30", "Active"],
-        ["Amelia", "23", "Inactive"],
-        ["William", "24", "Active"],
-        ["Mila", "27", "Inactive"],
-        ["James", "25", "Active"],
-        ["Sofia", "28", "Inactive"],
-        ["Daniel", "22", "Active"],
-        ["Avery", "29", "Inactive"],
-        ["Alexander", "26", "Active"],
-        ["Chloe", "30", "Inactive"],
-        ["Michael", "21", "Active"],
-        ["Madison", "31", "Inactive"],
-        ["Evelyn", "23", "Active"],
-        ["Emily", "25", "Inactive"],
-        ["Ella", "28", "Active"],
-        ["Grace", "24", "Inactive"],
-        ["Liam", "27", "Active"],
-        ["Harper", "22", "Inactive"],
-        ["Ethan", "29", "Active"],
-        ["Aria", "20", "Inactive"],
-        ["Lucas", "26", "Active"],
-        ["Zoe", "30", "Inactive"],
-        ["Oliver", "23", "Active"],
-        ["Ava", "27", "Inactive"],
-        ["Mason", "25", "Active"],
-        ["Sofia", "28", "Inactive"],
-        ["William", "30", "Active"],
-        ["Charlotte", "21", "Inactive"],
-        ["James", "29", "Active"],
-        ["Amelia", "22", "Inactive"],
-        ["Benjamin", "31", "Active"],
-        ["Chloe", "24", "Inactive"],
-        ["Daniel", "26", "Active"],
-        ["Mila", "23", "Inactive"],
-        ["Michael", "28", "Active"],
-        ["Madison", "25", "Inactive"],
-        ["Evelyn", "30", "Active"],
-        ["Lily", "27", "Inactive"],
-        ["Ella", "24", "Active"],
-        ["Avery", "22", "Inactive"],
-        ["Liam", "29", "Active"],
-        ["Harper", "21", "Inactive"],
-        ["Ethan", "26", "Active"],
-        ["Aria", "30", "Inactive"],
-        ["Lucas", "25", "Active"],
-        ["Zoe", "28", "Inactive"],
-        ["Oliver", "23", "Active"],
-        ["Ava", "27", "Inactive"],
-        ["Mason", "30", "Active"],
-        ["Sofia", "22", "Inactive"],
-        ["William", "29", "Active"],
-        ["Charlotte", "26", "Inactive"],
-        ["James", "21", "Active"],
-        ["Amelia", "25", "Inactive"],
-    ];
+    const columns = ["ID", "Email", ""];
+
     const options = {
         filterType: "checkBox",
         elevation: 0,
         responsive: "standard",
         selectableRows: false,
-    };
-
-    const [age, setAge] = React.useState("");
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
     };
 
     const breadcrumbItems = [
@@ -150,24 +66,95 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         },
     ];
 
+    // test sample
+
+    const [region, setRegion] = React.useState("");
+
+    const regionChange = (event) => {
+        setRegion(event.target.value);
+    };
+
+    const regions = [
+        { label: "None", value: "" },
+        { label: "Ten", value: 10 },
+        { label: "Twenty", value: 20 },
+        { label: "Thirty", value: 30 },
+    ];
+
+    // test
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
+    const passwordInput = useRef();
+
+    const {
+        data1,
+        setData,
+        delete: destroy,
+        processing,
+        reset,
+        errors,
+    } = useForm({
+        password: "",
+    });
+
+    const confirmUserDeletion = () => {
+        setConfirmingUserDeletion(true);
+    };
+
+    const deleteUser = (e) => {
+        e.preventDefault();
+
+        const confirmation = window.confirm(
+            "Are you sure you want to delete your account?"
+        );
+        if (confirmation) {
+            destroy(route("profile.destroy"), {
+                preserveScroll: true,
+                onSuccess: () => closeModal(),
+                onError: () => passwordInput.current.focus(),
+                onFinish: () => reset(),
+            });
+        }
+    };
+
+    const closeModal = () => {
+        setConfirmingUserDeletion(false);
+
+        reset();
+    };
+
+    // department sample
+
+    const [department, setDepartment] = React.useState("");
+
+    const DepartmentChange = (event) => {
+        setDepartment(event.target.value);
+    };
+
+    const departmentoption = [
+        { label: "None", value: "" },
+        { label: "IT", value: 10 },
+        { label: "Computer-Science", value: 20 },
+        { label: "IS", value: 30 },
+    ];
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
             <div>
-                <ReusableModal
-                    icon={<AddSharpIcon />}
-                    title={"Add User"}
-                    header={
-                        <div className="hidden lg:block">
-                            <Avatar
-                                style={{ width: 100, height: 100 }}
-                            ></Avatar>
-                        </div>
-                    }
-                    content={<Create />}
-                />
+                <Create />
             </div>
             <div className="py-6">
                 <Card>

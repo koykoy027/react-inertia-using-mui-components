@@ -11,7 +11,13 @@ class ProductManagementController extends Controller
 {
     public function index()
     {
+        // $product = Product::all();
+        // return Inertia::render('Admin/Management/Products/Index', compact('product'));
+
         $product = Product::all();
-        return Inertia::render('Admin/Management/Products/Index', compact('product'));
+
+        return Inertia::render('Admin/Management/Products/Index', [
+            'products' => $product,
+        ]);
     }
 }
