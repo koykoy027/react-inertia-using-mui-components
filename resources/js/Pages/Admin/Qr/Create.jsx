@@ -113,9 +113,9 @@ function Create() {
 
     const departmentoptions = [
         { label: "None", value: "" },
-        { label: "IT", value: 10 },
-        { label: "Computer Science", value: 20 },
-        { label: "IS", value: 30 },
+        { label: "EasyPC", value: 10 },
+        { label: "Greenhills", value: 20 },
+        { label: "Gilmore", value: 30 },
     ];
 
     const [status, setStatus] = React.useState("");
@@ -171,7 +171,7 @@ function Create() {
                                 </div>
                                 <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
                                     <CustomSelect
-                                        label="Department"
+                                        label="Branch"
                                         value={department}
                                         onChange={departmentChange}
                                         options={departmentoptions}
