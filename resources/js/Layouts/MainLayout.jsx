@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
@@ -57,6 +57,7 @@ import CustomizedSwitches from "@/Components/CustomizedSwitches";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 import EmailIcon from "@mui/icons-material/Email";
 import MessageNotification from "@/Components/MessageNotification";
+import Loader from "@/Components/Loader";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -274,6 +275,17 @@ export default function MainLayout({ user, children }) {
     const MessagehandleClose = () => {
         setmessageEl(null);
     };
+
+    // loader
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate an async operation (e.g., fetching data) that takes some time
+        setTimeout(() => {
+            setLoading(false); // Set loading to false when the operation is complete
+        }, 3000); // Simulate a 3-second loading time
+    }, []);
 
     return (
         <ThemeProvider theme={darkTheme}>
@@ -648,7 +660,13 @@ export default function MainLayout({ user, children }) {
                         <DrawerHeader />
 
                         <div className="sm:mx-5 md:mx-2 lg:mx-10">
-                            {children}
+                            {loading ? (
+                                <Loader /> // Show the loader when loading is true
+                            ) : (
+                                // Your main content when loading is false
+                                <div>{children}</div>
+                            )}
+
                             <div className="lg:hidden block">
                                 <CustomSpeedDial
                                     actions={actions}
