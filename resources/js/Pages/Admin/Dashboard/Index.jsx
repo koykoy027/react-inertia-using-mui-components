@@ -72,7 +72,8 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                     count="5"
                 />
             </div>
-            <div className="grid grid-col lg:grid-cols-2 gap-5">
+
+            <div class="grid grid-col md:grid-cols-2 gap-5">
                 <Card>
                     <Typography paragraph>
                         <StackBars />
@@ -84,8 +85,9 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                     </Typography>
                 </Card>
             </div>
-            <div className="py-6">
-                <Card clas>
+
+            <div class="py-6">
+                <Card>
                     <MUIDataTable
                         data={data}
                         columns={columns}

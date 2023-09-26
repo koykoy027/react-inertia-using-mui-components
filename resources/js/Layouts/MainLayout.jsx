@@ -47,11 +47,6 @@ import {
 } from "@mui/material";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import EditIcon from "@mui/icons-material/Edit";
 import CustomSpeedDial from "@/Components/CustomSpeedDial";
 import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
@@ -60,8 +55,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import AbcSharpIcon from "@mui/icons-material/AbcSharp";
 import CustomizedSwitches from "@/Components/CustomizedSwitches";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import EmailIcon from "@mui/icons-material/Email";
+import MessageNotification from "@/Components/MessageNotification";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -266,6 +261,20 @@ export default function MainLayout({ user, children }) {
         border: `2px solid ${theme.palette.background.paper}`,
     }));
 
+    // message notifications
+
+    // Email Dropdown message in layout
+
+    const [messageEl, setmessageEl] = useState(null);
+
+    const MessagehandleClick = (event) => {
+        setmessageEl(event.currentTarget);
+    };
+
+    const MessagehandleClose = () => {
+        setmessageEl(null);
+    };
+
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline>
@@ -296,12 +305,45 @@ export default function MainLayout({ user, children }) {
                                 }}
                             >
                                 <div className="flex justify-center items-center">
-                                    <Badge badgeContent={4} color="primary">
-                                        <EmailIcon
-                                            fontSize="medium"
-                                            color="action"
-                                        />
-                                    </Badge>
+                                    <div>
+                                        <Tooltip title="Account settings">
+                                            <IconButton
+                                                onClick={MessagehandleClick}
+                                                size="medium"
+                                                sx={{ ml: 2 }}
+                                                aria-controls={
+                                                    messageEl
+                                                        ? "account-menu"
+                                                        : undefined
+                                                }
+                                                aria-haspopup="true"
+                                                aria-expanded={
+                                                    messageEl
+                                                        ? "true"
+                                                        : undefined
+                                                }
+                                            >
+                                                <Badge
+                                                    badgeContent={3}
+                                                    color="primary"
+                                                >
+                                                    <EmailIcon
+                                                        fontSize="medium"
+                                                        color="action"
+                                                    />
+                                                </Badge>
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Menu
+                                            id="account-menu"
+                                            anchorEl={messageEl}
+                                            open={Boolean(messageEl)}
+                                            onClose={MessagehandleClose}
+                                        >
+                                            <MessageNotification />
+                                        </Menu>
+                                    </div>
+
                                     <Tooltip title="Account settings">
                                         <IconButton
                                             onClick={handleClick}
