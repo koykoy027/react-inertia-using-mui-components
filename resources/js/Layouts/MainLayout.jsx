@@ -292,7 +292,7 @@ export default function MainLayout({ user, children }) {
             <CssBaseline>
                 <Box sx={{ display: "flex" }}>
                     <CssBaseline />
-                    <AppBar position="fixed" open={open}>
+                    <AppBar position="fixed" open={open} color="inherit">
                         <Toolbar>
                             <IconButton
                                 color="inherit"
