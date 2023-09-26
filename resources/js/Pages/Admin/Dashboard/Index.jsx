@@ -11,6 +11,7 @@ import BasicPie from "@/Components/BasicPie";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import EastIcon from "@mui/icons-material/East";
 
 import { Link } from "@inertiajs/react";
 
@@ -22,7 +23,6 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     );
 
     const columns = ["ID", "Name", "Email", " "];
-    z``;
     // Now, you have a total of 108 rows in the `data` array.
 
     const options = {
