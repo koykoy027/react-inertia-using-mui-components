@@ -27,5 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             StorageTableSeeder::class,
         ]);
+
+        $this->call([
+            QrcodeTableSeeder::class,
+        ]);
     }
 }

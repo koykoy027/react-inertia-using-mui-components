@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
 use App\Http\Controllers\library\SettingController;
@@ -9,9 +10,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Qr\GenerateQrController;
 use App\Http\Controllers\Qr\QrController;
 use App\Http\Controllers\Storage\StorageController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +44,13 @@ Route::prefix('administrator')->group(function () {
     Route::middleware('auth')->group(function () {
 
         Route::get('/', function () {
-            return Inertia::render('Admin/Dashboard/Index');
+            $users = User::all();
+            return Inertia::render('Admin/Dashboard/Index', [
+                'users' => $users,
+            ]);
         })->name('dashboard');
+
+        Route::resource('/Dashboard', DashboardController::class);
 
 
 
@@ -52,6 +60,7 @@ Route::prefix('administrator')->group(function () {
 
         // Management
         Route::resource('/management', UserManagementController::class);
+        Route::post('store', [UserManagementController::class, 'store'])->name('save');
         Route::resource('/products', ProductManagementController::class);
 
         // Qr code
@@ -71,8 +80,8 @@ Route::prefix('administrator')->group(function () {
 
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 });
 
