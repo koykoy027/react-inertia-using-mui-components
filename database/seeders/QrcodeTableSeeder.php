@@ -23,7 +23,7 @@ class QrcodeTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             DB::table('qrcodes')->insert([
                 'productName' => $faker->word(),
-                'productId' => $faker->randomNumber(),
+                'productId' => $faker->unique()->uuid(),
                 'itemName' => $faker->word(),
                 'quantity_need' => $faker->randomNumber(),
                 'qrcode' => $faker->word(),

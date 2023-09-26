@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             Product::create([
                 'productName' => fake()->word(),
-                'productId' => fake()->randomNumber(),
+                'productId' => fake()->unique()->uuid(),
                 'itemName' => fake()->word(),
                 'created_by' => $createdByUser->id,
                 'updated_by' => $updatedByUser->id,

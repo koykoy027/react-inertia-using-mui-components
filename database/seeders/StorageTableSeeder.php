@@ -19,7 +19,7 @@ class StorageTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             DB::table('storages')->insert([
                 'productName' => \Faker\Factory::create()->word(),
-                'productId' => \Faker\Factory::create()->randomNumber(),
+                'productId' => \Faker\Factory::create()->unique()->uuid(),
                 'itemName' => \Faker\Factory::create()->word(),
                 'created_by' => $createdByUser->id,
                 'updated_by' => $updatedByUser->id,
