@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Qrcode;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,8 @@ class QrcodeTableSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
+        $createdByUser = User::find(1);
+        $updatedByUser = User::find(2);
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('qrcodes')->insert([
@@ -25,7 +28,8 @@ class QrcodeTableSeeder extends Seeder
                 'quantity_need' => $faker->randomNumber(),
                 'qrcode' => $faker->word(),
                 'barcode' => $faker->word(),
-                'status' => true,
+                'created_by' => $createdByUser->id,
+                'updated_by' => $updatedByUser->id,
             ]);
         }
     }

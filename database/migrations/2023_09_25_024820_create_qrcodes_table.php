@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('qrcodes', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
-            $table->integer('product_id');
-            $table->string('item_name');
+            $table->string('productName');
+            $table->integer('productId');
+            $table->string('itemName');
             $table->integer('quantity_need');
             $table->string('qrcode');
             $table->string('barcode');
-            $table->boolean('is_active')->default(true);
+            $table->boolean('status')->default(true);
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
