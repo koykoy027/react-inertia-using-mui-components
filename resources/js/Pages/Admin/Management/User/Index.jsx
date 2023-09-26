@@ -26,12 +26,17 @@ import { Link } from "@inertiajs/react";
 import Create from "./Create";
 import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
+import EastIcon from "@mui/icons-material/East";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
-    const data = users.map((user) => [user.id, user.email]);
+    const data = users.map((user) => [
+        user.id,
+        user.email,
+        <EastIcon />, // Replace 'insert_icon_name_here' with the actual icon name
+    ]);
 
-    const columns = ["ID", "Email"];
+    const columns = ["ID", "Email", ""];
 
     const options = {
         filterType: "checkBox",

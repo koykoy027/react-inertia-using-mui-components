@@ -17,24 +17,24 @@ import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 
 function Create() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-    });
+    // const [formData, setFormData] = useState({
+    //     name: "",
+    //     email: "",
+    // });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form data submitted:", formData);
-        // You can send this data to an API or perform other actions here.
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("Form data submitted:", formData);
+    //     // You can send this data to an API or perform other actions here.
+    // };
 
     // test sample
 
@@ -63,39 +63,39 @@ function Create() {
         setOpen(false);
     };
 
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
-    const passwordInput = useRef();
+    // const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
+    // const passwordInput = useRef();
 
-    const {
-        data1,
-        setData,
-        delete: destroy,
-        processing,
-        reset,
-        errors,
-    } = useForm({
-        password: "",
-    });
+    // const {
+    //     data1,
+    //     setData,
+    //     delete: destroy,
+    //     processing,
+    //     reset,
+    //     errors,
+    // } = useForm({
+    //     password: "",
+    // });
 
-    const confirmUserDeletion = () => {
-        setConfirmingUserDeletion(true);
-    };
+    // const confirmUserDeletion = () => {
+    //     setConfirmingUserDeletion(true);
+    // };
 
-    const deleteUser = (e) => {
-        e.preventDefault();
+    // const deleteUser = (e) => {
+    //     e.preventDefault();
 
-        const confirmation = window.confirm(
-            "Are you sure you want to delete your account?"
-        );
-        if (confirmation) {
-            destroy(route("profile.destroy"), {
-                preserveScroll: true,
-                onSuccess: () => closeModal(),
-                onError: () => passwordInput.current.focus(),
-                onFinish: () => reset(),
-            });
-        }
-    };
+    //     const confirmation = window.confirm(
+    //         "Are you sure you want to delete your account?"
+    //     );
+    //     if (confirmation) {
+    //         destroy(route("profile.destroy"), {
+    //             preserveScroll: true,
+    //             onSuccess: () => closeModal(),
+    //             onError: () => passwordInput.current.focus(),
+    //             onFinish: () => reset(),
+    //         });
+    //     }
+    // };
 
     const closeModal = () => {
         setConfirmingUserDeletion(false);
@@ -118,6 +118,30 @@ function Create() {
         { label: "IS", value: 30 },
     ];
 
+    // submmit to store
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post("/api/users", formData);
+            console.log(response.data);
+            // Handle success, e.g., show a success message or redirect
+        } catch (error) {
+            console.error(error.response.data);
+            // Handle errors, e.g., display validation errors
+        }
+    };
+
     return (
         <div>
             <div>
@@ -132,7 +156,7 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <form action="" onSubmit={deleteUser}>
+                    <form action="" onSubmit={handleSubmit}>
                         {/* <form action="{{ route('save') }}" method="POST"> */}
                         <DialogTitle>
                             Are you sure want to add your account?

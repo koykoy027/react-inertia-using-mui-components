@@ -60,7 +60,7 @@ Route::prefix('administrator')->group(function () {
 
         // Management
         Route::resource('/management', UserManagementController::class);
-        // Route::post('store', [UserManagementController::class, 'store'])->name('save');
+        Route::post('store', [UserManagementController::class, 'store'])->name('save');
         Route::resource('/products', ProductManagementController::class);
 
         // Qr code
@@ -80,8 +80,8 @@ Route::prefix('administrator')->group(function () {
 
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 });
 
