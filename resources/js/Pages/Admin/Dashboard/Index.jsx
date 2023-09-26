@@ -56,19 +56,19 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <div class="grid grid-cols-1 py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
-                    title="To Be Order"
+                    title="Total Items"
                     count="1"
                 />
                 <ShippingCard
                     icon={<CarCrashSharpIcon fontSize="large" />}
-                    title="To Be Shipped"
+                    title="Total Borrowed"
                     count="3"
                 />
                 <ShippingCard
                     icon={
                         <ProductionQuantityLimitsSharpIcon fontSize="large" />
                     }
-                    title="To Be Delivered"
+                    title="Total Dispose"
                     count="5"
                 />
             </div>
