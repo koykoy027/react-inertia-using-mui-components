@@ -53,7 +53,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div class="grid grid-cols-1 py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
                     title="To Be Order"
