@@ -53,7 +53,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-7 w-full">
+            <div class="grid grid-cols-1 py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
                     title="To Be Order"
@@ -73,7 +73,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 />
             </div>
 
-            <div class="grid grid-col md:grid-cols-2 gap-5">
+            <div class="grid grid-col lg:grid-cols-2 gap-5 py-6 max-w-[370px] lg:max-w-[100%]">
                 <Card>
                     <Typography paragraph>
                         <StackBars />
@@ -86,7 +86,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 </Card>
             </div>
 
-            <div class="py-6">
+            <div class="py-6 overflow-x-auto max-w-[370px] lg:max-w-[100%]">
                 <Card>
                     <MUIDataTable
                         data={data}
