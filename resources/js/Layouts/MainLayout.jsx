@@ -325,7 +325,7 @@ export default function MainLayout({ user, children }) {
                                             >
                                                 <Badge
                                                     badgeContent={3}
-                                                    color="primary"
+                                                    color="warning"
                                                 >
                                                     <EmailIcon
                                                         fontSize="medium"
