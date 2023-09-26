@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
-            $table->string('productName');
-            $table->integer('productId');
-            $table->string('itemName');
-            $table->boolean('status')->default(true);
+            $table->integer('product_id');
+            $table->string('product_name');
+            $table->string('item_name');
+            $table->boolean('is_active')->default(true);
+            $table->foreignId('created_by')->constrained('users');
+            $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
