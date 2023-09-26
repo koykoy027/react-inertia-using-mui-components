@@ -24,6 +24,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
+import EastIcon from "@mui/icons-material/East";
 import Create from "./Create";
 
 export default function Index({ auth, mustVerifyEmail, status, products }) {
@@ -32,6 +33,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         product.productId,
         product.itemName,
         product.status,
+        <EastIcon />,
     ]);
 
     const columns = [
@@ -40,6 +42,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         "Item Name",
         // "Quantity Needed",
         "Status",
+        "",
     ];
 
     const options = {

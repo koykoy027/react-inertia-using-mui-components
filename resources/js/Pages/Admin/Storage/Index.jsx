@@ -25,6 +25,7 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import VerticalTabs from "@/Components/TabPanel";
 import WidgetsIcon from "@mui/icons-material/Widgets";
+import EastIcon from "@mui/icons-material/East";
 
 export default function Index({ auth, mustVerifyEmail, storages }) {
     const data = storages.map((storage) => [
@@ -33,6 +34,7 @@ export default function Index({ auth, mustVerifyEmail, storages }) {
         storage.productId,
         storage.itemName,
         storage.status,
+        <EastIcon />,
     ]);
     const columns = [
         "Product Name",
@@ -40,6 +42,7 @@ export default function Index({ auth, mustVerifyEmail, storages }) {
         // "Item Name",
         "Quantity Needed",
         "Status",
+        "",
     ];
 
     const options = {

@@ -25,6 +25,7 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
 import Create from "./Create";
+import EastIcon from "@mui/icons-material/East";
 
 export default function Index({ auth, mustVerifyEmail, qrcodes }) {
     const data = qrcodes.map((qrcode) => [
@@ -35,6 +36,7 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         qrcode.qrcode,
         qrcode.barcode,
         qrcode.status,
+        <EastIcon />,
     ]);
 
     const columns = [
@@ -45,6 +47,7 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         "QR-Code",
         "Barcode",
         "Status",
+        "",
     ];
 
     const options = {
