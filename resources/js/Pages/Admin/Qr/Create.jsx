@@ -16,6 +16,7 @@ import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import FileUpload from "@/Components/FileUpload";
+import QRCode from "qrcode.react";
 
 function Create() {
     const [formData, setFormData] = useState({
@@ -132,6 +133,31 @@ function Create() {
         { label: "Deactivated", value: 30 },
     ];
 
+    // qrcode generator start
+
+    const [ProductName, setProductName] = useState("");
+
+    const handleInputChange = (e) => {
+        setProductName(e.target.value);
+    };
+    const [Product, setProduct] = useState("");
+    const handleProductChange = (e) => {
+        setProduct(e.target.value);
+    };
+
+    const [Branch, setBranch] = useState("");
+    const handleBranchChange = (e) => {
+        setBranch(e.target.value);
+    };
+
+    const value =
+        "Product Name: " +
+        ProductName +
+        "\n" +
+        "Inventory: " +
+        Product +
+        "Inventory: " +
+        Branch;
     return (
         <div>
             <div>
@@ -160,6 +186,8 @@ function Create() {
                                         fullWidth
                                         size="small"
                                         required
+                                        value={ProductName}
+                                        onChange={handleInputChange}
                                     />
                                     <TextField
                                         id="outlined-basic"
@@ -168,13 +196,15 @@ function Create() {
                                         fullWidth
                                         size="small"
                                         required
+                                        value={Product}
+                                        onChange={handleProductChange}
                                     />
                                 </div>
                                 <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
                                     <CustomSelect
                                         label="Branch"
-                                        value={department}
-                                        onChange={departmentChange}
+                                        value={Branch}
+                                        onChange={handleBranchChange}
                                         options={departmentoptions}
                                     />
                                     <CustomSelect
@@ -198,6 +228,16 @@ function Create() {
 
                                 <div>
                                     <FileUpload />
+                                </div>
+
+                                <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">
+                                    {ProductName && (
+                                        <QRCode
+                                            id="qrcode-canvas"
+                                            size={128}
+                                            value={value}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </DialogContent>
