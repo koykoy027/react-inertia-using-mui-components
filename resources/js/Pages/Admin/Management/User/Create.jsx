@@ -12,30 +12,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CustomSelect from "@/Components/CustomSelect";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 
 function Create() {
-    // const [formData, setFormData] = useState({
-    //     name: "",
-    //     email: "",
-    // });
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("Form data submitted:", formData);
-    //     // You can send this data to an API or perform other actions here.
-    // };
-
     // test sample
 
     const [region, setRegion] = React.useState("");
@@ -63,40 +44,6 @@ function Create() {
         setOpen(false);
     };
 
-    // const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
-    // const passwordInput = useRef();
-
-    // const {
-    //     data1,
-    //     setData,
-    //     delete: destroy,
-    //     processing,
-    //     reset,
-    //     errors,
-    // } = useForm({
-    //     password: "",
-    // });
-
-    // const confirmUserDeletion = () => {
-    //     setConfirmingUserDeletion(true);
-    // };
-
-    // const deleteUser = (e) => {
-    //     e.preventDefault();
-
-    //     const confirmation = window.confirm(
-    //         "Are you sure you want to delete your account?"
-    //     );
-    //     if (confirmation) {
-    //         destroy(route("profile.destroy"), {
-    //             preserveScroll: true,
-    //             onSuccess: () => closeModal(),
-    //             onError: () => passwordInput.current.focus(),
-    //             onFinish: () => reset(),
-    //         });
-    //     }
-    // };
-
     const closeModal = () => {
         setConfirmingUserDeletion(false);
 
@@ -120,26 +67,23 @@ function Create() {
 
     // submmit to store
 
-    const [formData, setFormData] = useState({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
+        password: "",
+        password_confirmation: "",
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    useEffect(() => {
+        return () => {
+            reset("password", "password_confirmation");
+        };
+    }, []);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await axios.post("/api/users", formData);
-            console.log(response.data);
-            // Handle success, e.g., show a success message or redirect
-        } catch (error) {
-            console.error(error.response.data);
-            // Handle errors, e.g., display validation errors
-        }
+        post(route("save"));
     };
 
     return (
@@ -156,8 +100,7 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <form action="" onSubmit={handleSubmit}>
-                        {/* <form action="{{ route('save') }}" method="POST"> */}
+                    <form onSubmit={handleSubmit} className="grid gap-2">
                         <DialogTitle>
                             Are you sure want to add your account?
                         </DialogTitle>
@@ -165,6 +108,71 @@ function Create() {
                             <div className="grid grid-col gap-7 px-2">
                                 <div className="grid grid-col md:lg:grid-cols-3 lg:grid-cols-3 gap-2">
                                     <TextField
+                                        label="Name"
+                                        id="name"
+                                        name="name"
+                                        value={data.name}
+                                        className="block w-full mt-1"
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.name}
+                                        error={!!errors.name}
+                                        size="small"
+                                    />
+
+                                    <TextField
+                                        label="Email address"
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={data.email}
+                                        onChange={(e) =>
+                                            setData("email", e.target.value)
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.email}
+                                        error={!!errors.email}
+                                    />
+
+                                    <TextField
+                                        label="Password"
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        value={data.password}
+                                        onChange={(e) =>
+                                            setData("password", e.target.value)
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.password}
+                                        error={!!errors.password}
+                                    />
+
+                                    <TextField
+                                        label="Confirm Password"
+                                        id="password_confirmation"
+                                        type="password"
+                                        name="password_confirmation"
+                                        value={data.password_confirmation}
+                                        onChange={(e) =>
+                                            setData(
+                                                "password_confirmation",
+                                                e.target.value
+                                            )
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={
+                                            errors.password_confirmation
+                                        }
+                                        error={!!errors.password_confirmation}
+                                    />
+                                    {/* <TextField
                                         id="outlined-basic"
                                         label="Last Name"
                                         variant="outlined"
@@ -278,7 +286,7 @@ function Create() {
                                         fullWidth
                                         size="small"
                                         required
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </DialogContent>
@@ -288,8 +296,9 @@ function Create() {
                             </Button>
                             <Button
                                 variant="contained"
-                                color="success"
+                                color="primary"
                                 type="submit"
+                                disabled={processing}
                             >
                                 Add Account
                             </Button>
