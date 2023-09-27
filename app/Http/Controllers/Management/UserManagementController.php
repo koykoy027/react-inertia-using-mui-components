@@ -11,11 +11,9 @@ class UserManagementController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $datas = User::all();
 
-        return Inertia::render('Admin/Management/User/Index', [
-            'users' => $users,
-        ]);
+        return Inertia::render('Admin/Management/User/Index', compact('datas'));
     }
 
     public function store(Request $request)

@@ -35,7 +35,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
 
     const options = {
         filterType: "checkBox",
-        elevation: 0,
+        elevation: 1,
         responsive: "standard",
         selectableRows: false,
     };

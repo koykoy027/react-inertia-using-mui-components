@@ -45,6 +45,7 @@ Route::prefix('administrator')->group(function () {
 
         Route::get('/', function () {
             $users = User::all();
+            // sleep(2);
             return Inertia::render('Admin/Dashboard/Index', [
                 'users' => $users,
             ]);

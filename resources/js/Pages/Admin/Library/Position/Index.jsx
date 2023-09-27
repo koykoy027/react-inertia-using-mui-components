@@ -46,7 +46,7 @@ export default function Index({ genders }) {
 
     const options = {
         filterType: "checkBox",
-        elevation: 0,
+        elevation: 1,
         responsive: "standard",
         selectableRows: false,
     };
