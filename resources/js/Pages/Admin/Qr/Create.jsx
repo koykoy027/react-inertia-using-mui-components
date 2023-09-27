@@ -15,6 +15,7 @@ import CustomSelect from "@/Components/CustomSelect";
 import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
+import FileUpload from "@/Components/FileUpload";
 
 function Create() {
     const [formData, setFormData] = useState({
@@ -193,6 +194,10 @@ function Create() {
                                         cols="62"
                                         rows="10"
                                     ></textarea>
+                                </div>
+
+                                <div>
+                                    <FileUpload />
                                 </div>
                             </div>
                         </DialogContent>

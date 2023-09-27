@@ -15,6 +15,7 @@ import CustomSelect from "@/Components/CustomSelect";
 import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
+import FileUpload from "@/Components/FileUpload";
 
 function Create() {
     const [formData, setFormData] = useState({
@@ -139,9 +140,9 @@ function Create() {
                     color="primary"
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
-                    className="w-full lg:w-36"
+                    className="w-full lg:w-40"
                 >
-                    Add User
+                    Add Product
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
@@ -191,6 +192,10 @@ function Create() {
                                         cols="62"
                                         rows="10"
                                     ></textarea>
+                                </div>
+
+                                <div>
+                                    <FileUpload />
                                 </div>
                             </div>
                         </DialogContent>
