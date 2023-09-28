@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('productId');
             $table->string('branch');
             $table->string('status')->default(true); // Default to true
-            $table->string('productDescription');
+            $table->longText('productDescription');
             $table->timestamps();
         });
     }
