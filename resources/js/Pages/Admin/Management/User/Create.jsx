@@ -1,9 +1,11 @@
 import {
+    Alert,
     Button,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
+    Stack,
     TextField,
 } from "@mui/material";
 import React from "react";
@@ -65,6 +67,23 @@ function Create() {
         { label: "IS", value: 30 },
     ];
 
+    // add alertmessage in form submit
+
+    const [showAlert, setShowAlert] = useState(true);
+
+    // Function to hide the alert after a specified duration (in milliseconds)
+    const hideAlertAfterDuration = (duration) => {
+        setTimeout(() => {
+            setShowAlert(false);
+        }, duration);
+    };
+
+    // Call the hideAlertAfterDuration function when showAlert becomes true
+    useEffect(() => {
+        if (showAlert) {
+            hideAlertAfterDuration(5000); // Auto-hide after 3 seconds
+        }
+    }, [showAlert]);
     // submmit to store
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -84,6 +103,12 @@ function Create() {
         e.preventDefault();
 
         post(route("save"));
+
+        // Show the alert
+        setShowAlert(true);
+
+        // Reset the form or perform other actions
+        reset();
     };
 
     return (
@@ -101,12 +126,20 @@ function Create() {
 
                 <Dialog open={open} onClose={handleClose}>
                     <form onSubmit={handleSubmit} className="grid gap-2">
+                        <Stack sx={{ width: "100%" }} spacing={2}>
+                            {showAlert && (
+                                <Alert severity="success" color="info">
+                                    The User is successfully Added — check it
+                                    out!
+                                </Alert>
+                            )}
+                        </Stack>
                         <DialogTitle>
                             Are you sure want to add your account?
                         </DialogTitle>
                         <DialogContent>
                             <div className="grid grid-col gap-7 px-2">
-                                <div className="grid grid-col md:lg:grid-cols-3 lg:grid-cols-3 gap-2">
+                                <div className="grid grid-col gap-5">
                                     <TextField
                                         label="Name"
                                         id="name"
@@ -136,6 +169,7 @@ function Create() {
                                         fullWidth
                                         helperText={errors.email}
                                         error={!!errors.email}
+                                        size="small"
                                     />
 
                                     <TextField
@@ -151,6 +185,7 @@ function Create() {
                                         fullWidth
                                         helperText={errors.password}
                                         error={!!errors.password}
+                                        size="small"
                                     />
 
                                     <TextField
@@ -171,6 +206,7 @@ function Create() {
                                             errors.password_confirmation
                                         }
                                         error={!!errors.password_confirmation}
+                                        size="small"
                                     />
                                     {/* <TextField
                                         id="outlined-basic"
