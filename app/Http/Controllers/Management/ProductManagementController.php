@@ -30,6 +30,9 @@ class ProductManagementController extends Controller
             // create a variable that will coordinated in my frontend form
             'productName' => $request->productName, 
             'productId' => $request->productId,
+            'branch' => $request->branch,
+            'status' => $request->status,
+            'productDescription' => $request->productDescription,
         ]);
     }
 }

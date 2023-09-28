@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
 
     {
         for ($i = 0; $i < 1; $i++) {
-            Product::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'itemName' => fake()->word(), "status" => true]);
+            Product::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'branch' => fake()->word(), "status" => true,'productDescription' => fake()->word()]);
         }
 
 

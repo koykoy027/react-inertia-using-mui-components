@@ -31,17 +31,18 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
     const data = products.map((product) => [
         product.productName,
         product.productId,
-        product.itemName,
+        product.branch,
         product.status,
+        product.productDescription,
         <EastIcon />,
     ]);
 
     const columns = [
         "Product Name",
         "Product ID",
-        "Item Name",
-        // "Quantity Needed",
+        "Branch",
         "Status",
+        "Description",
         "",
     ];
 

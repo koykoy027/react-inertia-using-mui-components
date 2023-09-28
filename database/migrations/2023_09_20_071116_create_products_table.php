@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('productName');
             $table->string('productId');
-            $table->string('itemName')->nullable();
+            $table->string('branch');
             $table->string('status')->default(true); // Default to true
+            $table->string('productDescription');
             $table->timestamps();
         });
     }

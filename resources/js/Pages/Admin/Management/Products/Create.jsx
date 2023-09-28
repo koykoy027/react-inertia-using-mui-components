@@ -16,27 +16,10 @@ import { useRef, useState, useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import FileUpload from "@/Components/FileUpload";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
-function Create({ onSubmit }) {
-    // const [formData, setFormData] = useState({
-    //     name: "",
-    //     email: "",
-    // });
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("Form data submitted:", formData);
-    //     // You can send this data to an API or perform other actions here.
-    // };
-
+function Create() {
     // test sample
 
     const [region, setRegion] = React.useState("");
@@ -80,9 +63,9 @@ function Create({ onSubmit }) {
 
     const departmentoptions = [
         { label: "None", value: "" },
-        { label: "EasyPC", value: 10 },
-        { label: "Greenhills", value: 20 },
-        { label: "Gilmore", value: 30 },
+        { label: "EasyPC", value: "EasyPC" },
+        { label: "Greenhills", value: "Greenhills" },
+        { label: "Gilmore", value: "Gilmore" },
     ];
 
     const [status, setStatus] = React.useState("");
@@ -93,9 +76,9 @@ function Create({ onSubmit }) {
 
     const options = [
         { label: "None", value: "" },
-        { label: "Active", value: 10 },
-        { label: "Inactive", value: 20 },
-        { label: "Deactivated", value: 30 },
+        { label: "Active", value: "Active" },
+        { label: "Inactive", value: "Inactive" },
+        { label: "Deactivated", value: "Deactivated" },
     ];
 
     // submmit to store
@@ -103,15 +86,22 @@ function Create({ onSubmit }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         productName: "",
         productId: "",
+        branch: "",
+        status: "",
+        productDescription: "",
     });
+
+    // alert message
+
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         post(route("products.store"));
-        // route is located ) web.php 
-
-
+        // route is located ) web.php
+        setShowAlert(true);
+        reset();
     };
 
     return (
@@ -128,6 +118,17 @@ function Create({ onSubmit }) {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
+                    <Stack sx={{ width: "100%" }} spacing={2}>
+                        {showAlert && (
+                            <Alert
+                                onClose={() => setShowAlert(false)}
+                                severity="success"
+                            >
+                                The product is successfully added — check it
+                                out!
+                            </Alert>
+                        )}
+                    </Stack>
                     <form onSubmit={handleSubmit}>
                         <DialogTitle>Add your products!</DialogTitle>
                         <DialogContent>
@@ -170,15 +171,35 @@ function Create({ onSubmit }) {
                                 </div>
                                 <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
                                     <CustomSelect
-                                        label="Branch"
-                                        value={department}
-                                        onChange={departmentChange}
+                                        label="branch"
+                                        id="branch"
+                                        name="branch"
+                                        value={data.branch}
+                                        className="block w-full mt-1"
+                                        onChange={(e) =>
+                                            setData("branch", e.target.value)
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.branch}
+                                        error={!!errors.branch}
+                                        size="small"
                                         options={departmentoptions}
                                     />
                                     <CustomSelect
-                                        label="Status"
-                                        value={status}
-                                        onChange={statusChange}
+                                        label="status"
+                                        id="status"
+                                        name="status"
+                                        value={data.status}
+                                        className="block w-full mt-1"
+                                        onChange={(e) =>
+                                            setData("status", e.target.value)
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.status}
+                                        error={!!errors.status}
+                                        size="small"
                                         options={options}
                                     />
                                 </div>
@@ -186,9 +207,21 @@ function Create({ onSubmit }) {
                                 <div>
                                     <textarea
                                         className="rounded bg-inherit w-full"
-                                        name=""
-                                        placeholder="Description"
-                                        id=""
+                                        label="productDescription"
+                                        placeholder="description"
+                                        id="productDescription"
+                                        name="productDescription"
+                                        value={data.productDescription}
+                                        onChange={(e) =>
+                                            setData(
+                                                "productDescription",
+                                                e.target.value
+                                            )
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.productDescription}
+                                        error={!!errors.productDescription}
                                         cols="62"
                                         rows="10"
                                     ></textarea>
