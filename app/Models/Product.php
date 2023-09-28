@@ -14,6 +14,8 @@ class Product extends Model
      *
      * @var array<int, string>
      */
+
+    //  i use fillable in my item that i need to be populated
     protected $fillable = [
         'productName',
         'productId',

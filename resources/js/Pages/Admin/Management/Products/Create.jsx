@@ -64,40 +64,6 @@ function Create({ onSubmit }) {
         setOpen(false);
     };
 
-    // const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
-    // const passwordInput = useRef();
-
-    // const {
-    //     data1,
-    //     setData,
-    //     delete: destroy,
-    //     processing,
-    //     reset,
-    //     errors,
-    // } = useForm({
-    //     password: "",
-    // });
-
-    // const confirmUserDeletion = () => {
-    //     setConfirmingUserDeletion(true);
-    // };
-
-    // const deleteUser = (e) => {
-    //     e.preventDefault();
-
-    //     const confirmation = window.confirm(
-    //         "Are you sure you want to delete your account?"
-    //     );
-    //     if (confirmation) {
-    //         destroy(route("profile.destroy"), {
-    //             preserveScroll: true,
-    //             onSuccess: () => closeModal(),
-    //             onError: () => passwordInput.current.focus(),
-    //             onFinish: () => reset(),
-    //         });
-    //     }
-    // };
-
     const closeModal = () => {
         setConfirmingUserDeletion(false);
 
@@ -143,6 +109,9 @@ function Create({ onSubmit }) {
         e.preventDefault();
 
         post(route("products.store"));
+        // route is located ) web.php 
+
+
     };
 
     return (

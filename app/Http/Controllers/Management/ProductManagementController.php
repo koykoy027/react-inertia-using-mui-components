@@ -23,8 +23,12 @@ class ProductManagementController extends Controller
 
     public function store(Request $request) {
 
+        // i create a variable located my model named product same as the user
+
         $product = Product::create([
-            'productName' => $request->productName,
+
+            // create a variable that will coordinated in my frontend form
+            'productName' => $request->productName, 
             'productId' => $request->productId,
         ]);
     }
