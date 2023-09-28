@@ -81,6 +81,24 @@ function Create() {
         { label: "Deactivated", value: "Deactivated" },
     ];
 
+    // add alertmessage in form submit
+
+    const [showAlert, setShowAlert] = useState(true);
+
+    // Function to hide the alert after a specified duration (in milliseconds)
+    const hideAlertAfterDuration = (duration) => {
+        setTimeout(() => {
+            setShowAlert(false);
+        }, duration);
+    };
+
+    // Call the hideAlertAfterDuration function when showAlert becomes true
+    useEffect(() => {
+        if (showAlert) {
+            hideAlertAfterDuration(5000); // Auto-hide after 3 seconds
+        }
+    }, [showAlert]);
+
     // submmit to store
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -90,10 +108,6 @@ function Create() {
         status: "",
         productDescription: "",
     });
-
-    // alert message
-
-    const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -120,11 +134,8 @@ function Create() {
                 <Dialog open={open} onClose={handleClose}>
                     <Stack sx={{ width: "100%" }} spacing={2}>
                         {showAlert && (
-                            <Alert
-                                onClose={() => setShowAlert(false)}
-                                severity="success"
-                            >
-                                The product is successfully added — check it
+                            <Alert severity="success" color="info">
+                                The Product is successfully Added — check it
                                 out!
                             </Alert>
                         )}
