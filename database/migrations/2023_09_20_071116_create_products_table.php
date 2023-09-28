@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('productName');
             $table->string('productId');
-            $table->string('itemName');
+            $table->string('itemName')->nullable();
             $table->string('status')->default(true); // Default to true
             $table->timestamps();
         });

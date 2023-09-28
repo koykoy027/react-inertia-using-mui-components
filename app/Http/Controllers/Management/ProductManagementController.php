@@ -20,4 +20,12 @@ class ProductManagementController extends Controller
             'products' => $product,
         ]);
     }
+
+    public function store(Request $request) {
+
+        $product = Product::create([
+            'productName' => $request->productName,
+            'productId' => $request->productId,
+        ]);
+    }
 }

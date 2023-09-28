@@ -18,7 +18,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
 
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             Product::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'itemName' => fake()->word(), "status" => true]);
         }
 

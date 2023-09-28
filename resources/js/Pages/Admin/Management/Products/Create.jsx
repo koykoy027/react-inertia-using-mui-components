@@ -12,30 +12,30 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CustomSelect from "@/Components/CustomSelect";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import FileUpload from "@/Components/FileUpload";
 
-function Create() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-    });
+function Create({ onSubmit }) {
+    // const [formData, setFormData] = useState({
+    //     name: "",
+    //     email: "",
+    // });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form data submitted:", formData);
-        // You can send this data to an API or perform other actions here.
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("Form data submitted:", formData);
+    //     // You can send this data to an API or perform other actions here.
+    // };
 
     // test sample
 
@@ -64,39 +64,39 @@ function Create() {
         setOpen(false);
     };
 
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
-    const passwordInput = useRef();
+    // const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
+    // const passwordInput = useRef();
 
-    const {
-        data1,
-        setData,
-        delete: destroy,
-        processing,
-        reset,
-        errors,
-    } = useForm({
-        password: "",
-    });
+    // const {
+    //     data1,
+    //     setData,
+    //     delete: destroy,
+    //     processing,
+    //     reset,
+    //     errors,
+    // } = useForm({
+    //     password: "",
+    // });
 
-    const confirmUserDeletion = () => {
-        setConfirmingUserDeletion(true);
-    };
+    // const confirmUserDeletion = () => {
+    //     setConfirmingUserDeletion(true);
+    // };
 
-    const deleteUser = (e) => {
-        e.preventDefault();
+    // const deleteUser = (e) => {
+    //     e.preventDefault();
 
-        const confirmation = window.confirm(
-            "Are you sure you want to delete your account?"
-        );
-        if (confirmation) {
-            destroy(route("profile.destroy"), {
-                preserveScroll: true,
-                onSuccess: () => closeModal(),
-                onError: () => passwordInput.current.focus(),
-                onFinish: () => reset(),
-            });
-        }
-    };
+    //     const confirmation = window.confirm(
+    //         "Are you sure you want to delete your account?"
+    //     );
+    //     if (confirmation) {
+    //         destroy(route("profile.destroy"), {
+    //             preserveScroll: true,
+    //             onSuccess: () => closeModal(),
+    //             onError: () => passwordInput.current.focus(),
+    //             onFinish: () => reset(),
+    //         });
+    //     }
+    // };
 
     const closeModal = () => {
         setConfirmingUserDeletion(false);
@@ -132,6 +132,19 @@ function Create() {
         { label: "Deactivated", value: 30 },
     ];
 
+    // submmit to store
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        productName: "",
+        productId: "",
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("products.store"));
+    };
+
     return (
         <div>
             <div>
@@ -146,26 +159,44 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <form onSubmit={deleteUser}>
+                    <form onSubmit={handleSubmit}>
                         <DialogTitle>Add your products!</DialogTitle>
                         <DialogContent>
                             <div className="grid gap-5">
                                 <div className="grid grid-col gap-5">
                                     <TextField
-                                        id="outlined-basic"
-                                        label="Product Name"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
+                                        label="productName"
+                                        id="productName"
+                                        name="productName"
+                                        value={data.productName}
+                                        className="block w-full mt-1"
+                                        onChange={(e) =>
+                                            setData(
+                                                "productName",
+                                                e.target.value
+                                            )
+                                        }
                                         required
+                                        fullWidth
+                                        helperText={errors.productName}
+                                        error={!!errors.productName}
+                                        size="small"
                                     />
+
                                     <TextField
-                                        id="outlined-basic"
-                                        label="Product ID"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
+                                        label="productId"
+                                        id="productId"
+                                        name="productId"
+                                        value={data.productId}
+                                        className="block w-full mt-1"
+                                        onChange={(e) =>
+                                            setData("productId", e.target.value)
+                                        }
                                         required
+                                        fullWidth
+                                        helperText={errors.productId}
+                                        error={!!errors.productId}
+                                        size="small"
                                     />
                                 </div>
                                 <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
@@ -207,6 +238,7 @@ function Create() {
                                 variant="contained"
                                 color="success"
                                 type="submit"
+                                disabled={processing}
                             >
                                 Add Product
                             </Button>
