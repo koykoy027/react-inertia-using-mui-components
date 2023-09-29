@@ -145,9 +145,9 @@ function Create() {
                     color="primary"
                     onClick={handleClickOpen}
                     startIcon={<AddSharpIcon />}
-                    className="w-full lg:w-40"
+                    className="w-full lg:w-60"
                 >
-                    Add Item QR
+                    Add Borrowed item
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
