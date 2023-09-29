@@ -34,6 +34,7 @@ class QrController extends Controller
             'status' => $request->status,
             'qrDescription' => $request->qrDescription,
             'fileUpload' => $request->fileUpload,
+            'qrcode' => $request->qrcode,
         ]);
     }
 }

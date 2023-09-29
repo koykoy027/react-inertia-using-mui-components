@@ -23,6 +23,7 @@ class Qrcode extends Model
         'status',
         'qrDescription',
         'fileUpload',
+        'qrcode',
         // 'status',
         // 'productDescription',
 

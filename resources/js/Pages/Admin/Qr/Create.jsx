@@ -5,6 +5,7 @@ import {
     DialogContent,
     DialogTitle,
     TextField,
+    Typography,
 } from "@mui/material";
 import React from "react";
 import InputLabel from "@mui/material/InputLabel";
@@ -110,7 +111,7 @@ function Create() {
         setBranch(e.target.value);
     };
 
-    const value =
+    const result =
         "Product Name: " +
         ProductName +
         "\n" +
@@ -128,6 +129,7 @@ function Create() {
         status: "",
         qrDescription: "",
         fileUpload: "",
+        qrcode: "",
     });
 
     const handleSubmit = (e) => {
@@ -144,7 +146,30 @@ function Create() {
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (event) => {
-        setSelectedFile(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            // Check the file type
+            if (
+                file.type === "application/pdf" ||
+                file.type.startsWith(
+                    "application/vnd.openxmlformats-officedocument"
+                ) ||
+                file.type === "application/msword"
+            ) {
+                // Check the file size (50MB limit)
+                if (file.size <= 50 * 1024 * 1024) {
+                    setSelectedFile(file);
+                } else {
+                    alert("File size exceeds 50MB limit");
+                    event.target.value = null; // Clear the file input
+                }
+            } else {
+                alert(
+                    "Unsupported file type. Please select a PDF or document file."
+                );
+                event.target.value = null; // Clear the file input
+            }
+        }
     };
 
     const handleUpload = () => {
@@ -281,6 +306,7 @@ function Create() {
                                         type="file"
                                         id="fileUpload"
                                         name="fileUpload"
+                                        accept=".pdf,.doc,.docx"
                                         onChange={(e) => {
                                             setData(
                                                 "fileUpload",
@@ -302,11 +328,41 @@ function Create() {
                                 <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">
                                     {ProductName && (
                                         <QRCode
-                                            id="qrcode-canvas"
+                                            value={result}
+                                            onChange={(e) => {
+                                                setData(
+                                                    "qrcode",
+                                                    e.target.value
+                                                );
+                                                handleProductChange(e); // Call your existing onChange handler
+                                            }}
+                                            helperText={errors.qrcode}
+                                            error={!!errors.qrcode}
                                             size={128}
-                                            value={value}
                                         />
                                     )}
+                                </div>
+
+                                <div>
+                                    <Typography variant="body1">
+                                        <TextField
+                                            id="outlined-basic"
+                                            variant="standard"
+                                            fullWidth
+                                            size="small"
+                                            required
+                                            value={result}
+                                            onChange={(e) => {
+                                                setData(
+                                                    "qrcode",
+                                                    e.target.value
+                                                );
+                                                handleProductChange(e); // Call your existing onChange handler
+                                            }}
+                                            helperText={errors.qrcode}
+                                            error={!!errors.qrcode}
+                                        />
+                                    </Typography>
                                 </div>
                             </div>
                         </DialogContent>

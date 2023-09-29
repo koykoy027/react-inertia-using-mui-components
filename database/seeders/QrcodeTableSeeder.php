@@ -18,7 +18,15 @@ class QrcodeTableSeeder extends Seeder
         $faker = FakerFactory::create();
 
         for ($i = 0; $i < 1; $i++) {
-            Qrcode::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'branch' => fake()->word(), "status" => true, 'qrDescription' => fake()->word(), "fileUpload" => fake()->word()]);
+            Qrcode::create([
+                'productName' => $faker->word(),
+                'productId' => $faker->randomNumber(),
+                'branch' => $faker->word(),
+                'status' => true,
+                'qrDescription' => $faker->word(),
+                'fileUpload' => $faker->imageUrl($width = 640, $height = 480),
+                'qrcode' => $faker->imageUrl($width = 640, $height = 480), // Generate a fake image URL
+            ]);
         }
     }
 }

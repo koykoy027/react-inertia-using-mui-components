@@ -35,6 +35,7 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         qrcode.status,
         qrcode.qrDescription,
         qrcode.fileUpload,
+        qrcode.qrcode,
         <EastIcon />,
     ]);
 
@@ -45,6 +46,7 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         "Status",
         "Description",
         "fileUpload",
+        "qrcode",
         "",
     ];
 
