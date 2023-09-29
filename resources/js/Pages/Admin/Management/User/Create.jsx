@@ -102,7 +102,7 @@ function Create() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route("save"));
+        post(route("management.store"));
 
         // Show the alert
         setShowAlert(true);

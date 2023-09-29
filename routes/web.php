@@ -60,10 +60,8 @@ Route::prefix('administrator')->group(function () {
 
         // Management
         Route::resource('/management', UserManagementController::class);
-        Route::post('store', [UserManagementController::class, 'store'])->name('save');
         Route::resource('/products', ProductManagementController::class);
-        // create a post that located at ProductManagementController 
-        Route::post('/products', [ProductManagementController::class, 'store'])->name('products.store');
+        // create a post that located at ProductManagementController
 
         // Qr code
         Route::resource('/qr', QrController::class);
