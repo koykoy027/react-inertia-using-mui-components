@@ -33,6 +33,7 @@ class QrController extends Controller
             'branch' => $request->branch,
             'status' => $request->status,
             'qrDescription' => $request->qrDescription,
+            'fileUpload' => $request->fileUpload,
         ]);
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('branch')->nullable();
             $table->string('status')->default(true); // Default to true
             $table->longText('qrDescription')->nullable();
+            $table->string('fileUpload')->nullable();
             $table->timestamps();
         });
     }

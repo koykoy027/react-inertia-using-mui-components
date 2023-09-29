@@ -127,6 +127,7 @@ function Create() {
         branch: "",
         status: "",
         qrDescription: "",
+        fileUpload: "",
     });
 
     const handleSubmit = (e) => {
@@ -136,6 +137,23 @@ function Create() {
         // route is located ) web.php
         // setShowAlert(true);
         reset();
+    };
+
+    // file upload
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleUpload = () => {
+        if (selectedFile) {
+            // You can perform the file upload logic here
+            console.log("Uploading file:", selectedFile);
+        } else {
+            console.log("No file selected");
+        }
     };
     return (
         <div>
@@ -258,7 +276,27 @@ function Create() {
                                 </div>
 
                                 <div>
-                                    <FileUpload />
+                                    <h2>File Upload</h2>
+                                    <input
+                                        type="file"
+                                        id="fileUpload"
+                                        name="fileUpload"
+                                        onChange={(e) => {
+                                            setData(
+                                                "fileUpload",
+                                                e.target.value
+                                            );
+                                            handleFileChange(e); // Call your existing onChange handler
+                                        }}
+                                        required
+                                        fullWidth
+                                        helperText={errors.fileUpload}
+                                        error={!!errors.fileUpload}
+                                    />
+
+                                    <button onClick={handleUpload}>
+                                        Upload
+                                    </button>
                                 </div>
 
                                 <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">

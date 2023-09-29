@@ -22,6 +22,7 @@ class Qrcode extends Model
         'branch',
         'status',
         'qrDescription',
+        'fileUpload',
         // 'status',
         // 'productDescription',
 
