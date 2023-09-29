@@ -31,22 +31,18 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
     const data = qrcodes.map((qrcode) => [
         qrcode.productName,
         qrcode.productId,
-        qrcode.itemName,
-        qrcode.quantity_need,
-        qrcode.qrcode,
-        qrcode.barcode,
+        qrcode.branch,
         qrcode.status,
+        qrcode.qrDescription,
         <EastIcon />,
     ]);
 
     const columns = [
         "Product Name",
         "Product ID",
-        "Item Name",
-        "Quantity Needed",
-        "QR-Code",
-        "Barcode",
+        "Branch",
         "Status",
+        "Description",
         "",
     ];
 

@@ -32,12 +32,6 @@ function Create() {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form data submitted:", formData);
-        // You can send this data to an API or perform other actions here.
-    };
-
     // test sample
 
     const [region, setRegion] = React.useState("");
@@ -65,40 +59,6 @@ function Create() {
         setOpen(false);
     };
 
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
-    const passwordInput = useRef();
-
-    const {
-        data1,
-        setData,
-        delete: destroy,
-        processing,
-        reset,
-        errors,
-    } = useForm({
-        password: "",
-    });
-
-    const confirmUserDeletion = () => {
-        setConfirmingUserDeletion(true);
-    };
-
-    const deleteUser = (e) => {
-        e.preventDefault();
-
-        const confirmation = window.confirm(
-            "Are you sure you want to delete your account?"
-        );
-        if (confirmation) {
-            destroy(route("profile.destroy"), {
-                preserveScroll: true,
-                onSuccess: () => closeModal(),
-                onError: () => passwordInput.current.focus(),
-                onFinish: () => reset(),
-            });
-        }
-    };
-
     const closeModal = () => {
         setConfirmingUserDeletion(false);
 
@@ -115,9 +75,9 @@ function Create() {
 
     const departmentoptions = [
         { label: "None", value: "" },
-        { label: "EasyPC", value: 10 },
-        { label: "Greenhills", value: 20 },
-        { label: "Gilmore", value: 30 },
+        { label: "EasyPC", value: "EasyPC" },
+        { label: "Greenhills", value: "Greenhills" },
+        { label: "Gilmore", value: "Gilmore" },
     ];
 
     const [status, setStatus] = React.useState("");
@@ -128,9 +88,9 @@ function Create() {
 
     const options = [
         { label: "None", value: "" },
-        { label: "Active", value: 10 },
-        { label: "Inactive", value: 20 },
-        { label: "Deactivated", value: 30 },
+        { label: "Active", value: "Active" },
+        { label: "Inactive", value: "Inactive" },
+        { label: "Deactivated", value: "Deactivated" },
     ];
 
     // qrcode generator start
@@ -158,6 +118,25 @@ function Create() {
         Product +
         "Inventory: " +
         Branch;
+
+    // submmit to store
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        productName: "",
+        productId: "",
+        branch: "",
+        status: "",
+        qrDescription: "",
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("qr.store"));
+        // route is located ) web.php
+        // setShowAlert(true);
+        reset();
+    };
     return (
         <div>
             <div>
@@ -172,7 +151,7 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <form onSubmit={deleteUser}>
+                    <form onSubmit={handleSubmit}>
                         <DialogTitle>
                             Are you sure want to add your account?
                         </DialogTitle>
@@ -186,31 +165,71 @@ function Create() {
                                         fullWidth
                                         size="small"
                                         required
-                                        value={ProductName}
-                                        onChange={handleInputChange}
+                                        value={data.productName}
+                                        className="block w-full mt-1"
+                                        onChange={(e) => {
+                                            setData(
+                                                "productName",
+                                                e.target.value
+                                            );
+                                            handleInputChange(e); // Call your existing onChange handler
+                                        }}
+                                        helperText={errors.productName}
+                                        error={!!errors.productName}
                                     />
+
                                     <TextField
                                         id="outlined-basic"
-                                        label="Product ID"
+                                        label="productId"
                                         variant="outlined"
                                         fullWidth
                                         size="small"
                                         required
-                                        value={Product}
-                                        onChange={handleProductChange}
+                                        value={data.productId}
+                                        className="block w-full mt-1"
+                                        onChange={(e) => {
+                                            setData(
+                                                "productId",
+                                                e.target.value
+                                            );
+                                            handleProductChange(e); // Call your existing onChange handler
+                                        }}
+                                        helperText={errors.productId}
+                                        error={!!errors.productId}
                                     />
                                 </div>
                                 <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
                                     <CustomSelect
+                                        id="outlined-basic"
                                         label="Branch"
-                                        value={Branch}
-                                        onChange={handleBranchChange}
+                                        variant="outlined"
+                                        fullWidth
+                                        size="small"
+                                        required
+                                        value={data.branch}
+                                        className="block w-full mt-1"
+                                        onChange={(e) => {
+                                            setData("branch", e.target.value);
+                                            handleBranchChange(e); // Call your existing onChange handler
+                                        }}
+                                        helperText={errors.branch}
+                                        error={!!errors.branch}
                                         options={departmentoptions}
                                     />
                                     <CustomSelect
-                                        label="Status"
-                                        value={status}
-                                        onChange={statusChange}
+                                        id="outlined-basic"
+                                        label="status"
+                                        variant="outlined"
+                                        fullWidth
+                                        size="small"
+                                        required
+                                        value={data.status}
+                                        className="block w-full mt-1"
+                                        onChange={(e) => {
+                                            setData("status", e.target.value);
+                                        }}
+                                        helperText={errors.status}
+                                        error={!!errors.status}
                                         options={options}
                                     />
                                 </div>
@@ -218,9 +237,21 @@ function Create() {
                                 <div>
                                     <textarea
                                         className="rounded bg-inherit w-full"
-                                        name=""
-                                        placeholder="Description"
-                                        id=""
+                                        label="productDescription"
+                                        placeholder="description"
+                                        id="productDescription"
+                                        name="productDescription"
+                                        value={data.qrDescription}
+                                        onChange={(e) =>
+                                            setData(
+                                                "qrDescription",
+                                                e.target.value
+                                            )
+                                        }
+                                        required
+                                        fullWidth
+                                        helperText={errors.qrDescription}
+                                        error={!!errors.qrDescription}
                                         cols="62"
                                         rows="10"
                                     ></textarea>
@@ -249,6 +280,7 @@ function Create() {
                                 variant="contained"
                                 color="success"
                                 type="submit"
+                                disabled={processing}
                             >
                                 Add Product
                             </Button>

@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('qrcodes', function (Blueprint $table) {
             $table->id();
-            $table->string('productName');
-            $table->integer('productId');
-            $table->string('itemName');
-            $table->integer('quantity_need');
-            $table->string('qrcode');
-            $table->string('barcode');
-            $table->integer('status');
+            $table->string('productName')->nullable();
+            $table->string('productId')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('status')->default(true); // Default to true
+            $table->longText('qrDescription')->nullable();
             $table->timestamps();
         });
     }

@@ -19,4 +19,20 @@ class QrController extends Controller
             'qrcodes' => $qrcodes,
         ]);
     }
+
+    public function store(Request $request)
+    {
+
+        // i create a variable located my model named product same as the user
+
+        $product = Qrcode::create([
+
+            // create a variable that will coordinated in my frontend form
+            'productName' => $request->productName,
+            'productId' => $request->productId,
+            'branch' => $request->branch,
+            'status' => $request->status,
+            'qrDescription' => $request->qrDescription,
+        ]);
+    }
 }
