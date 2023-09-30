@@ -33,6 +33,7 @@ class ProductManagementController extends Controller
             'branch' => $request->branch,
             'status' => $request->status,
             'productDescription' => $request->productDescription,
+            'productFileUpload' => $request->productFileUpload,
         ]);
     }
 }

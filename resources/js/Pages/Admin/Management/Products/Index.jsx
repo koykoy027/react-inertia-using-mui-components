@@ -34,6 +34,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         product.branch,
         product.status,
         product.productDescription,
+        product.productFileUpload,
         <EastIcon />,
     ]);
 
@@ -43,6 +44,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         "Branch",
         "Status",
         "Description",
+        "productFileUpload",
         "",
     ];
 

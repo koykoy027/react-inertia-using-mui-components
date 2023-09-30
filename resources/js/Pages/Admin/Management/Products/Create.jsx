@@ -107,6 +107,7 @@ function Create() {
         branch: "",
         status: "",
         productDescription: "",
+        productFileUpload: "",
     });
 
     const handleSubmit = (e) => {
@@ -116,6 +117,46 @@ function Create() {
         // route is located ) web.php
         setShowAlert(true);
         reset();
+    };
+
+    // file upload
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Check the file type
+            if (
+                file.type === "application/pdf" ||
+                file.type.startsWith(
+                    "application/vnd.openxmlformats-officedocument"
+                ) ||
+                file.type === "application/msword"
+            ) {
+                // Check the file size (50MB limit)
+                if (file.size <= 50 * 1024 * 1024) {
+                    setSelectedFile(file);
+                } else {
+                    alert("File size exceeds 50MB limit");
+                    event.target.value = null; // Clear the file input
+                }
+            } else {
+                alert(
+                    "Unsupported file type. Please select a PDF or document file."
+                );
+                event.target.value = null; // Clear the file input
+            }
+        }
+    };
+
+    const handleUpload = () => {
+        if (selectedFile) {
+            // You can perform the file upload logic here
+            console.log("Uploading file:", selectedFile);
+        } else {
+            console.log("No file selected");
+        }
     };
 
     return (
@@ -239,7 +280,23 @@ function Create() {
                                 </div>
 
                                 <div>
-                                    <FileUpload />
+                                    <input
+                                        type="file"
+                                        id="productFileUpload"
+                                        name="productFileUpload"
+                                        accept=".pdf,.doc,.docx"
+                                        onChange={(e) => {
+                                            setData(
+                                                "productFileUpload",
+                                                e.target.value
+                                            );
+                                            handleFileChange(e); // Call your existing onChange handler
+                                        }}
+                                        required
+                                        fullWidth
+                                        helperText={errors.productFileUpload}
+                                        error={!!errors.productFileUpload}
+                                    />
                                 </div>
                             </div>
                         </DialogContent>

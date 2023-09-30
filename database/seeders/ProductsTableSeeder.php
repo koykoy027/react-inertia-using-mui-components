@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Faker\Factory as Faker;
+use Faker\Factory as FakerFactory;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -18,8 +18,17 @@ class ProductsTableSeeder extends Seeder
     public function run()
 
     {
+        $faker = FakerFactory::create();
+
         for ($i = 0; $i < 1; $i++) {
-            Product::create(['productName' => fake()->word(), 'productId' => fake()->randomNumber(), 'branch' => fake()->word(), "status" => true,'productDescription' => fake()->word()]);
+            Product::create([
+                'productName' => $faker->word(),
+                'productId' => $faker->randomNumber(),
+                'branch' => $faker->word(),
+                'status' => true,
+                'productDescription' => $faker->word(),
+                'productFileUpload' => $faker->imageUrl($width = 640, $height = 480),
+            ]);
         }
 
 

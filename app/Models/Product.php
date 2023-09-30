@@ -22,6 +22,7 @@ class Product extends Model
         'branch',
         'status',
         'productDescription',
+        'productFileUpload',
 
     ];
 

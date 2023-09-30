@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('branch');
             $table->string('status')->default(true); // Default to true
             $table->longText('productDescription');
+            $table->string('productFileUpload')->nullable();
             $table->timestamps();
         });
     }
