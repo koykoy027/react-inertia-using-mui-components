@@ -38,14 +38,11 @@ import {
     Box,
     styled,
     useTheme,
-    ListSubheader,
     Collapse,
-    Switch,
-    Button,
     Badge,
     Stack,
 } from "@mui/material";
-import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { Logout, Settings } from "@mui/icons-material";
 
 import CustomSpeedDial from "@/Components/CustomSpeedDial";
 import HomeIcon from "@mui/icons-material/Home";
@@ -660,12 +657,7 @@ export default function MainLayout({ user, children }) {
                         <DrawerHeader />
 
                         <div className="sm:mx-5 md:mx-2 lg:mx-10">
-                            {loading ? (
-                                <Loader /> // Show the loader when loading is true
-                            ) : (
-                                // Your main content when loading is false
-                                <div>{children}</div>
-                            )}
+                            <div>{children}</div>
 
                             <div className="lg:hidden block">
                                 <CustomSpeedDial
