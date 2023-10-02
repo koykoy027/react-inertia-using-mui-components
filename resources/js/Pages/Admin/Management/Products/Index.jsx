@@ -35,7 +35,11 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         product.status,
         product.productDescription,
         product.productFileUpload,
-        <EastIcon />,
+        <div className="flex justify-end pr-5">
+            <Link href={route("dashboard")}>
+                <EastIcon />
+            </Link>
+        </div>, // Replace 'insert_icon_name_here' with the actual icon name
     ]);
 
     const columns = [

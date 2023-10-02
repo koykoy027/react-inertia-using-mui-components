@@ -36,7 +36,11 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         qrcode.qrDescription,
         qrcode.fileUpload,
         qrcode.qrcode,
-        <EastIcon />,
+        <div className="flex justify-end pr-5">
+            <Link href={route("dashboard")}>
+                <EastIcon />
+            </Link>
+        </div>, // Replace 'insert_icon_name_here' with the actual icon name
     ]);
 
     const columns = [

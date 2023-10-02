@@ -36,7 +36,11 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
         user.id,
         user.name,
         user.email,
-        <EastIcon />, // Replace 'insert_icon_name_here' with the actual icon name
+        <div className="flex justify-end pr-5">
+            <Link href={route("dashboard")}>
+                <EastIcon />
+            </Link>
+        </div>, // Replace 'insert_icon_name_here' with the actual icon name
     ]);
 
     const columns = ["ID", "Name", "Email", ""];
