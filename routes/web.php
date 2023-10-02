@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
@@ -50,7 +51,7 @@ Route::prefix('administrator')->group(function () {
             ]);
         })->name('dashboard');
 
-        Route::resource('/Dashboard', DashboardController::class);
+        // Route::resource('/Dashboard', DashboardController::class);
 
 
 
@@ -60,6 +61,7 @@ Route::prefix('administrator')->group(function () {
 
         // Management
         Route::resource('/management', UserManagementController::class);
+        Route::resource("/categories", CategoriesController::class);
         Route::resource('/products', ProductManagementController::class);
         // create a post that located at ProductManagementController
 

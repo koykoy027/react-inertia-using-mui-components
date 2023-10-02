@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
-export default function BasicTextFields({
+export default function InputField({
     label,
     variant,
     id,

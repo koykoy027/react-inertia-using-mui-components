@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             QrcodeTableSeeder::class,
         ]);
+        $this->call([CategoriesSeeder::class,]);
     }
 }

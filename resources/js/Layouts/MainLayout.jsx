@@ -598,7 +598,7 @@ export default function MainLayout({ user, children }) {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <Link href={route("management.index")}>
+                                <Link href={route("categories.index")}>
                                     <List component="div" disablePadding>
                                         <ListItemButton sx={{ pl: 4 }}>
                                             <ListItemIcon>
