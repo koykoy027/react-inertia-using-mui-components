@@ -26,6 +26,7 @@
         "@mui/x-charts": "^6.0.0-alpha.9",
         "html2canvas": "^1.4.1",
         "mui-datatables": "^4.3.0",
+        "notistack": "^3.0.1",
         "qrcode.react": "^3.1.0",
         "react-barcode": "^1.4.6",
         "react-html5-camera-photo": "^1.5.11",

@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import InputField from "@/Components/InputField";
 import CustomSelect from "@/Components/CustomSelect";
+import IntegrationNotistack from "@/Components/Alert";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     const breadcrumbItems = [
@@ -152,20 +153,13 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             </div>
             <Paper elevation={3} className="grid grid-col">
                 <form onSubmit={handleSubmit} className="grid gap-2 px-24">
-                    <Stack sx={{ width: "100%" }} spacing={2}>
-                        {showAlert && (
-                            <Alert severity="success" color="info">
-                                The User is successfully Added — check it out!
-                            </Alert>
-                        )}
-                    </Stack>
                     <DialogTitle>
                         <Typography variant="h6">User</Typography>
                     </DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7">
                             <div className="grid grid-col lg:grid-cols-3 gap-5">
-                                <TextField
+                                {/* <TextField
                                     id="outlined-basic"
                                     label="Last Name"
                                     variant="outlined"
@@ -279,8 +273,8 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                                     fullWidth
                                     size="small"
                                     required
-                                />
-                                {/* <TextField
+                                /> */}
+                                <TextField
                                     label="Name"
                                     id="name"
                                     name="name"
@@ -345,7 +339,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                                     helperText={errors.password_confirmation}
                                     error={!!errors.password_confirmation}
                                     size="small"
-                                /> */}
+                                />
                             </div>
                         </div>
                     </DialogContent>
@@ -353,14 +347,15 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                         <Button variant="" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button
+                        {/* <Button
                             variant="contained"
                             color="primary"
                             type="submit"
                             disabled={processing}
                         >
                             Add Account
-                        </Button>
+                        </Button> */}
+                        <IntegrationNotistack disabled={processing} />
                     </div>
                 </form>
             </Paper>
