@@ -1,4 +1,5 @@
 import {
+    Alert,
     Button,
     Dialog,
     DialogActions,
@@ -189,6 +190,7 @@ function Create({ auth }) {
                     <DialogTitle>
                         Are you sure want to add your account?
                     </DialogTitle>
+
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
                             <div className="grid grid-col gap-5">
