@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Equipment\EquipmentController;
@@ -65,6 +66,7 @@ Route::prefix('administrator')->group(function () {
         Route::resource("/categories", CategoriesController::class);
         Route::resource('/products', ProductManagementController::class);
         Route::resource('/equipment', EquipmentController::class);
+        Route::resource('/branch', BranchController::class);
         // create a post that located at ProductManagementController
 
         // Qr code
