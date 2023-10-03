@@ -18,8 +18,9 @@ import CustomSelect from "@/Components/CustomSelect";
 import { useRef, useState, useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
+import MainLayout from "@/Layouts/MainLayout";
 
-function Create() {
+function Create({ auth }) {
     // test sample
 
     const [region, setRegion] = React.useState("");
@@ -113,112 +114,107 @@ function Create() {
     };
 
     return (
-        <div>
-            <div>
-                <Paper>
-                    <form onSubmit={handleSubmit} className="grid gap-2">
-                        <Stack sx={{ width: "100%" }} spacing={2}>
-                            {showAlert && (
-                                <Alert severity="success" color="info">
-                                    The User is successfully Added — check it
-                                    out!
-                                </Alert>
-                            )}
-                        </Stack>
-                        <DialogTitle>
-                            Are you sure want to add your account?
-                        </DialogTitle>
-                        <DialogContent>
-                            <div className="grid grid-col gap-7 px-2">
-                                <div className="grid grid-col gap-5">
-                                    <TextField
-                                        label="Name"
-                                        id="name"
-                                        name="name"
-                                        value={data.name}
-                                        className="block w-full mt-1"
-                                        onChange={(e) =>
-                                            setData("name", e.target.value)
-                                        }
-                                        required
-                                        fullWidth
-                                        helperText={errors.name}
-                                        error={!!errors.name}
-                                        size="small"
-                                    />
+        <MainLayout user={auth.user}>
+            <Paper>
+                <form onSubmit={handleSubmit} className="grid gap-2">
+                    <Stack sx={{ width: "100%" }} spacing={2}>
+                        {showAlert && (
+                            <Alert severity="success" color="info">
+                                The User is successfully Added — check it out!
+                            </Alert>
+                        )}
+                    </Stack>
+                    <DialogTitle>
+                        Are you sure want to add your account?
+                    </DialogTitle>
+                    <DialogContent>
+                        <div className="grid grid-col gap-7 px-2">
+                            <div className="grid grid-col gap-5">
+                                <TextField
+                                    label="Name"
+                                    id="name"
+                                    name="name"
+                                    value={data.name}
+                                    className="block w-full mt-1"
+                                    onChange={(e) =>
+                                        setData("name", e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    helperText={errors.name}
+                                    error={!!errors.name}
+                                    size="small"
+                                />
 
-                                    <TextField
-                                        label="Email address"
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        onChange={(e) =>
-                                            setData("email", e.target.value)
-                                        }
-                                        required
-                                        fullWidth
-                                        helperText={errors.email}
-                                        error={!!errors.email}
-                                        size="small"
-                                    />
+                                <TextField
+                                    label="Email address"
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    value={data.email}
+                                    onChange={(e) =>
+                                        setData("email", e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    helperText={errors.email}
+                                    error={!!errors.email}
+                                    size="small"
+                                />
 
-                                    <TextField
-                                        label="Password"
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        value={data.password}
-                                        onChange={(e) =>
-                                            setData("password", e.target.value)
-                                        }
-                                        required
-                                        fullWidth
-                                        helperText={errors.password}
-                                        error={!!errors.password}
-                                        size="small"
-                                    />
+                                <TextField
+                                    label="Password"
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    value={data.password}
+                                    onChange={(e) =>
+                                        setData("password", e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    helperText={errors.password}
+                                    error={!!errors.password}
+                                    size="small"
+                                />
 
-                                    <TextField
-                                        label="Confirm Password"
-                                        id="password_confirmation"
-                                        type="password"
-                                        name="password_confirmation"
-                                        value={data.password_confirmation}
-                                        onChange={(e) =>
-                                            setData(
-                                                "password_confirmation",
-                                                e.target.value
-                                            )
-                                        }
-                                        required
-                                        fullWidth
-                                        helperText={
-                                            errors.password_confirmation
-                                        }
-                                        error={!!errors.password_confirmation}
-                                        size="small"
-                                    />
-                                </div>
+                                <TextField
+                                    label="Confirm Password"
+                                    id="password_confirmation"
+                                    type="password"
+                                    name="password_confirmation"
+                                    value={data.password_confirmation}
+                                    onChange={(e) =>
+                                        setData(
+                                            "password_confirmation",
+                                            e.target.value
+                                        )
+                                    }
+                                    required
+                                    fullWidth
+                                    helperText={errors.password_confirmation}
+                                    error={!!errors.password_confirmation}
+                                    size="small"
+                                />
                             </div>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button variant="" onClick={handleClose}>
-                                Cancel
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                disabled={processing}
-                            >
-                                Add Account
-                            </Button>
-                        </DialogActions>
-                    </form>
-                </Paper>
-            </div>
-        </div>
+                        </div>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="" onClick={handleClose}>
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            Add Account
+                        </Button>
+                    </DialogActions>
+                </form>
+            </Paper>
+        </MainLayout>
     );
 }
 

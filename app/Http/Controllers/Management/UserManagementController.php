@@ -23,7 +23,7 @@ class UserManagementController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Categories/Create');
+        return Inertia::render('Admin/Management/User/Create');
     }
 
 
@@ -41,6 +41,8 @@ class UserManagementController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        return redirect()->route('management.index')->with('success', 'Category created successfully');
 
         // event(new Registered($user));
 

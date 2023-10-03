@@ -160,9 +160,6 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <div>
-                <Create />
-            </div>
             <div className="py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] lg:max-w-[100%]">
                 <Card>
                     <MUIDataTable
