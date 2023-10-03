@@ -18,7 +18,7 @@ class CategoriesSeeder extends Seeder
 
         for ($i = 0; $i < 1; $i++) {
             Categories::create([
-                'name' => $faker->word(),
+                'categories' => $faker->word(),
             ]);
         }
     }
