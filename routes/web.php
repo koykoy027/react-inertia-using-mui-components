@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Qr\GenerateQrController;
 use App\Http\Controllers\Qr\QrController;
 use App\Http\Controllers\Storage\StorageController;
+use App\Http\Controllers\Warranty\WarrantyController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,7 @@ Route::prefix('administrator')->group(function () {
         Route::resource('/products', ProductManagementController::class);
         Route::resource('/equipment', EquipmentController::class);
         Route::resource('/branch', BranchController::class);
+        Route::resource('/warranty', WarrantyController::class);
         // create a post that located at ProductManagementController
 
         // Qr code

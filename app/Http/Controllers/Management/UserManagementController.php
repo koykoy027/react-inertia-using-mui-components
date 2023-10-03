@@ -21,11 +21,18 @@ class UserManagementController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return Inertia::render('Admin/Categories/Create');
+    }
+
+
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.User::class,
+            'email' => 'required|string|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

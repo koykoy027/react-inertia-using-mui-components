@@ -5,6 +5,7 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
+    Paper,
     Stack,
     TextField,
 } from "@mui/material";
@@ -114,17 +115,7 @@ function Create() {
     return (
         <div>
             <div>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleClickOpen}
-                    startIcon={<AddSharpIcon />}
-                    className="w-full lg:w-36"
-                >
-                    Add User
-                </Button>
-
-                <Dialog open={open} onClose={handleClose}>
+                <Paper>
                     <form onSubmit={handleSubmit} className="grid gap-2">
                         <Stack sx={{ width: "100%" }} spacing={2}>
                             {showAlert && (
@@ -208,121 +199,6 @@ function Create() {
                                         error={!!errors.password_confirmation}
                                         size="small"
                                     />
-                                    {/* <TextField
-                                        id="outlined-basic"
-                                        label="Last Name"
-                                        variant="outlined"
-                                        fullWidth
-                                        name="lastName"
-                                        size="small"
-                                        required
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="First Name"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Middle Name"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                    />
-                                </div>
-                                <div>
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Email Address"
-                                        variant="outlined"
-                                        name="email"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    />
-                                </div>
-                                <div className="grid grid-col lg:grid-cols-2 md:grid-cols-2 gap-2">
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Contact Number"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Contact Number"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="grid grid-col md:grid-cols-3 lg:grid-cols-3 gap-2">
-                                    <CustomSelect
-                                        label="Region"
-                                        value={region}
-                                        onChange={regionChange}
-                                        options={regions}
-                                    />
-                                    <CustomSelect
-                                        label="Province/City"
-                                        value={region}
-                                        onChange={regionChange}
-                                        options={regions}
-                                    />
-                                    <CustomSelect
-                                        label="City"
-                                        value={region}
-                                        onChange={regionChange}
-                                        options={regions}
-                                    />
-                                </div>
-                                <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
-                                    <CustomSelect
-                                        label="Barangay"
-                                        value={region}
-                                        onChange={regionChange}
-                                        options={regions}
-                                    />
-                                    <CustomSelect
-                                        label="Zip Code"
-                                        value={region}
-                                        onChange={regionChange}
-                                        options={regions}
-                                    />
-                                </div>
-                                <div>
-                                    <CustomSelect
-                                        label="Department"
-                                        value={department}
-                                        onChange={DepartmentChange}
-                                        options={departmentoption}
-                                    />
-                                </div>
-
-                                <div className="grid grid-col gap-5">
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Password"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Confirm Password"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                    /> */}
                                 </div>
                             </div>
                         </DialogContent>
@@ -340,7 +216,7 @@ function Create() {
                             </Button>
                         </DialogActions>
                     </form>
-                </Dialog>
+                </Paper>
             </div>
         </div>
     );

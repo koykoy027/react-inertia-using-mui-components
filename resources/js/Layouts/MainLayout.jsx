@@ -697,7 +697,7 @@ export default function MainLayout({ user, children }) {
 
                             {/* start of warranty list */}
                             <List>
-                                <Link href={route("storage.index")}>
+                                <Link href={route("warranty.index")}>
                                     <ListItem disablePadding>
                                         <ListItemButton>
                                             <ListItemIcon>

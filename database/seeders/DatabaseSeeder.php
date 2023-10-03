@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([CategoriesSeeder::class,]);
         $this->call([EquipmentSeeder::class,]);
-        // $this->call([BranchSeeder::class,]);
+        $this->call([BranchSeeder::class,]);
+        $this->call([WarrantySeeder::class,]);
     }
 }
