@@ -92,7 +92,7 @@ function Create({ auth }) {
     // submmit to store
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        categories: "",
+        equipments: "",
     });
 
     useEffect(() => {
@@ -104,7 +104,7 @@ function Create({ auth }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route("categories.store"));
+        post(route("equipment.store"));
 
         // Show the alert
         setShowAlert(true);
@@ -137,7 +137,7 @@ function Create({ auth }) {
         },
         {
             icon: <InventoryIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "Categories",
+            text: "Equipments",
             url: "/material-ui/getting-started/installation/",
         },
     ];
@@ -163,18 +163,18 @@ function Create({ auth }) {
                         <div className="grid grid-col gap-7 px-2">
                             <div className="grid grid-col gap-5">
                                 <TextField
-                                    label="categories"
-                                    id="categories"
-                                    name="categories"
-                                    value={data.categories}
+                                    label="equipments"
+                                    id="equipments"
+                                    name="equipments"
+                                    value={data.equipments}
                                     className="block w-full mt-1"
                                     onChange={(e) =>
-                                        setData("categories", e.target.value)
+                                        setData("equipments", e.target.value)
                                     }
                                     required
                                     fullWidth
-                                    helperText={errors.categories}
-                                    error={!!errors.categories}
+                                    helperText={errors.equipments}
+                                    error={!!errors.equipments}
                                     size="small"
                                 />
                             </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Equipment\EquipmentController;
 use App\Http\Controllers\Library\GenderController;
 use App\Http\Controllers\Library\LibraryController;
 use App\Http\Controllers\library\SettingController;
@@ -63,6 +64,7 @@ Route::prefix('administrator')->group(function () {
         Route::resource('/management', UserManagementController::class);
         Route::resource("/categories", CategoriesController::class);
         Route::resource('/products', ProductManagementController::class);
+        Route::resource('/equipment', EquipmentController::class);
         // create a post that located at ProductManagementController
 
         // Qr code

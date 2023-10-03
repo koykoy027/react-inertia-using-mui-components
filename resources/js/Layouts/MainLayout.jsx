@@ -636,7 +636,7 @@ export default function MainLayout({ user, children }) {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <Link href={route("management.index")}>
+                                <Link href={route("equipment.create")}>
                                     <List component="div" disablePadding>
                                         <ListItemButton sx={{ pl: 4 }}>
                                             <ListItemIcon>
@@ -648,7 +648,7 @@ export default function MainLayout({ user, children }) {
                                 </Link>
 
                                 <List component="div" disablePadding>
-                                    <Link href={route("products.index")}>
+                                    <Link href={route("equipment.index")}>
                                         <ListItemButton sx={{ pl: 4 }}>
                                             <ListItemIcon>
                                                 <InventorySharpIcon />
