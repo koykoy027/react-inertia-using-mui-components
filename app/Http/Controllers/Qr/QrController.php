@@ -20,6 +20,11 @@ class QrController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return Inertia::render('Admin/Qr/Create');
+    }
+
     public function store(Request $request)
     {
 
@@ -36,5 +41,7 @@ class QrController extends Controller
             'fileUpload' => $request->fileUpload,
             'qrcode' => $request->qrcode,
         ]);
+
+        return redirect()->route('qr.index')->with('success', 'Category created successfully');
     }
 }

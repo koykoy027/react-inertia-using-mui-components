@@ -4,6 +4,7 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
+    Paper,
     TextField,
     Typography,
 } from "@mui/material";
@@ -18,8 +19,9 @@ import { useForm } from "@inertiajs/react";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import FileUpload from "@/Components/FileUpload";
 import QRCode from "qrcode.react";
+import MainLayout from "@/Layouts/MainLayout";
 
-function Create() {
+function Create({ auth }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -181,208 +183,176 @@ function Create() {
         }
     };
     return (
-        <div>
-            <div>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleClickOpen}
-                    startIcon={<AddSharpIcon />}
-                    className="w-full lg:w-60"
-                >
-                    Add Borrowed item
-                </Button>
+        <MainLayout user={auth.user}>
+            <Paper>
+                <form onSubmit={handleSubmit}>
+                    <DialogTitle>
+                        Are you sure want to add your account?
+                    </DialogTitle>
+                    <DialogContent>
+                        <div className="grid grid-col gap-7 px-2">
+                            <div className="grid grid-col gap-5">
+                                <TextField
+                                    id="outlined-basic"
+                                    label="Product Name"
+                                    variant="outlined"
+                                    fullWidth
+                                    size="small"
+                                    required
+                                    value={data.productName}
+                                    className="block w-full mt-1"
+                                    onChange={(e) => {
+                                        setData("productName", e.target.value);
+                                        handleInputChange(e); // Call your existing onChange handler
+                                    }}
+                                    helperText={errors.productName}
+                                    error={!!errors.productName}
+                                />
 
-                <Dialog open={open} onClose={handleClose}>
-                    <form onSubmit={handleSubmit}>
-                        <DialogTitle>
-                            Are you sure want to add your account?
-                        </DialogTitle>
-                        <DialogContent>
-                            <div className="grid grid-col gap-7 px-2">
-                                <div className="grid grid-col gap-5">
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Product Name"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                        value={data.productName}
-                                        className="block w-full mt-1"
-                                        onChange={(e) => {
-                                            setData(
-                                                "productName",
-                                                e.target.value
-                                            );
-                                            handleInputChange(e); // Call your existing onChange handler
-                                        }}
-                                        helperText={errors.productName}
-                                        error={!!errors.productName}
-                                    />
+                                <TextField
+                                    id="outlined-basic"
+                                    label="productId"
+                                    variant="outlined"
+                                    fullWidth
+                                    size="small"
+                                    required
+                                    value={data.productId}
+                                    className="block w-full mt-1"
+                                    onChange={(e) => {
+                                        setData("productId", e.target.value);
+                                        handleProductChange(e); // Call your existing onChange handler
+                                    }}
+                                    helperText={errors.productId}
+                                    error={!!errors.productId}
+                                />
+                            </div>
+                            <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
+                                <CustomSelect
+                                    id="outlined-basic"
+                                    label="Branch"
+                                    variant="outlined"
+                                    fullWidth
+                                    size="small"
+                                    required
+                                    value={data.branch}
+                                    className="block w-full mt-1"
+                                    onChange={(e) => {
+                                        setData("branch", e.target.value);
+                                        handleBranchChange(e); // Call your existing onChange handler
+                                    }}
+                                    helperText={errors.branch}
+                                    error={!!errors.branch}
+                                    options={departmentoptions}
+                                />
+                                <CustomSelect
+                                    id="outlined-basic"
+                                    label="status"
+                                    variant="outlined"
+                                    fullWidth
+                                    size="small"
+                                    required
+                                    value={data.status}
+                                    className="block w-full mt-1"
+                                    onChange={(e) => {
+                                        setData("status", e.target.value);
+                                    }}
+                                    helperText={errors.status}
+                                    error={!!errors.status}
+                                    options={options}
+                                />
+                            </div>
 
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="productId"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                        value={data.productId}
-                                        className="block w-full mt-1"
+                            <div>
+                                <textarea
+                                    className="rounded bg-inherit w-full"
+                                    label="productDescription"
+                                    placeholder="description"
+                                    id="productDescription"
+                                    name="productDescription"
+                                    value={data.qrDescription}
+                                    onChange={(e) =>
+                                        setData("qrDescription", e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    helperText={errors.qrDescription}
+                                    error={!!errors.qrDescription}
+                                    cols="62"
+                                    rows="10"
+                                ></textarea>
+                            </div>
+
+                            <div>
+                                <h2>File Upload</h2>
+                                <input
+                                    type="file"
+                                    id="fileUpload"
+                                    name="fileUpload"
+                                    accept=".pdf,.doc,.docx"
+                                    onChange={(e) => {
+                                        setData("fileUpload", e.target.value);
+                                        handleFileChange(e); // Call your existing onChange handler
+                                    }}
+                                    required
+                                    fullWidth
+                                    helperText={errors.fileUpload}
+                                    error={!!errors.fileUpload}
+                                />
+
+                                <button onClick={handleUpload}>Upload</button>
+                            </div>
+
+                            <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">
+                                {ProductName && (
+                                    <QRCode
+                                        value={result}
                                         onChange={(e) => {
-                                            setData(
-                                                "productId",
-                                                e.target.value
-                                            );
+                                            setData("qrcode", e.target.value);
                                             handleProductChange(e); // Call your existing onChange handler
                                         }}
-                                        helperText={errors.productId}
-                                        error={!!errors.productId}
+                                        helperText={errors.qrcode}
+                                        error={!!errors.qrcode}
+                                        size={128}
                                     />
-                                </div>
-                                <div className="grid grid-col md:grid-cols-2 lg:grid-cols-2 gap-2">
-                                    <CustomSelect
-                                        id="outlined-basic"
-                                        label="Branch"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                        value={data.branch}
-                                        className="block w-full mt-1"
-                                        onChange={(e) => {
-                                            setData("branch", e.target.value);
-                                            handleBranchChange(e); // Call your existing onChange handler
-                                        }}
-                                        helperText={errors.branch}
-                                        error={!!errors.branch}
-                                        options={departmentoptions}
-                                    />
-                                    <CustomSelect
-                                        id="outlined-basic"
-                                        label="status"
-                                        variant="outlined"
-                                        fullWidth
-                                        size="small"
-                                        required
-                                        value={data.status}
-                                        className="block w-full mt-1"
-                                        onChange={(e) => {
-                                            setData("status", e.target.value);
-                                        }}
-                                        helperText={errors.status}
-                                        error={!!errors.status}
-                                        options={options}
-                                    />
-                                </div>
-
-                                <div>
-                                    <textarea
-                                        className="rounded bg-inherit w-full"
-                                        label="productDescription"
-                                        placeholder="description"
-                                        id="productDescription"
-                                        name="productDescription"
-                                        value={data.qrDescription}
-                                        onChange={(e) =>
-                                            setData(
-                                                "qrDescription",
-                                                e.target.value
-                                            )
-                                        }
-                                        required
-                                        fullWidth
-                                        helperText={errors.qrDescription}
-                                        error={!!errors.qrDescription}
-                                        cols="62"
-                                        rows="10"
-                                    ></textarea>
-                                </div>
-
-                                <div>
-                                    <h2>File Upload</h2>
-                                    <input
-                                        type="file"
-                                        id="fileUpload"
-                                        name="fileUpload"
-                                        accept=".pdf,.doc,.docx"
-                                        onChange={(e) => {
-                                            setData(
-                                                "fileUpload",
-                                                e.target.value
-                                            );
-                                            handleFileChange(e); // Call your existing onChange handler
-                                        }}
-                                        required
-                                        fullWidth
-                                        helperText={errors.fileUpload}
-                                        error={!!errors.fileUpload}
-                                    />
-
-                                    <button onClick={handleUpload}>
-                                        Upload
-                                    </button>
-                                </div>
-
-                                <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">
-                                    {ProductName && (
-                                        <QRCode
-                                            value={result}
-                                            onChange={(e) => {
-                                                setData(
-                                                    "qrcode",
-                                                    e.target.value
-                                                );
-                                                handleProductChange(e); // Call your existing onChange handler
-                                            }}
-                                            helperText={errors.qrcode}
-                                            error={!!errors.qrcode}
-                                            size={128}
-                                        />
-                                    )}
-                                </div>
-
-                                <div>
-                                    <Typography variant="body1">
-                                        <TextField
-                                            id="outlined-basic"
-                                            variant="standard"
-                                            fullWidth
-                                            size="small"
-                                            required
-                                            value={result}
-                                            onChange={(e) => {
-                                                setData(
-                                                    "qrcode",
-                                                    e.target.value
-                                                );
-                                                handleProductChange(e); // Call your existing onChange handler
-                                            }}
-                                            helperText={errors.qrcode}
-                                            error={!!errors.qrcode}
-                                        />
-                                    </Typography>
-                                </div>
+                                )}
                             </div>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button variant="" onClick={handleClose}>
-                                Cancel
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="success"
-                                type="submit"
-                                disabled={processing}
-                            >
-                                Add Product
-                            </Button>
-                        </DialogActions>
-                    </form>
-                </Dialog>
-            </div>
-        </div>
+
+                            <div>
+                                <Typography variant="body1">
+                                    <TextField
+                                        id="outlined-basic"
+                                        variant="standard"
+                                        fullWidth
+                                        size="small"
+                                        required
+                                        value={result}
+                                        onChange={(e) => {
+                                            setData("qrcode", e.target.value);
+                                            handleProductChange(e); // Call your existing onChange handler
+                                        }}
+                                        helperText={errors.qrcode}
+                                        error={!!errors.qrcode}
+                                    />
+                                </Typography>
+                            </div>
+                        </div>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="" onClick={handleClose}>
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            Add Product
+                        </Button>
+                    </DialogActions>
+                </form>
+            </Paper>
+        </MainLayout>
     );
 }
 

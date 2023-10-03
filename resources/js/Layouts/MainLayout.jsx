@@ -778,13 +778,23 @@ export default function MainLayout({ user, children }) {
                                 {Qr ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
                             <Collapse in={Qr} timeout="auto" unmountOnExit>
-                                <Link href={route("qr.index")}>
+                                <Link href={route("qr.create")}>
                                     <List component="div" disablePadding>
                                         <ListItemButton sx={{ pl: 4 }}>
                                             <ListItemIcon>
                                                 <PostAddIcon />
                                             </ListItemIcon>
                                             <ListItemText primary="Add Records" />
+                                        </ListItemButton>
+                                    </List>
+                                </Link>
+                                <Link href={route("qr.index")}>
+                                    <List component="div" disablePadding>
+                                        <ListItemButton sx={{ pl: 4 }}>
+                                            <ListItemIcon>
+                                                <PostAddIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Manage Records" />
                                         </ListItemButton>
                                     </List>
                                 </Link>
