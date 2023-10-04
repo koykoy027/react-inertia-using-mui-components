@@ -1,6 +1,6 @@
 import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
-import { Card, Typography } from "@mui/material";
+import { Card, Paper, Typography } from "@mui/material";
 import React from "react";
 import LocalShippingSharpIcon from "@mui/icons-material/LocalShippingSharp";
 import CarCrashSharpIcon from "@mui/icons-material/CarCrashSharp";
@@ -57,22 +57,29 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-cols-1 py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div class="grid grid-col py-10 md:gap-5 lg:grid-cols-4 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
-                    title="Total Items"
+                    title="Users"
                     count="1"
                 />
                 <ShippingCard
                     icon={<CarCrashSharpIcon fontSize="large" />}
-                    title="Total Borrowed"
+                    title="Categories"
                     count="3"
                 />
                 <ShippingCard
                     icon={
                         <ProductionQuantityLimitsSharpIcon fontSize="large" />
                     }
-                    title="Total Dispose"
+                    title="Products"
+                    count="5"
+                />
+                <ShippingCard
+                    icon={
+                        <ProductionQuantityLimitsSharpIcon fontSize="large" />
+                    }
+                    title="Sales"
                     count="5"
                 />
             </div>
@@ -89,7 +96,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                     </Typography>
                 </Card>
             </div>
-
+            {/* 
             <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <Card>
                     <MUIDataTable
@@ -98,6 +105,45 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                         options={options}
                     />
                 </Card>
+            </div> */}
+
+            <div className="grid grid-col md:grid-cols-3 lg:grid-cols-3 gap-5">
+                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                    <Card>
+                        <Typography variant="button" className="py-2 px-5">
+                            Latest Sales
+                        </Typography>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </Card>
+                </div>
+                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                    <Card>
+                        <Typography variant="button" className="py-2 px-5">
+                            Latest Sales
+                        </Typography>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </Card>
+                </div>
+                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                    <Card>
+                        <Typography variant="button" className="py-2 px-5">
+                            Recently Added Products
+                        </Typography>
+                        <MUIDataTable
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </Card>
+                </div>
             </div>
         </MainLayout>
     );
