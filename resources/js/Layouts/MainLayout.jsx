@@ -709,7 +709,7 @@ export default function MainLayout({ user, children }) {
                                 </Link>
 
                                 <List>
-                                    <Link href={route("storage.index")}>
+                                    <Link href={route("products.index")}>
                                         <ListItem disablePadding>
                                             <ListItemButton>
                                                 <ListItemIcon>
