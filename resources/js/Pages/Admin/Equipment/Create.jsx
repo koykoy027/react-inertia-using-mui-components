@@ -194,7 +194,8 @@ function Create({ auth }) {
                     <Stack sx={{ width: "100%" }} spacing={2}>
                         {showAlert && (
                             <Alert severity="success" color="info">
-                                The User is successfully Added — check it out!
+                                The Equipment is successfully Added — check it
+                                out!
                             </Alert>
                         )}
                     </Stack>
@@ -276,7 +277,7 @@ function Create({ auth }) {
                             type="submit"
                             disabled={processing}
                         >
-                            Add Account
+                            Add Equipment
                         </Button>
                     </DialogActions>
                 </form>
