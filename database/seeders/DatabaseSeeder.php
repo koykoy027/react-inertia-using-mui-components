@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
+        \App\Models\Inventory::factory(10)->create();
+        \App\Models\Category::factory(10)->create();
+        \App\Models\CategoryEquipment::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Jhunriz',
@@ -22,20 +25,21 @@ class DatabaseSeeder extends Seeder
             'password' => '123456789'
         ]);
 
-        $this->call([
-            ProductsTableSeeder::class,
-        ]);
 
-        $this->call([
-            StorageTableSeeder::class,
-        ]);
+        // $this->call([
+        //     ProductsTableSeeder::class,
+        // ]);
 
-        $this->call([
-            QrcodeTableSeeder::class,
-        ]);
-        $this->call([CategoriesSeeder::class,]);
-        $this->call([EquipmentSeeder::class,]);
-        $this->call([BranchSeeder::class,]);
-        $this->call([WarrantySeeder::class,]);
+        // $this->call([
+        //     StorageTableSeeder::class,
+        // ]);
+
+        // $this->call([
+        //     QrcodeTableSeeder::class,
+        // ]);
+        // $this->call([CategoriesSeeder::class,]);
+        // $this->call([EquipmentSeeder::class,]);
+        // $this->call([BranchSeeder::class,]);
+        // $this->call([WarrantySeeder::class,]);
     }
 }

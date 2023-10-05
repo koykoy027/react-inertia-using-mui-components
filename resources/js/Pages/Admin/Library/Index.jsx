@@ -1,14 +1,14 @@
 import MainLayout from "@/Layouts/MainLayout";
-import { Box, Card, Tab, Tabs, Typography } from "@mui/material";
+// import { Box, Card, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
-import Gender from "./Gender/Index";
-import Religion from "./Religion/Index";
-import Company from "./Company/Index";
-import Position from "./Position/Index";
-import SupervisedUserCircleSharpIcon from "@mui/icons-material/SupervisedUserCircleSharp";
-import ChangeCircleSharpIcon from "@mui/icons-material/ChangeCircleSharp";
-import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
-import MUIDataTable from "mui-datatables";
+// import Gender from "./Gender/Index";
+// import Religion from "./Religion/Index";
+// import Company from "./Company/Index";
+// import Position from "./Position/Index";
+// import SupervisedUserCircleSharpIcon from "@mui/icons-material/SupervisedUserCircleSharp";
+// import ChangeCircleSharpIcon from "@mui/icons-material/ChangeCircleSharp";
+// import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
+// import MUIDataTable from "mui-datatables";
 
 export default function Index({ auth }) {
     const [value, setValue] = useState("settings");
@@ -28,14 +28,14 @@ export default function Index({ auth }) {
 
     const options = {
         filterType: "checkBox",
-        elevation: 0,
+        elevation: 1,
         responsive: "standard",
         selectableRows: false,
     };
 
     return (
         <MainLayout user={auth.user}>
-            <div className="">
+            {/* <div className="">
                 <Typography variant="h6" color="primary">
                     Settings Page
                 </Typography>
@@ -91,7 +91,7 @@ export default function Index({ auth }) {
                         </div>
                     )}
                 </div>
-            </div>
+            </div> */}
         </MainLayout>
     );
 }

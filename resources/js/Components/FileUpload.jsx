@@ -32,7 +32,7 @@ export default function FileUpload() {
 
     return (
         <div className="grid grid-col gap-4">
-            <div className="grid grid-cols-2">
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1">
                 <input
                     type="file"
                     accept=".pdf" // Accept only PDF files

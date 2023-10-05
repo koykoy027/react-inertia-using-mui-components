@@ -25,7 +25,7 @@ export default function Index() {
 
     const options = {
         filterType: "checkBox",
-        elevation: 0,
+        elevation: 1,
         responsive: "standard",
         selectableRows: false,
     };

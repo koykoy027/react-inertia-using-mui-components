@@ -2,8 +2,10 @@ import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import { Card, Paper, Typography } from "@mui/material";
 import React from "react";
-import LocalShippingSharpIcon from "@mui/icons-material/LocalShippingSharp";
+import CategorySharpIcon from "@mui/icons-material/CategorySharp";
 import CarCrashSharpIcon from "@mui/icons-material/CarCrashSharp";
+import LocalShippingSharpIcon from "@mui/icons-material/LocalShippingSharp";
+import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
 import ProductionQuantityLimitsSharpIcon from "@mui/icons-material/ProductionQuantityLimitsSharp";
 import MUIDataTable from "mui-datatables";
 import StackBars from "@/Components/StackBar";
@@ -33,7 +35,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
 
     const options = {
         filterType: "checkBox",
-        elevation: 0,
+        elevation: 1,
         responsive: "standard",
         selectableRows: false,
     };
@@ -57,22 +59,22 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 py-8">
                 <ShippingCard
-                    icon={<LocalShippingSharpIcon fontSize="large" />}
-                    title="Users"
+                    icon={<CategorySharpIcon fontSize="large" />}
+                    title="Total Items"
                     count="1"
-                />
-                <ShippingCard
-                    icon={<CarCrashSharpIcon fontSize="large" />}
-                    title="Categories"
-                    count="3"
                 />
                 <ShippingCard
                     icon={
                         <ProductionQuantityLimitsSharpIcon fontSize="large" />
                     }
-                    title="Equipments"
+                    title="Borrowed Items"
+                    count="3"
+                />
+                <ShippingCard
+                    icon={<DeleteForeverSharpIcon fontSize="large" />}
+                    title="Total Disposed"
                     count="5"
                 />
             </div>
