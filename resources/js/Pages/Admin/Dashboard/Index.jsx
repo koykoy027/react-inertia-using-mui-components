@@ -57,7 +57,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-col py-10 md:gap-5 lg:grid-cols-4 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div class="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
                     title="Users"
@@ -72,14 +72,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                     icon={
                         <ProductionQuantityLimitsSharpIcon fontSize="large" />
                     }
-                    title="Products"
-                    count="5"
-                />
-                <ShippingCard
-                    icon={
-                        <ProductionQuantityLimitsSharpIcon fontSize="large" />
-                    }
-                    title="Sales"
+                    title="Equipments"
                     count="5"
                 />
             </div>
@@ -111,7 +104,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Latest Sales
+                            Latest Users
                         </Typography>
                         <MUIDataTable
                             data={data}
@@ -123,7 +116,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Latest Sales
+                            Latest Branch
                         </Typography>
                         <MUIDataTable
                             data={data}
@@ -135,7 +128,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Recently Added Products
+                            Recently Added Equipments
                         </Typography>
                         <MUIDataTable
                             data={data}
