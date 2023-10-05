@@ -190,7 +190,7 @@ function Create({ auth }) {
                             type="submit"
                             disabled={processing}
                         >
-                            Add Account
+                            Add Category
                         </Button>
                     </DialogActions>
                 </form>
