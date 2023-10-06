@@ -117,13 +117,6 @@ function Create({ auth }) {
         <MainLayout user={auth.user}>
             <Paper>
                 <form onSubmit={handleSubmit} className="grid gap-2">
-                    <Stack sx={{ width: "100%" }} spacing={2}>
-                        {showAlert && (
-                            <Alert severity="success" color="info">
-                                The User is successfully Added — check it out!
-                            </Alert>
-                        )}
-                    </Stack>
                     <DialogTitle>
                         Are you sure want to add your account?
                     </DialogTitle>

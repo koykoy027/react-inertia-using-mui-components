@@ -173,14 +173,6 @@ function Create() {
                 </Button>
 
                 <Dialog open={open} onClose={handleClose}>
-                    <Stack sx={{ width: "100%" }} spacing={2}>
-                        {showAlert && (
-                            <Alert severity="success" color="info">
-                                The Product is successfully Added — check it
-                                out!
-                            </Alert>
-                        )}
-                    </Stack>
                     <form onSubmit={handleSubmit}>
                         <DialogTitle>Add your products!</DialogTitle>
                         <DialogContent>

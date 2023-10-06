@@ -154,14 +154,6 @@ function Create({ auth }) {
             </div>
             <Paper className="">
                 <form onSubmit={handleSubmit} className="grid gap-2">
-                    <Stack sx={{ width: "100%" }} spacing={2}>
-                        {showAlert && (
-                            <Alert severity="success" color="info">
-                                The Equipment is successfully Added — check it
-                                out!
-                            </Alert>
-                        )}
-                    </Stack>
                     <DialogTitle>Equipments</DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
