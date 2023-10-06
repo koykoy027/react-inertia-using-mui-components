@@ -8,6 +8,7 @@ import {
     Paper,
     Stack,
     TextField,
+    Typography,
 } from "@mui/material";
 import React from "react";
 import InputLabel from "@mui/material/InputLabel";
@@ -22,25 +23,11 @@ import MainLayout from "@/Layouts/MainLayout";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import { HomeRepairServiceOutlined } from "@mui/icons-material";
 import InventoryIcon from "@mui/icons-material/Inventory";
+import MySelectComponent from "@/Components/CustomSelect";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import SettingsCellIcon from "@mui/icons-material/SettingsCell";
 
 function Create({ auth }) {
-    // test sample
-
-    const [region, setRegion] = React.useState("");
-
-    const regionChange = (event) => {
-        setRegion(event.target.value);
-    };
-
-    const regions = [
-        { label: "None", value: "" },
-        { label: "Ten", value: 10 },
-        { label: "Twenty", value: 20 },
-        { label: "Thirty", value: 30 },
-    ];
-
-    // test
-
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -56,21 +43,6 @@ function Create({ auth }) {
 
         reset();
     };
-
-    // department sample
-
-    const [department, setDepartment] = React.useState("");
-
-    const DepartmentChange = (event) => {
-        setDepartment(event.target.value);
-    };
-
-    const departmentoption = [
-        { label: "None", value: "" },
-        { label: "IT", value: 10 },
-        { label: "Computer-Science", value: 20 },
-        { label: "IS", value: 30 },
-    ];
 
     // add alertmessage in form submit
 
@@ -142,22 +114,70 @@ function Create({ auth }) {
         },
     ];
 
+    // province option
+
+    const [selectedProvince, setselectedProvince] = useState("");
+
+    const handleProvinceChange = (event) => {
+        setselectedProvince(event.target.value);
+    };
+
+    const province_option = [
+        { value: "None", label: "None" },
+        { value: "Caloocan", label: "Caloocan" },
+        { value: "Manila", label: "Manila" },
+    ];
+
+    // City option
+
+    const [selectedCity, setselectedCity] = useState("");
+
+    const handleCityChange = (event) => {
+        setselectedCity(event.target.value);
+    };
+
+    const city_option = [
+        { value: "None", label: "None" },
+        { value: "Bagong Silang", label: "Bagong Silang" },
+        { value: "Tondo", label: "Tondo" },
+    ];
+
+    // Barangay option
+
+    const [selectedBarangay, setselectedBarangay] = useState("");
+
+    const handleBarangayChange = (event) => {
+        setselectedBarangay(event.target.value);
+    };
+
+    const Barangay_option = [
+        { value: "None", label: "None" },
+        { value: "176", label: "176" },
+        { value: "Quiapo", label: "Quiapo" },
+    ];
+
+    // choice of branch mobile
+
+    const [selectedValue, setSelectedValue] = useState("");
+
+    const handleSelectChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
+
+    const branch_contact_option = [
+        { value: "Telephone", label: <LocalPhoneIcon /> },
+        { value: "Mobile", label: <SettingsCellIcon /> },
+    ];
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <Paper className="">
+            <Paper elevation={5}>
                 <form onSubmit={handleSubmit} className="grid gap-2">
-                    <Stack sx={{ width: "100%" }} spacing={2}>
-                        {showAlert && (
-                            <Alert severity="success" color="info">
-                                The User is successfully Added — check it out!
-                            </Alert>
-                        )}
-                    </Stack>
                     <DialogTitle>
-                        Are you sure want to add your Category?
+                        <Typography variant="imherit">Branch</Typography>
                     </DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
@@ -177,21 +197,103 @@ function Create({ auth }) {
                                     error={!!errors.branch}
                                     size="small"
                                 />
+                                <Typography variant="inherit">
+                                    Address
+                                </Typography>
+                                <div className="grid grid-col gap-5 md:grid-cols-3">
+                                    <MySelectComponent
+                                        label="Select Province"
+                                        value={selectedProvince}
+                                        options={province_option}
+                                        onChange={handleProvinceChange}
+                                    />
+                                    <MySelectComponent
+                                        label="Select City"
+                                        value={selectedCity}
+                                        options={city_option}
+                                        onChange={handleCityChange}
+                                    />
+                                    <MySelectComponent
+                                        label="Select Barangay"
+                                        value={selectedBarangay}
+                                        options={Barangay_option}
+                                        onChange={handleBarangayChange}
+                                    />
+                                </div>
+                                <div className="grid grid-col gap-5 md:grid-cols-2 lg:grid-cols-2">
+                                    <TextField
+                                        label="House No/ Floor"
+                                        id="branch_floor"
+                                        name="branch_floor"
+                                        required
+                                        size="small"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        label="Street"
+                                        id="branch_street"
+                                        name="branch_street"
+                                        required
+                                        size="small"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        label="Zip Code"
+                                        id="branch_zipCode"
+                                        name="branch_zipCode"
+                                        required
+                                        size="small"
+                                    />
+                                </div>
+                            </div>
+                            <Typography variant="inherit">Contact</Typography>
+                            <div className="grid grid-col gap-7">
+                                <div className="flex gap-2">
+                                    <div className="shrink-0">
+                                        <MySelectComponent
+                                            label=""
+                                            value={selectedValue}
+                                            options={branch_contact_option}
+                                            onChange={handleSelectChange}
+                                        />
+                                    </div>
+                                    <div className="cols-span-4">
+                                        <TextField
+                                            label="Contact"
+                                            id="branch_contact"
+                                            name="branch_contact"
+                                            required
+                                            size="small"
+                                            type="number"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2">
+                                    <TextField
+                                        label="Email"
+                                        id="branch_email"
+                                        name="branch_email"
+                                        required
+                                        size="small"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="" onClick={handleClose}>
-                            Cancel
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            disabled={processing}
-                        >
-                            Add Account
-                        </Button>
+                        <div className="px-7 py-5">
+                            <Button variant="" onClick={handleClose}>
+                                Cancel
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                                disabled={processing}
+                            >
+                                Add Account
+                            </Button>
+                        </div>
                     </DialogActions>
                 </form>
             </Paper>

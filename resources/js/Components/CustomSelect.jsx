@@ -4,9 +4,15 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-export default function MySelectComponent({ label, value, options, onChange }) {
+export default function MySelectComponent({
+    label,
+    value,
+    options,
+    onChange,
+    style,
+}) {
     return (
-        <FormControl fullWidth size="small">
+        <FormControl style={style} fullWidth size="small">
             <InputLabel>{label}</InputLabel>
             <Select value={value} label={label} onChange={onChange}>
                 {options.map((option) => (

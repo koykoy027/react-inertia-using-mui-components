@@ -156,9 +156,7 @@ function Create({ auth }) {
                             </Alert>
                         )}
                     </Stack>
-                    <DialogTitle>
-                        Are you sure want to add your Category?
-                    </DialogTitle>
+                    <DialogTitle>Category</DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
                             <div className="grid grid-col gap-5">
