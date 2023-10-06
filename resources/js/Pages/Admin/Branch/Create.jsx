@@ -268,7 +268,7 @@ function Create({ auth }) {
                                         />
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2">
+                                <div className="grid grid-col md:grid-cols-2">
                                     <TextField
                                         label="Email"
                                         id="branch_email"

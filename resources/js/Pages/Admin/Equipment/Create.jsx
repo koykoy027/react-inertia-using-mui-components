@@ -196,17 +196,19 @@ function Create({ auth }) {
                         </div>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="" onClick={handleClose}>
-                            Cancel
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            disabled={processing}
-                        >
-                            Add Equipment
-                        </Button>
+                        <div className="px-6 py-5">
+                            <Button variant="" onClick={handleClose}>
+                                Cancel
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                                disabled={processing}
+                            >
+                                Add Equipment
+                            </Button>
+                        </div>
                     </DialogActions>
                 </form>
             </Paper>
