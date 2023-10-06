@@ -62,21 +62,6 @@ function Create({ auth }) {
         reset();
     };
 
-    // department sample
-
-    const [department, setDepartment] = React.useState("");
-
-    const DepartmentChange = (event) => {
-        setDepartment(event.target.value);
-    };
-
-    const departmentoption = [
-        { label: "None", value: "" },
-        { label: "IT", value: 10 },
-        { label: "Computer-Science", value: 20 },
-        { label: "IS", value: 30 },
-    ];
-
     // add alertmessage in form submit
 
     const [showAlert, setShowAlert] = useState(true);
@@ -147,28 +132,6 @@ function Create({ auth }) {
         },
     ];
 
-    // barcode
-
-    const [productName, setProductName] = useState("");
-    const barcodeRef = useRef(null);
-
-    // for the equipment
-
-    // barcode
-    const handleInputChange = (e) => {
-        setProductName(e.target.value);
-        // const inputValue = event.target.value.replace(/\D/g, "").slice(0, 48); // this const is responsible for the make the string make into integer and limit into 48 digit
-        setProductName(inputValue);
-    };
-
-    // qrcode
-
-    // const handleInputChange = (e) => {
-    //     setProductName(e.target.value);
-    // };
-
-    const value = productName;
-
     // choice of categories
 
     const [selectedValue, setSelectedValue] = useState("");
@@ -223,9 +186,9 @@ function Create({ auth }) {
                                     label="Serial Number"
                                     id="serial_number"
                                     name="serial_number"
-                                    value={productName}
+                                    value={"Serial Number"}
                                     className="block w-full mt-1"
-                                    onChange={handleInputChange}
+                                    // onChange={handleInputChange}
                                     size="small"
                                 />
 
@@ -235,35 +198,6 @@ function Create({ auth }) {
                                     options={categories_option}
                                     onChange={handleSelectChange}
                                 />
-
-                                <div
-                                    ref={barcodeRef}
-                                    id="barcode-canvas"
-                                    className="grid justify-center border py-4 border-gray-400 w-full" // Centered for smaller screens
-                                >
-                                    <Typography>BARCODE</Typography>
-                                    {productName && (
-                                        <Barcode
-                                            id="barcode-canvas"
-                                            value={productName}
-                                            width={4}
-                                            height={60} // Adjusted for smaller screens
-                                            canvas
-                                        />
-                                    )}
-                                </div>
-                                <div className="mt-4">
-                                    <div className="grid justify-center items-center rounded border-2 py-5 lg:py-10 border-gray-400">
-                                        <Typography>QR CODE</Typography>
-                                        {productName && (
-                                            <QRCode
-                                                id="qrcode-canvas"
-                                                size={128}
-                                                value={value}
-                                            />
-                                        )}
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </DialogContent>
