@@ -12,6 +12,7 @@ function Clock() {
         // Clear the interval when the component unmounts
         return () => clearInterval(intervalId);
     }, []);
+    // clock
 
     const options = {
         weekday: "long",
