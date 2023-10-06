@@ -209,22 +209,6 @@ export default function MainLayout({ user, children }) {
         },
     ];
 
-    const breadcrumbItems = [
-        {
-            icon: <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "MUI",
-            url: "/",
-        },
-        {
-            icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "Core",
-            url: "/material-ui/getting-started/installation/",
-        },
-        {
-            icon: <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "Breadcrumb",
-        },
-    ];
     // Initialize DarkMode state with a default value from localStorage if available
     const [DarkMode, SetDarkMode] = useState(
         localStorage.getItem("DarkMode") === "true"
@@ -297,17 +281,6 @@ export default function MainLayout({ user, children }) {
     const MessagehandleClose = () => {
         setmessageEl(null);
     };
-
-    // loader
-
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        // Simulate an async operation (e.g., fetching data) that takes some time
-        setTimeout(() => {
-            setLoading(false); // Set loading to false when the operation is complete
-        }, 3000); // Simulate a 3-second loading time
-    }, []);
 
     return (
         <ThemeProvider theme={darkTheme}>
