@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 function Clock() {
@@ -32,7 +33,7 @@ function Clock() {
 
     return (
         <div>
-            <h1>Current Date and Time:</h1>
+            <Typography variant="subtitle2">Current Date and Time</Typography>
             <p>{formattedDateTime}</p>
         </div>
     );

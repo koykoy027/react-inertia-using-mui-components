@@ -253,6 +253,11 @@ export default function MainLayout({ user, children }) {
                 fontWeight: "normal",
                 fontFamily: "arial",
             },
+            subtitle2: {
+                fontSize: 16,
+                color: "#039be5",
+                fontFamily: "Segoe UI",
+            },
             body1: {
                 fontWeight: 500,
             },
