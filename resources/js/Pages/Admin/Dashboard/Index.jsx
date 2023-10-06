@@ -57,7 +57,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
     return (
         <MainLayout user={auth.user}>
             <CustomBreadcrumbs items={breadcrumbItems} />
-            <div class="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div className="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<LocalShippingSharpIcon fontSize="large" />}
                     title="Users"
@@ -77,7 +77,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 />
             </div>
 
-            <div class="grid grid-col lg:grid-cols-2 gap-5 py-6 max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+            <div className="grid grid-col lg:grid-cols-2 gap-5 py-6 max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <Card>
                     <Typography paragraph>
                         <StackBars />
@@ -89,19 +89,9 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                     </Typography>
                 </Card>
             </div>
-            {/* 
-            <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
-                <Card>
-                    <MUIDataTable
-                        data={data}
-                        columns={columns}
-                        options={options}
-                    />
-                </Card>
-            </div> */}
 
             <div className="grid grid-col md:grid-cols-3 lg:grid-cols-3 gap-5">
-                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
                             Latest Users
@@ -113,7 +103,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                         />
                     </Card>
                 </div>
-                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
                             Latest Branch
@@ -125,7 +115,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                         />
                     </Card>
                 </div>
-                <div class="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
+                <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
                             Recently Added Equipments
