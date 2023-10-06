@@ -225,9 +225,28 @@ export default function MainLayout({ user, children }) {
     const darkTheme = createTheme({
         palette: {
             mode: DarkMode ? "dark" : "light",
+            primary: {
+                light: "#40c4ff",
+                main: "#00b0ff",
+                dark: "#01579b",
+                contrastText: "#fff",
+            },
+            secondary: {
+                main: "#00838f", // Change this to your secondary color
+            },
         },
         typography: {
-            fontFamily: "Roboto, sans-serif",
+            subtitle1: {
+                fontSize: 24,
+                fontWeight: "normal",
+                fontFamily: "arial",
+            },
+            body1: {
+                fontWeight: 500,
+            },
+            button: {
+                fontFamily: "Arial",
+            },
         },
     });
 

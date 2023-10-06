@@ -177,7 +177,7 @@ function Create({ auth }) {
             <Paper elevation={5}>
                 <form onSubmit={handleSubmit} className="grid gap-2">
                     <DialogTitle>
-                        <Typography variant="imherit">Branch</Typography>
+                        <Typography variant="subtitle1">Branch</Typography>
                     </DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">

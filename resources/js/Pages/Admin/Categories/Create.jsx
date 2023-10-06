@@ -8,6 +8,7 @@ import {
     Paper,
     Stack,
     TextField,
+    Typography,
 } from "@mui/material";
 import React from "react";
 import InputLabel from "@mui/material/InputLabel";
@@ -149,7 +150,9 @@ function Create({ auth }) {
             </div>
             <Paper className="">
                 <form onSubmit={handleSubmit} className="grid gap-2">
-                    <DialogTitle>Category</DialogTitle>
+                    <DialogTitle>
+                        <Typography variant="subtitle1">Category</Typography>
+                    </DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
                             <div className="grid grid-col gap-5">

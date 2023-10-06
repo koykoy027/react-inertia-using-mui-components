@@ -154,7 +154,9 @@ function Create({ auth }) {
             </div>
             <Paper className="">
                 <form onSubmit={handleSubmit} className="grid gap-2">
-                    <DialogTitle>Equipments</DialogTitle>
+                    <DialogTitle>
+                        <Typography variant="subtitle1">Equipments</Typography>
+                    </DialogTitle>
                     <DialogContent>
                         <div className="grid grid-col gap-7 px-2">
                             <div className="grid grid-col gap-5">
