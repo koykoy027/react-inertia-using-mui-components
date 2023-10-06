@@ -234,6 +234,16 @@ export default function MainLayout({ user, children }) {
             secondary: {
                 main: "#00838f", // Change this to your secondary color
             },
+            error: {
+                main: "#d50000", // Change this to your secondary color
+                light: "#ff8a80",
+                dark: "#ff1744",
+            },
+            warning: {
+                main: "#ffff8d", // Change this to your secondary color
+                light: "#ffea00",
+                dark: "#ffd600",
+            },
         },
         typography: {
             subtitle1: {
