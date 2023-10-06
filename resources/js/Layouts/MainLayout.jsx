@@ -62,6 +62,7 @@ import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Clock from "@/Components/Clock";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -328,8 +329,13 @@ export default function MainLayout({ user, children }) {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <Typography variant="h6" noWrap component="div">
-                                Inventory Management System
+
+                            <Typography
+                                variant="inherit"
+                                noWrap
+                                component="div"
+                            >
+                                <Clock />
                             </Typography>
                             <div style={{ flexGrow: 1 }}></div>
 
@@ -553,6 +559,11 @@ export default function MainLayout({ user, children }) {
                         open={open}
                     >
                         <DrawerHeader>
+                            <div className="ml-3 my-5">
+                                <Typography variant="subtitle">
+                                    Inventory Management System
+                                </Typography>
+                            </div>
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === "ltr" ? (
                                     <ChevronLeftIcon />
