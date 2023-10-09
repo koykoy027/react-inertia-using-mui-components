@@ -61,17 +61,17 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <div className="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
                     icon={<PersonOutlineIcon fontSize="large" />}
-                    title="Users"
+                    title="Item Returned"
                     count="1"
                 />
                 <ShippingCard
                     icon={<CategoryIcon fontSize="large" />}
-                    title="Categories"
+                    title="Item Borrowed"
                     count="3"
                 />
                 <ShippingCard
                     icon={<HomeRepairServiceIcon fontSize="large" />}
-                    title="Equipments"
+                    title="Item Disposed"
                     count="5"
                 />
             </div>
@@ -93,7 +93,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Latest Users
+                            Items Returned
                         </Typography>
                         <MUIDataTable
                             data={data}
@@ -105,7 +105,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Latest Branch
+                            Item Borrowed
                         </Typography>
                         <MUIDataTable
                             data={data}
@@ -117,7 +117,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <Typography variant="button" className="py-2 px-5">
-                            Recently Added Equipments
+                            Item Disposed
                         </Typography>
                         <MUIDataTable
                             data={data}
