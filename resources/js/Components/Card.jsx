@@ -8,18 +8,18 @@ const ShippingCard = ({ title, count, icon }) => {
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent className="flex flex-cols-3 gap-4 items-center">
-                <Typography
-                    sx={{ fontSize: 24 }}
-                    color="text.secondary"
-                    gutterBottom
-                >
+                <Typography sx={{ fontSize: 24 }} color="primary" gutterBottom>
                     {icon}
                 </Typography>
-                <div className="grid grid-rows-2">
-                    <Typography variant="h5" component="div">
+                <div className="grid grid-col">
+                    <Typography variant="subtitle1" component="div">
                         {title}
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    <Typography
+                        variant="button"
+                        sx={{ mb: 1.5 }}
+                        color="text.secondary"
+                    >
                         {count}
                     </Typography>
                 </div>

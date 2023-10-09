@@ -2,8 +2,6 @@ import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import { Card, Paper, Typography } from "@mui/material";
 import React from "react";
-import LocalShippingSharpIcon from "@mui/icons-material/LocalShippingSharp";
-import CarCrashSharpIcon from "@mui/icons-material/CarCrashSharp";
 import ProductionQuantityLimitsSharpIcon from "@mui/icons-material/ProductionQuantityLimitsSharp";
 import MUIDataTable from "mui-datatables";
 import StackBars from "@/Components/StackBar";
@@ -12,6 +10,9 @@ import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EastIcon from "@mui/icons-material/East";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import CategoryIcon from "@mui/icons-material/Category";
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 
 import { Link } from "@inertiajs/react";
 
@@ -59,19 +60,17 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <CustomBreadcrumbs items={breadcrumbItems} />
             <div className="grid grid-col py-10 md:gap-5 lg:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                 <ShippingCard
-                    icon={<LocalShippingSharpIcon fontSize="large" />}
+                    icon={<PersonOutlineIcon fontSize="large" />}
                     title="Users"
                     count="1"
                 />
                 <ShippingCard
-                    icon={<CarCrashSharpIcon fontSize="large" />}
+                    icon={<CategoryIcon fontSize="large" />}
                     title="Categories"
                     count="3"
                 />
                 <ShippingCard
-                    icon={
-                        <ProductionQuantityLimitsSharpIcon fontSize="large" />
-                    }
+                    icon={<HomeRepairServiceIcon fontSize="large" />}
                     title="Equipments"
                     count="5"
                 />

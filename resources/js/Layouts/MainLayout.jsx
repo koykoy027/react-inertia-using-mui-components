@@ -255,7 +255,7 @@ export default function MainLayout({ user, children }) {
             },
             subtitle2: {
                 fontSize: 16,
-                color: "#039be5",
+                color: "#00b0ff",
                 fontFamily: "Segoe UI",
             },
             body1: {
