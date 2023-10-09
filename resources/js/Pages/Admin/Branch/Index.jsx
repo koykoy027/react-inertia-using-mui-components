@@ -211,6 +211,9 @@ export default function Index({ auth, mustVerifyEmail, status, branch }) {
             <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <div className="sm:hidden">
                     {/* Mobile View */}
+                    <div className="px-5 py-5 border-b-4 border-sky-500">
+                        <Typography variant="h6">Branch</Typography>
+                    </div>
                     <Card>
                         <MUIDataTable
                             data={data}
@@ -223,6 +226,9 @@ export default function Index({ auth, mustVerifyEmail, status, branch }) {
                 </div>
                 <div className="hidden sm:block">
                     {/* Desktop View */}
+                    <div className="px-5 py-5 border-b-4 border-sky-500">
+                        <Typography variant="h6">Branch</Typography>
+                    </div>
                     <Card>
                         <MUIDataTable
                             data={data}

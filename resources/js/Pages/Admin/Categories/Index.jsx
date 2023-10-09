@@ -11,6 +11,7 @@ import {
     ListItemAvatar,
     Menu,
     MenuItem,
+    Paper,
     Tooltip,
     Typography,
 } from "@mui/material";
@@ -216,30 +217,35 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
             <div class="">
-                <div className="sm:hidden">
-                    {/* Mobile View */}
-                    <Card>
-                        <MUIDataTable
-                            data={data}
-                            columns={columns}
-                            options={options}
-                            size={"small"}
-                            // You can apply the stickyHeader class if needed for mobile view
-                        />
-                    </Card>
-                </div>
-                <div className="hidden sm:block">
-                    {/* Desktop View */}
-                    <Card>
-                        <MUIDataTable
-                            data={data}
-                            columns={columns}
-                            options={options}
-                            size={"small"}
-                            stickyHeader
-                        />
-                    </Card>
-                </div>
+                <Paper>
+                    <div className="px-5 py-5 border-b-4 border-sky-500">
+                        <Typography variant="h6">Categories</Typography>
+                    </div>
+                    <div className="sm:hidden">
+                        {/* Mobile View */}
+                        <Card>
+                            <MUIDataTable
+                                data={data}
+                                columns={columns}
+                                options={options}
+                                size={"small"}
+                                // You can apply the stickyHeader class if needed for mobile view
+                            />
+                        </Card>
+                    </div>
+                    <div className="hidden sm:block">
+                        {/* Desktop View */}
+                        <Card>
+                            <MUIDataTable
+                                data={data}
+                                columns={columns}
+                                options={options}
+                                size={"small"}
+                                stickyHeader
+                            />
+                        </Card>
+                    </div>
+                </Paper>
             </div>
         </MainLayout>
     );

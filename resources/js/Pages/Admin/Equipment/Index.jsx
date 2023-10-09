@@ -4,10 +4,12 @@ import {
     Avatar,
     Box,
     Card,
+    Divider,
     IconButton,
     ListItem,
     ListItemAvatar,
     Menu,
+    Paper,
     Tooltip,
     Typography,
 } from "@mui/material";
@@ -188,30 +190,38 @@ export default function Index({ auth, mustVerifyEmail, status, equipments }) {
                 </Box>
             </div>
             <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
-                <div className="sm:hidden">
-                    {/* Mobile View */}
-                    <Card>
-                        <MUIDataTable
-                            data={data}
-                            columns={columns}
-                            options={options}
-                            size={"small"}
-                            // You can apply the stickyHeader class if needed for mobile view
-                        />
-                    </Card>
-                </div>
-                <div className="hidden sm:block">
-                    {/* Desktop View */}
-                    <Card>
-                        <MUIDataTable
-                            data={data}
-                            columns={columns}
-                            options={options}
-                            size={"small"}
-                            stickyHeader
-                        />
-                    </Card>
-                </div>
+                <Paper>
+                    <div className="sm:hidden">
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Equipments</Typography>
+                        </div>
+                        {/* Mobile View */}
+                        <Card>
+                            <MUIDataTable
+                                data={data}
+                                columns={columns}
+                                options={options}
+                                size={"small"}
+                                // You can apply the stickyHeader class if needed for mobile view
+                            />
+                        </Card>
+                    </div>
+                    <div className="hidden sm:block">
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Equipments</Typography>
+                        </div>
+                        {/* Desktop View */}
+                        <Card>
+                            <MUIDataTable
+                                data={data}
+                                columns={columns}
+                                options={options}
+                                size={"small"}
+                                stickyHeader
+                            />
+                        </Card>
+                    </div>
+                </Paper>
             </div>
         </MainLayout>
     );
