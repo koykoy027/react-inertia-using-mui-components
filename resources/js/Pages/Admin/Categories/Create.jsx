@@ -25,71 +25,10 @@ import { HomeRepairServiceOutlined } from "@mui/icons-material";
 import InventoryIcon from "@mui/icons-material/Inventory";
 
 function Create({ auth }) {
-    // test sample
-
-    const [region, setRegion] = React.useState("");
-
-    const regionChange = (event) => {
-        setRegion(event.target.value);
-    };
-
-    const regions = [
-        { label: "None", value: "" },
-        { label: "Ten", value: 10 },
-        { label: "Twenty", value: 20 },
-        { label: "Thirty", value: 30 },
-    ];
-
-    // test
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = () => {
         setOpen(false);
     };
 
-    const closeModal = () => {
-        setConfirmingUserDeletion(false);
-
-        reset();
-    };
-
-    // department sample
-
-    const [department, setDepartment] = React.useState("");
-
-    const DepartmentChange = (event) => {
-        setDepartment(event.target.value);
-    };
-
-    const departmentoption = [
-        { label: "None", value: "" },
-        { label: "IT", value: 10 },
-        { label: "Computer-Science", value: 20 },
-        { label: "IS", value: 30 },
-    ];
-
-    // add alertmessage in form submit
-
-    const [showAlert, setShowAlert] = useState(true);
-
-    // Function to hide the alert after a specified duration (in milliseconds)
-    const hideAlertAfterDuration = (duration) => {
-        setTimeout(() => {
-            setShowAlert(false);
-        }, duration);
-    };
-
-    // Call the hideAlertAfterDuration function when showAlert becomes true
-    useEffect(() => {
-        if (showAlert) {
-            hideAlertAfterDuration(5000); // Auto-hide after 3 seconds
-        }
-    }, [showAlert]);
     // submmit to store
 
     const { data, setData, post, processing, errors, reset } = useForm({

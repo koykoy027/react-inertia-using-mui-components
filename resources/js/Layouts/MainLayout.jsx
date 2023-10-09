@@ -617,17 +617,6 @@ export default function MainLayout({ user, children }) {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <Link href={route("categories.create")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <AddBoxIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add Category" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-
                                 <List component="div" disablePadding>
                                     <Link href={route("categories.index")}>
                                         <ListItemButton sx={{ pl: 4 }}>

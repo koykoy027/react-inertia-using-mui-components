@@ -1,42 +1,32 @@
-import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import {
-    Autocomplete,
     Avatar,
-    Button,
+    Badge,
+    Box,
     Card,
-    FormControl,
-    InputLabel,
+    Grid,
+    IconButton,
+    List,
+    ListItem,
+    ListItemAvatar,
+    Menu,
     MenuItem,
-    Select,
-    TextField,
+    Tooltip,
+    Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
-import TransitionsModal from "@/Components/Modal";
-import ReusableModal from "@/Components/Modal";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
-import BasicTextFields from "@/Components/InputField";
-import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
-import EastIcon from "@mui/icons-material/East";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { styled } from "@mui/material/styles";
+import AddIcon from "@mui/icons-material/Add";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function Index({ auth, mustVerifyEmail, status, categories }) {
-    const data = categories.map((categories) => [
-        categories.id,
-        categories.categories,
-        <div className="flex justify-end pr-5">
-            <Link href={route("dashboard")}>
-                <EastIcon />
-            </Link>
-        </div>, // Replace 'insert_icon_name_here' with the actual icon name
-    ]);
-
     const columns = ["ID", "Categories", ""];
 
     const options = {
@@ -44,12 +34,6 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
         elevation: 0,
         responsive: "standard",
         selectableRows: false,
-    };
-
-    const [age, setAge] = React.useState("");
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
     };
 
     const breadcrumbItems = [
@@ -73,12 +57,165 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
         },
     ];
 
+    // crud
+
+    // Email Dropdown message in layout
+
+    const [messageEl, setmessageEl] = useState(null);
+
+    const MessagehandleClick = (event) => {
+        setmessageEl(event.currentTarget);
+    };
+
+    const MessagehandleClose = () => {
+        setmessageEl(null);
+    };
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const openAvatar = Boolean(anchorEl);
+
+    const [selectedValue, setSelectedValue] = useState("default"); // Default value
+
+    const handleChange = (newValue) => {
+        setSelectedValue(newValue); // Update the selected value
+    };
+
+    const crud = [
+        { value: "Add", label: "Add" },
+        { value: "Update", label: "Update" },
+        { value: "Delete", label: "Delete" },
+    ];
+
+    const Demo = styled("div")(({ theme }) => ({
+        backgroundColor: theme.palette.background.paper,
+    }));
+
+    const data = categories.map((category) => [
+        category.id,
+        category.categories,
+        <div className="flex justify-end pr-5" key={category.id}>
+            <Tooltip title="Account settings">
+                <IconButton
+                    onClick={MessagehandleClick} // Make sure you have defined MessagehandleClick function
+                    size="medium"
+                    sx={{ ml: 2 }}
+                    aria-controls={messageEl ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={messageEl ? "true" : undefined}
+                >
+                    <MoreVertIcon />
+                </IconButton>
+            </Tooltip>
+        </div>,
+    ]);
+
     return (
         <MainLayout user={auth.user}>
+            <div>
+                {/* account menu start */}
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        textAlign: "center",
+                    }}
+                >
+                    <div className="flex justify-center items-center">
+                        <div>
+                            <Menu
+                                id="account-menu"
+                                anchorEl={messageEl}
+                                open={Boolean(messageEl)}
+                                onClose={MessagehandleClose}
+                                PaperProps={{
+                                    elevation: 0,
+                                    sx: {
+                                        overflow: "visible",
+                                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.202))",
+                                        mt: 1.5,
+                                        "& .MuiAvatar-root": {
+                                            width: 32,
+                                            height: 32,
+                                            ml: -0.0,
+                                            mr: 2,
+                                        },
+                                        "&:before": {
+                                            content: '""',
+                                            display: "block",
+                                            position: "absolute",
+                                            top: 0,
+                                            right: 14,
+                                            width: 10,
+                                            height: 10,
+                                            bgcolor: "background.paper",
+                                            transform:
+                                                "translateY(-50%) rotate(45deg)",
+                                            zIndex: 0,
+                                        },
+                                    },
+                                }}
+                                transformOrigin={{
+                                    horizontal: "right",
+                                    vertical: "top",
+                                }}
+                                anchorOrigin={{
+                                    horizontal: "right",
+                                    vertical: "bottom",
+                                }}
+                            >
+                                {/* <MessageNotification /> */}
+                                <Link href={route("categories.create")}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <AddIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <Typography variant="subtitle2">
+                                            Create
+                                        </Typography>
+                                    </ListItem>
+                                </Link>
+                                <Link href={route("categories.create")}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <SyncAltIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <Typography variant="subtitle2">
+                                            Update
+                                        </Typography>
+                                    </ListItem>
+                                </Link>
+                                <Link href={route("categories.create")}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <DeleteForeverIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <Typography variant="subtitle2">
+                                            Delete
+                                        </Typography>
+                                    </ListItem>
+                                </Link>
+                            </Menu>
+                        </div>
+                    </div>
+                </Box>
+            </div>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
+            <div class="">
                 <div className="sm:hidden">
                     {/* Mobile View */}
                     <Card>
