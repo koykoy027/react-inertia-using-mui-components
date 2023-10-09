@@ -2,7 +2,6 @@ import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import { Card, Paper, Typography } from "@mui/material";
 import React from "react";
-import ProductionQuantityLimitsSharpIcon from "@mui/icons-material/ProductionQuantityLimitsSharp";
 import MUIDataTable from "mui-datatables";
 import StackBars from "@/Components/StackBar";
 import BasicPie from "@/Components/BasicPie";
@@ -13,7 +12,6 @@ import EastIcon from "@mui/icons-material/East";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CategoryIcon from "@mui/icons-material/Category";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
-
 import { Link } from "@inertiajs/react";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {

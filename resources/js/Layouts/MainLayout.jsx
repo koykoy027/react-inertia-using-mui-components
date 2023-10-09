@@ -14,20 +14,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import SendIcon from "@mui/icons-material/Send";
 import { Link, useForm } from "@inertiajs/react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import SettingsApplicationsSharpIcon from "@mui/icons-material/SettingsApplicationsSharp";
 import DashboardSharpIcon from "@mui/icons-material/DashboardSharp";
-import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
-import WidgetsIcon from "@mui/icons-material/Widgets";
 import CategoryIcon from "@mui/icons-material/Category";
 import {
     Avatar,
