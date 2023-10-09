@@ -644,17 +644,6 @@ export default function MainLayout({ user, children }) {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <Link href={route("equipment.create")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <AddBoxIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add Equipments" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-
                                 <List component="div" disablePadding>
                                     <Link href={route("equipment.index")}>
                                         <ListItemButton sx={{ pl: 4 }}>
@@ -678,17 +667,6 @@ export default function MainLayout({ user, children }) {
                                 {Branch ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
                             <Collapse in={Branch} timeout="auto" unmountOnExit>
-                                <Link href={route("branch.create")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <AddBoxIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add Branch" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-
                                 <List component="div" disablePadding>
                                     <Link href={route("branch.index")}>
                                         <ListItemButton sx={{ pl: 4 }}>

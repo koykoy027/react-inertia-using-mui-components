@@ -3,15 +3,22 @@ import MainLayout from "@/Layouts/MainLayout";
 import {
     Autocomplete,
     Avatar,
+    Box,
     Button,
     Card,
     FormControl,
+    IconButton,
     InputLabel,
+    ListItem,
+    ListItemAvatar,
+    Menu,
     MenuItem,
     Select,
     TextField,
+    Tooltip,
+    Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import TransitionsModal from "@/Components/Modal";
 import ReusableModal from "@/Components/Modal";
@@ -25,18 +32,12 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import EastIcon from "@mui/icons-material/East";
+import AddIcon from "@mui/icons-material/Add";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export default function Index({ auth, mustVerifyEmail, status, branch }) {
-    const data = branch.map((branch) => [
-        branch.id,
-        branch.branch,
-        <div className="flex justify-end pr-5">
-            <Link href={route("dashboard")}>
-                <EastIcon />
-            </Link>
-        </div>, // Replace 'insert_icon_name_here' with the actual icon name
-    ]);
-
     const columns = ["ID", "Categories", ""];
 
     const options = {
@@ -50,6 +51,23 @@ export default function Index({ auth, mustVerifyEmail, status, branch }) {
 
     const handleChange = (event) => {
         setAge(event.target.value);
+    };
+
+    const [messageEl, setmessageEl] = useState(null);
+
+    const MessagehandleClick = (event) => {
+        setmessageEl(event.currentTarget);
+    };
+
+    const MessagehandleClose = () => {
+        setmessageEl(null);
+    };
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
     const breadcrumbItems = [
@@ -73,11 +91,123 @@ export default function Index({ auth, mustVerifyEmail, status, branch }) {
         },
     ];
 
+    const data = branch.map((branch) => [
+        branch.id,
+        branch.branch,
+        <div className="flex justify-end pr-5" key={branch.id}>
+            <Tooltip title="Account settings">
+                <IconButton
+                    onClick={MessagehandleClick} // Make sure you have defined MessagehandleClick function
+                    size="medium"
+                    sx={{ ml: 2 }}
+                    aria-controls={messageEl ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={messageEl ? "true" : undefined}
+                >
+                    <MoreVertIcon />
+                </IconButton>
+            </Tooltip>
+        </div>,
+    ]);
+
     return (
         <MainLayout user={auth.user}>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
+
+            {/* account menu start */}
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                }}
+            >
+                <div className="flex justify-center items-center">
+                    <div>
+                        <Menu
+                            id="account-menu"
+                            anchorEl={messageEl}
+                            open={Boolean(messageEl)}
+                            onClose={MessagehandleClose}
+                            PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: "visible",
+                                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.202))",
+                                    mt: 1.5,
+                                    "& .MuiAvatar-root": {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.0,
+                                        mr: 2,
+                                    },
+                                    "&:before": {
+                                        content: '""',
+                                        display: "block",
+                                        position: "absolute",
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: "background.paper",
+                                        transform:
+                                            "translateY(-50%) rotate(45deg)",
+                                        zIndex: 0,
+                                    },
+                                },
+                            }}
+                            transformOrigin={{
+                                horizontal: "right",
+                                vertical: "top",
+                            }}
+                            anchorOrigin={{
+                                horizontal: "right",
+                                vertical: "bottom",
+                            }}
+                        >
+                            {/* <MessageNotification /> */}
+                            <Link href={route("branch.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <AddIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Create
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                            <Link href={route("branch.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <SyncAltIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Update
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                            <Link href={route("branch.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <DeleteForeverIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Delete
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                        </Menu>
+                    </div>
+                </div>
+            </Box>
             <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <div className="sm:hidden">
                     {/* Mobile View */}
