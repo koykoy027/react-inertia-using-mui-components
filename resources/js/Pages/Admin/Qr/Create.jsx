@@ -259,8 +259,10 @@ function Create({ auth }) {
                                 ></textarea>
                             </div>
 
-                            <div>
-                                <h2>File Upload</h2>
+                            <div className="" fullWidth>
+                                <h2 class="text-lg font-semibold">
+                                    File Upload
+                                </h2>
                                 <input
                                     type="file"
                                     id="fileUpload"
@@ -271,12 +273,8 @@ function Create({ auth }) {
                                         handleFileChange(e); // Call your existing onChange handler
                                     }}
                                     required
-                                    fullWidth
-                                    helperText={errors.fileUpload}
-                                    error={!!errors.fileUpload}
+                                    class="block w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                                 />
-
-                                <button onClick={handleUpload}>Upload</button>
                             </div>
 
                             <div className="flex justify-center rounded border-2 py-5 lg:py-10 border-gray-400">

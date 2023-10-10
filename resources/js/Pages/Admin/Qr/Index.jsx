@@ -1,4 +1,3 @@
-import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import { Card, Typography } from "@mui/material";
 import React from "react";
@@ -41,12 +40,6 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
         elevation: 0,
         responsive: "standard",
         selectableRows: false,
-    };
-
-    const [age, setAge] = React.useState("");
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
     };
 
     const breadcrumbItems = [
