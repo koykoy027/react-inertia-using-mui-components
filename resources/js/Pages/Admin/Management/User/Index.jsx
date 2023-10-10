@@ -282,7 +282,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <div className="py-10 md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] lg:max-w-[100%]">
+            <div className="md:grid-cols-3 gap-5 overflow-x-auto max-w-[370px] lg:max-w-[100%]">
                 <Card>
                     <div className="px-5 py-5 border-b-4 border-sky-500">
                         <Typography variant="h6">User</Typography>
