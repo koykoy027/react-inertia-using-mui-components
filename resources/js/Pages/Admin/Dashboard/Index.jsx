@@ -90,9 +90,11 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
             <div className="grid grid-col md:grid-cols-3 lg:grid-cols-3 gap-5">
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
-                        <Typography variant="button" className="py-2 px-5">
-                            Items Returned
-                        </Typography>
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="button" className="py-2 px-1">
+                                Items Returned
+                            </Typography>
+                        </div>
                         <MUIDataTable
                             data={data}
                             columns={columns}
@@ -102,9 +104,11 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 </div>
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
-                        <Typography variant="button" className="py-2 px-5">
-                            Item Borrowed
-                        </Typography>
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="button" className="py-2 px-1">
+                                Item Borrowed
+                            </Typography>
+                        </div>
                         <MUIDataTable
                             data={data}
                             columns={columns}
@@ -114,9 +118,11 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 </div>
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
-                        <Typography variant="button" className="py-2 px-5">
-                            Item Disposed
-                        </Typography>
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="button" className="py-2 px-1">
+                                Item Disposed
+                            </Typography>
+                        </div>
                         <MUIDataTable
                             data={data}
                             columns={columns}

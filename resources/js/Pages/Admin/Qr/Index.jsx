@@ -1,30 +1,12 @@
 import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
-import {
-    Autocomplete,
-    Avatar,
-    Button,
-    Card,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-} from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import TransitionsModal from "@/Components/Modal";
-import ReusableModal from "@/Components/Modal";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
-import BasicTextFields from "@/Components/InputField";
-import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
-import Create from "./Create";
 import EastIcon from "@mui/icons-material/East";
 
 export default function Index({ auth, mustVerifyEmail, qrcodes }) {
@@ -94,6 +76,9 @@ export default function Index({ auth, mustVerifyEmail, qrcodes }) {
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
             <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
+                <div className="px-5 py-5 border-b-4 border-sky-500">
+                    <Typography variant="h6">QRCode</Typography>
+                </div>
                 <Card>
                     <MUIDataTable
                         data={data}
