@@ -75,10 +75,10 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
             <div className="overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <div className="sm:hidden">
                     {/* Mobile View */}
-                    <div className="px-5 py-5 border-b-4 border-sky-500">
-                        <Typography variant="h6">Inventory</Typography>
-                    </div>
                     <Card>
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Inventory</Typography>
+                        </div>
                         <MUIDataTable
                             data={data}
                             columns={columns}
