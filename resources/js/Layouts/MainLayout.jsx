@@ -728,16 +728,6 @@ export default function MainLayout({ user, children }) {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <Link href={route("management.create")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <PersonAddAlt1Icon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add user" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
                                 <Link href={route("management.index")}>
                                     <List component="div" disablePadding>
                                         <ListItemButton sx={{ pl: 4 }}>
@@ -760,16 +750,6 @@ export default function MainLayout({ user, children }) {
                                 {Qr ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
                             <Collapse in={Qr} timeout="auto" unmountOnExit>
-                                <Link href={route("qr.create")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <PostAddIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Add Records" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
                                 <Link href={route("qr.index")}>
                                     <List component="div" disablePadding>
                                         <ListItemButton sx={{ pl: 4 }}>
