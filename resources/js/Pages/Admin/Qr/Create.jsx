@@ -1,7 +1,5 @@
 import {
-    Alert,
     Button,
-    Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
@@ -10,15 +8,9 @@ import {
     Typography,
 } from "@mui/material";
 import React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import CustomSelect from "@/Components/CustomSelect";
 import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
-import FileUpload from "@/Components/FileUpload";
 import QRCode from "qrcode.react";
 import MainLayout from "@/Layouts/MainLayout";
 
@@ -35,23 +27,6 @@ function Create({ auth }) {
             [name]: value,
         });
     };
-
-    // test sample
-
-    const [region, setRegion] = React.useState("");
-
-    const regionChange = (event) => {
-        setRegion(event.target.value);
-    };
-
-    const regions = [
-        { label: "None", value: "" },
-        { label: "Ten", value: 10 },
-        { label: "Twenty", value: 20 },
-        { label: "Thirty", value: 30 },
-    ];
-
-    // test
 
     const [open, setOpen] = React.useState(false);
 
@@ -345,7 +320,7 @@ function Create({ auth }) {
                         </Button>
                         <Button
                             variant="contained"
-                            color="success"
+                            color="primary"
                             type="submit"
                             disabled={processing}
                         >
