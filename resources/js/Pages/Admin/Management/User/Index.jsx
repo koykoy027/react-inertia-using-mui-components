@@ -7,11 +7,16 @@ import {
     Button,
     Card,
     FormControl,
+    IconButton,
     InputLabel,
+    ListItem,
+    ListItemAvatar,
+    Menu,
     MenuItem,
     Select,
     Skeleton,
     TextField,
+    Tooltip,
     Typography,
 } from "@mui/material";
 import React from "react";
@@ -30,19 +35,13 @@ import Create from "./Create";
 import { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import EastIcon from "@mui/icons-material/East";
+import AddIcon from "@mui/icons-material/Add";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export default function Index({ auth, mustVerifyEmail, status, users }) {
     // this variable data with the code .map is help determine the backend
-    const data = users.map((user) => [
-        user.id,
-        user.name,
-        user.email,
-        <div className="flex justify-end pr-5">
-            <Link href={route("dashboard")}>
-                <EastIcon />
-            </Link>
-        </div>, // Replace 'insert_icon_name_here' with the actual icon name
-    ]);
 
     const columns = ["ID", "Name", "Email", ""];
 
@@ -156,8 +155,130 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
         { label: "IS", value: 30 },
     ];
 
+    const [messageEl, setmessageEl] = useState(null);
+
+    const MessagehandleClick = (event) => {
+        setmessageEl(event.currentTarget);
+    };
+
+    const MessagehandleClose = () => {
+        setmessageEl(null);
+    };
+
+    const data = users.map((user) => [
+        user.id,
+        user.name,
+        user.email,
+        <div className="flex justify-end pr-5" key={user.id}>
+            <Tooltip title="Account settings">
+                <IconButton
+                    onClick={MessagehandleClick} // Make sure you have defined MessagehandleClick function
+                    size="medium"
+                    sx={{ ml: 2 }}
+                    aria-controls={messageEl ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={messageEl ? "true" : undefined}
+                >
+                    <MoreVertIcon />
+                </IconButton>
+            </Tooltip>
+        </div>,
+    ]);
+
     return (
         <MainLayout user={auth.user}>
+            {/* account menu start */}
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                }}
+            >
+                <div className="flex justify-center items-center">
+                    <div>
+                        <Menu
+                            id="account-menu"
+                            anchorEl={messageEl}
+                            open={Boolean(messageEl)}
+                            onClose={MessagehandleClose}
+                            PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: "visible",
+                                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.202))",
+                                    mt: 1.5,
+                                    "& .MuiAvatar-root": {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.0,
+                                        mr: 2,
+                                    },
+                                    "&:before": {
+                                        content: '""',
+                                        display: "block",
+                                        position: "absolute",
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: "background.paper",
+                                        transform:
+                                            "translateY(-50%) rotate(45deg)",
+                                        zIndex: 0,
+                                    },
+                                },
+                            }}
+                            transformOrigin={{
+                                horizontal: "right",
+                                vertical: "top",
+                            }}
+                            anchorOrigin={{
+                                horizontal: "right",
+                                vertical: "bottom",
+                            }}
+                        >
+                            {/* <MessageNotification /> */}
+                            <Link href={route("management.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <AddIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Create
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                            <Link href={route("management.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <SyncAltIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Update
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                            <Link href={route("management.create")}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <DeleteForeverIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <Typography variant="subtitle2">
+                                        Delete
+                                    </Typography>
+                                </ListItem>
+                            </Link>
+                        </Menu>
+                    </div>
+                </div>
+            </Box>
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
