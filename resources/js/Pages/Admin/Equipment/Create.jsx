@@ -1,31 +1,20 @@
 import {
-    Alert,
-    Box,
     Button,
-    Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
     Paper,
-    Stack,
     TextField,
     Typography,
 } from "@mui/material";
 import React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import CustomSelect from "@/Components/CustomSelect";
 import { useRef, useState, useEffect } from "react";
 import { Link, useForm } from "@inertiajs/react";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
+
 import MainLayout from "@/Layouts/MainLayout";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import { HomeRepairServiceOutlined } from "@mui/icons-material";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import Barcode from "react-barcode";
-import QRCode from "qrcode.react";
 import MySelectComponent from "@/Components/CustomSelect";
 
 function Create({ auth }) {
@@ -36,15 +25,6 @@ function Create({ auth }) {
     const regionChange = (event) => {
         setRegion(event.target.value);
     };
-
-    const regions = [
-        { label: "None", value: "" },
-        { label: "Ten", value: 10 },
-        { label: "Twenty", value: 20 },
-        { label: "Thirty", value: 30 },
-    ];
-
-    // test
 
     const [open, setOpen] = React.useState(false);
 

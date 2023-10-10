@@ -4,7 +4,6 @@ import {
     Avatar,
     Box,
     Card,
-    Divider,
     IconButton,
     ListItem,
     ListItemAvatar,
@@ -19,7 +18,6 @@ import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
-import EastIcon from "@mui/icons-material/East";
 import AddIcon from "@mui/icons-material/Add";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
