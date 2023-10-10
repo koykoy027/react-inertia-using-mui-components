@@ -1,31 +1,12 @@
-import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
-import {
-    Autocomplete,
-    Avatar,
-    Button,
-    Card,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-} from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import TransitionsModal from "@/Components/Modal";
-import ReusableModal from "@/Components/Modal";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
-import BasicTextFields from "@/Components/InputField";
-import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import EastIcon from "@mui/icons-material/East";
-import Create from "./Create";
 
 export default function Index({ auth, mustVerifyEmail, status, products }) {
     const data = products.map((product) => [
@@ -81,7 +62,7 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
         },
         {
             icon: <InventorySharpIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-            text: "Product",
+            text: "Inventory",
             url: "/material-ui/getting-started/installation/",
         },
     ];
@@ -91,12 +72,12 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            {/* <div>
-                <Create />
-            </div> */}
             <div className="py-6 overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <div className="sm:hidden">
                     {/* Mobile View */}
+                    <div className="px-5 py-5 border-b-4 border-sky-500">
+                        <Typography variant="h6">Inventory</Typography>
+                    </div>
                     <Card>
                         <MUIDataTable
                             data={data}
@@ -108,6 +89,9 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
                     </Card>
                 </div>
                 <div className="hidden sm:block">
+                    <div className="px-5 py-5 border-b-4 border-sky-500">
+                        <Typography variant="h6">Inventory</Typography>
+                    </div>
                     {/* Desktop View */}
                     <Card>
                         <MUIDataTable
