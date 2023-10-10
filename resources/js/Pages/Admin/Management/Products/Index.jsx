@@ -89,11 +89,11 @@ export default function Index({ auth, mustVerifyEmail, status, products }) {
                     </Card>
                 </div>
                 <div className="hidden sm:block">
-                    <div className="px-5 py-5 border-b-4 border-sky-500">
-                        <Typography variant="h6">Inventory</Typography>
-                    </div>
                     {/* Desktop View */}
                     <Card>
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Inventory</Typography>
+                        </div>
                         <MUIDataTable
                             data={data}
                             columns={columns}
