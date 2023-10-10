@@ -1,37 +1,21 @@
-import ShippingCard from "@/Components/Card";
 import MainLayout from "@/Layouts/MainLayout";
 import {
-    Autocomplete,
     Avatar,
     Box,
-    Button,
     Card,
-    FormControl,
     IconButton,
-    InputLabel,
     ListItem,
     ListItemAvatar,
     Menu,
-    MenuItem,
-    Select,
-    TextField,
     Tooltip,
     Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
-import TransitionsModal from "@/Components/Modal";
-import ReusableModal from "@/Components/Modal";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
-import BasicTextFields from "@/Components/InputField";
-import CustomizedSnackbars from "@/Components/CustomizeSnackBar";
 import CustomBreadcrumbs from "@/Components/CustomBreadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import GrainIcon from "@mui/icons-material/Grain";
 import { Link } from "@inertiajs/react";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
-import EastIcon from "@mui/icons-material/East";
 import AddIcon from "@mui/icons-material/Add";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
