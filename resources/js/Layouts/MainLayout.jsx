@@ -677,6 +677,17 @@ export default function MainLayout({ user, children }) {
 
                             {/* end branch */}
 
+                            <Link href={route("products.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <Inventory2Icon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Borrowed Item" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+
                             {/* start of warranty list */}
                             <List>
                                 <Link href={route("warranty.index")}>
@@ -690,18 +701,16 @@ export default function MainLayout({ user, children }) {
                                     </ListItem>
                                 </Link>
 
-                                <List>
-                                    <Link href={route("products.index")}>
-                                        <ListItem disablePadding>
-                                            <ListItemButton>
-                                                <ListItemIcon>
-                                                    <Inventory2Icon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Inventory" />
-                                            </ListItemButton>
-                                        </ListItem>
-                                    </Link>
-                                </List>
+                                <Link href={route("products.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <Inventory2Icon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Inventory" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
 
                                 <Link href={route("storage.index")}>
                                     <ListItem disablePadding>
