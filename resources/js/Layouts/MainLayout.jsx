@@ -677,7 +677,7 @@ export default function MainLayout({ user, children }) {
 
                             {/* end branch */}
 
-                            <Link href={route("products.index")}>
+                            <Link href={route("borrowed_item.index")}>
                                 <ListItem disablePadding>
                                     <ListItemButton>
                                         <ListItemIcon>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Borrowed_item;
+use App\Http\Controllers\Borrowed_itemController;
+use App\Http\Controllers\BorrowedItem\BorrowedController;
 use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -69,6 +72,7 @@ Route::prefix('administrator')->group(function () {
         Route::resource('/equipment', EquipmentController::class);
         Route::resource('/branch', BranchController::class);
         Route::resource('/warranty', WarrantyController::class);
+        Route::resource('/borrowed_item', BorrowedController::class);
         // create a post that located at ProductManagementController
 
         // Qr code
