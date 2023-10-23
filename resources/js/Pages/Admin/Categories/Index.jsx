@@ -213,15 +213,17 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
                     </div>
                 </Box>
             </div>
+
             <div className="pb-10">
                 <CustomBreadcrumbs items={breadcrumbItems} />
             </div>
-            <div class="">
+
+            <div className="overflow-x-auto max-w-[370px] lg:max-h-[100%] lg:max-w-[100%] max-h-[500px] sm:max-h-[auto]">
                 <Paper>
-                    <div className="px-5 py-5 border-b-4 border-sky-500">
-                        <Typography variant="h6">Categories</Typography>
-                    </div>
                     <div className="sm:hidden">
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Categories</Typography>
+                        </div>
                         {/* Mobile View */}
                         <Card>
                             <MUIDataTable
@@ -234,6 +236,9 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
                         </Card>
                     </div>
                     <div className="hidden sm:block">
+                        <div className="px-5 py-5 border-b-4 border-sky-500">
+                            <Typography variant="h6">Categories</Typography>
+                        </div>
                         {/* Desktop View */}
                         <Card>
                             <MUIDataTable
@@ -247,6 +252,7 @@ export default function Index({ auth, mustVerifyEmail, status, categories }) {
                     </div>
                 </Paper>
             </div>
+            {/* end */}
         </MainLayout>
     );
 }

@@ -19,12 +19,27 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import SettingsApplicationsSharpIcon from "@mui/icons-material/SettingsApplicationsSharp";
 import DashboardSharpIcon from "@mui/icons-material/DashboardSharp";
-import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import CategoryIcon from "@mui/icons-material/Category";
+import { Logout, Settings } from "@mui/icons-material";
+import CustomSpeedDial from "@/Components/CustomSpeedDial";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import AbcSharpIcon from "@mui/icons-material/AbcSharp";
+import CustomizedSwitches from "@/Components/CustomizedSwitches";
+import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
+import EmailIcon from "@mui/icons-material/Email";
+import MessageNotification from "@/Components/MessageNotification";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
+import Inventory2Icon from "@mui/icons-material/Inventory2";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import StoreIcon from "@mui/icons-material/Store";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Clock from "@/Components/Clock";
 import {
     Avatar,
     Menu,
@@ -37,28 +52,7 @@ import {
     Badge,
     Stack,
 } from "@mui/material";
-import { Logout, Settings } from "@mui/icons-material";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import CustomSpeedDial from "@/Components/CustomSpeedDial";
-import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import GrainIcon from "@mui/icons-material/Grain";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import AbcSharpIcon from "@mui/icons-material/AbcSharp";
-import CustomizedSwitches from "@/Components/CustomizedSwitches";
-import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
-import EmailIcon from "@mui/icons-material/Email";
-import MessageNotification from "@/Components/MessageNotification";
-import LoyaltyIcon from "@mui/icons-material/Loyalty";
-import BusinessIcon from "@mui/icons-material/Business";
-import Inventory2Icon from "@mui/icons-material/Inventory2";
-import SummarizeIcon from "@mui/icons-material/Summarize";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import ManageSearchIcon from "@mui/icons-material/ManageSearch";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import Clock from "@/Components/Clock";
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -601,79 +595,43 @@ export default function MainLayout({ user, children }) {
                             aria-labelledby="nested-list-subheader"
                         >
                             {/* categories start */}
-                            <ListItemButton onClick={categoriesSideNav}>
-                                <ListItemIcon>
-                                    <CategoryIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Categories" />
-                                {categories ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse
-                                in={categories}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <List component="div" disablePadding>
-                                    <Link href={route("categories.index")}>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <ManageSearchIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Manage Category" />
-                                        </ListItemButton>
-                                    </Link>
-                                </List>
-                            </Collapse>
+                            <Link href={route("categories.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <CategoryIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Category" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
 
                             {/* end categories */}
 
                             {/* Equipment start */}
-                            <ListItemButton onClick={equipmentSideNav}>
-                                <ListItemIcon>
-                                    <ConstructionIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Equipment" />
-                                {equipment ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse
-                                in={equipment}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <List component="div" disablePadding>
-                                    <Link href={route("equipment.index")}>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <InventorySharpIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Manage Equipments" />
-                                        </ListItemButton>
-                                    </Link>
-                                </List>
-                            </Collapse>
-
-                            {/* end Equipment */}
+                            <Link href={route("equipment.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <ConstructionIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Equipments" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+                            {/* Equipment End */}
 
                             {/* Branch start */}
-                            <ListItemButton onClick={BranchSideNav}>
-                                <ListItemIcon>
-                                    <BusinessIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Branch" />
-                                {Branch ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse in={Branch} timeout="auto" unmountOnExit>
-                                <List component="div" disablePadding>
-                                    <Link href={route("branch.index")}>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <InventorySharpIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Manage Branch" />
-                                        </ListItemButton>
-                                    </Link>
-                                </List>
-                            </Collapse>
+                            <Link href={route("branch.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <StoreIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Branch" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
 
                             {/* end branch */}
 
@@ -681,7 +639,7 @@ export default function MainLayout({ user, children }) {
                                 <ListItem disablePadding>
                                     <ListItemButton>
                                         <ListItemIcon>
-                                            <Inventory2Icon />
+                                            <CompareArrowsIcon />
                                         </ListItemIcon>
                                         <ListItemText primary="Borrowed Item" />
                                     </ListItemButton>
@@ -724,30 +682,16 @@ export default function MainLayout({ user, children }) {
                                 </Link>
                             </List>
                             {/* End of warranty list */}
-
-                            <ListItemButton onClick={listSideNav}>
-                                <ListItemIcon>
-                                    <ManageAccountsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="User Management" />
-                                {expanded ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse
-                                in={expanded}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <Link href={route("management.index")}>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <VerifiedUserIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Manage user" />
-                                        </ListItemButton>
-                                    </List>
-                                </Link>
-                            </Collapse>
+                            <Link href={route("management.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <VerifiedUserIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Manage User" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                         </List>
                         {/* end */}
                         <List>
