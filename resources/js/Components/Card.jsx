@@ -12,7 +12,7 @@ const ShippingCard = ({ title, count, icon }) => {
                     {icon}
                 </Typography>
                 <div className="grid grid-col">
-                    <Typography variant="subtitle1" component="div">
+                    <Typography variant="header" component="div">
                         {title}
                     </Typography>
                     <Typography

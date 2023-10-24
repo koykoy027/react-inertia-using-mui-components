@@ -251,6 +251,10 @@ export default function MainLayout({ user, children }) {
             body1: {
                 fontWeight: 500,
             },
+            header: {
+                fontWeight: "bold",
+                textTransform: "uppercase",
+            },
             button: {
                 fontFamily: "Arial",
             },

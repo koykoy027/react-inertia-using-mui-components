@@ -91,7 +91,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <div className="px-5 py-5 border-b-4 border-sky-500">
-                            <Typography variant="button" className="py-2 px-1">
+                            <Typography variant="header" className="py-2 px-1">
                                 Items Returned
                             </Typography>
                         </div>
@@ -105,7 +105,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <div className="px-5 py-5 border-b-4 border-sky-500">
-                            <Typography variant="button" className="py-2 px-1">
+                            <Typography variant="header" className="py-2 px-1">
                                 Item Borrowed
                             </Typography>
                         </div>
@@ -119,7 +119,7 @@ export default function Index({ auth, mustVerifyEmail, status, users }) {
                 <div className="py-6 lg:overflow-none md:overflow-x-auto max-w-[370px] md:max-w-[100vh] lg:max-w-[100%]">
                     <Card>
                         <div className="px-5 py-5 border-b-4 border-sky-500">
-                            <Typography variant="button" className="py-2 px-1">
+                            <Typography variant="header" className="py-2 px-1">
                                 Item Disposed
                             </Typography>
                         </div>
