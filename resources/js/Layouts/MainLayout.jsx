@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
@@ -14,8 +14,32 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link, useForm } from "@inertiajs/react";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import SettingsApplicationsSharpIcon from "@mui/icons-material/SettingsApplicationsSharp";
+import DashboardSharpIcon from "@mui/icons-material/DashboardSharp";
+import QrCodeIcon from "@mui/icons-material/QrCode";
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
+import CategoryIcon from "@mui/icons-material/Category";
+import { Logout, Settings } from "@mui/icons-material";
+import CustomSpeedDial from "@/Components/CustomSpeedDial";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import AbcSharpIcon from "@mui/icons-material/AbcSharp";
+import CustomizedSwitches from "@/Components/CustomizedSwitches";
+import QrCode2SharpIcon from "@mui/icons-material/QrCode2Sharp";
+import EmailIcon from "@mui/icons-material/Email";
+import MessageNotification from "@/Components/MessageNotification";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
+import Inventory2Icon from "@mui/icons-material/Inventory2";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import StoreIcon from "@mui/icons-material/Store";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Clock from "@/Components/Clock";
 import {
     Avatar,
     Menu,
@@ -24,8 +48,10 @@ import {
     Box,
     styled,
     useTheme,
+    Collapse,
+    Badge,
+    Stack,
 } from "@mui/material";
-import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -115,180 +141,624 @@ export default function MainLayout({ user, children }) {
         setAnchorEl(null);
     };
 
-    // End account avatar
+    // expand list dropdown in side nav
+    // start
+    const [expanded, setExpanded] = useState(false); // Initially expanded
+
+    const listSideNav = () => {
+        setExpanded(!expanded);
+    };
+    const [QrSideNav, setQrSideNav] = useState(false);
+
+    const toggleQrSideNav = () => {
+        setQrSideNav(!QrSideNav);
+    };
+
+    const [categories, setcategories] = useState(true); // Initially expanded
+
+    const categoriesSideNav = () => {
+        setcategories(!categories);
+    };
+    // end
+
+    const [Qr, setQr] = useState(false);
+
+    const generateQr = () => {
+        setQr(!Qr);
+    };
+
+    const [equipment, setequipment] = useState(false);
+
+    const equipmentSideNav = () => {
+        setequipment(!equipment);
+    };
+
+    const [Branch, setBranch] = useState(false);
+
+    const BranchSideNav = () => {
+        setBranch(!Branch);
+    };
+
+    // speed dial
+
+    const actions = [
+        {
+            icon: (
+                <Link href={route("generator.index")}>
+                    <QrCode2SharpIcon />
+                </Link>
+            ),
+            name: "QR-CODE",
+        },
+        {
+            icon: (
+                <Link href={route("qr.index")}>
+                    <AbcSharpIcon />
+                </Link>
+            ),
+            name: "BARCODE",
+        },
+    ];
+
+    // Initialize DarkMode state with a default value from localStorage if available
+    const [DarkMode, SetDarkMode] = useState(
+        localStorage.getItem("DarkMode") === "true"
+    );
+
+    // Function to toggle DarkMode and store the preference in localStorage
+    const toggleDarkMode = () => {
+        const newDarkMode = !DarkMode;
+        SetDarkMode(newDarkMode);
+        localStorage.setItem("DarkMode", newDarkMode);
+    };
+
+    // Create the theme based on DarkMode state
+    const darkTheme = createTheme({
+        palette: {
+            mode: DarkMode ? "dark" : "light",
+            primary: {
+                light: "#40c4ff",
+                main: "#00b0ff",
+                dark: "#01579b",
+                contrastText: "#fff",
+            },
+            secondary: {
+                main: "#00838f", // Change this to your secondary color
+            },
+            error: {
+                main: "#d50000", // Change this to your error
+                light: "#ff8a80",
+                dark: "#ff1744",
+            },
+            warning: {
+                main: "#ffff8d", // Change this to your warning
+                light: "#ffea00",
+                dark: "#ffd600",
+            },
+        },
+        typography: {
+            fontFamily: "Arial",
+            subtitle1: {
+                fontSize: 24,
+                fontWeight: "normal",
+                fontFamily: "arial",
+            },
+            subtitle2: {
+                fontSize: 16,
+                color: "#00b0ff",
+                fontFamily: "Segoe UI",
+            },
+            body1: {
+                fontWeight: 500,
+            },
+            header: {
+                fontWeight: "bold",
+                textTransform: "uppercase",
+            },
+            button: {
+                fontFamily: "Arial",
+            },
+        },
+    });
+
+    // active user
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        "& .MuiBadge-badge": {
+            backgroundColor: "#44b700",
+            color: "#44b700",
+            boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+            "&::after": {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                animation: "ripple 1.2s infinite ease-in-out",
+                border: "1px solid currentColor",
+                content: '""',
+            },
+        },
+        "@keyframes ripple": {
+            "0%": {
+                transform: "scale(.8)",
+                opacity: 1,
+            },
+            "100%": {
+                transform: "scale(2.4)",
+                opacity: 0,
+            },
+        },
+    }));
+
+    const SmallAvatar = styled(Avatar)(({ theme }) => ({
+        width: 22,
+        height: 22,
+        border: `2px solid ${theme.palette.background.paper}`,
+    }));
+
+    // message notifications
+
+    // Email Dropdown message in layout
+
+    const [messageEl, setmessageEl] = useState(null);
+
+    const MessagehandleClick = (event) => {
+        setmessageEl(event.currentTarget);
+    };
+
+    const MessagehandleClose = () => {
+        setmessageEl(null);
+    };
 
     return (
-        <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{ mr: 2, ...(open && { display: "none" }) }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Inventory Management System
-                    </Typography>
-                    <div style={{ flexGrow: 1 }}></div>
-
-                    {/* account menu start */}
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            textAlign: "center",
-                        }}
-                    >
-                        <Tooltip title="Account settings">
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline>
+                <Box sx={{ display: "flex" }}>
+                    <CssBaseline />
+                    <AppBar position="fixed" open={open} color="inherit">
+                        <Toolbar>
                             <IconButton
-                                onClick={handleClick}
-                                size="small"
-                                sx={{ ml: 2 }}
-                                aria-controls={
-                                    openAvatar ? "account-menu" : undefined
-                                }
-                                aria-haspopup="true"
-                                aria-expanded={openAvatar ? "true" : undefined}
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={handleDrawerOpen}
+                                edge="start"
+                                sx={{ mr: 2, ...(open && { display: "none" }) }}
                             >
-                                <Avatar
-                                    alt={user.name}
-                                    src="/static/images/avatar/2.jpg"
-                                />
+                                <MenuIcon />
                             </IconButton>
-                        </Tooltip>
-                    </Box>
-                    <Menu
-                        anchorEl={anchorEl}
-                        id="account-menu"
-                        open={openAvatar}
-                        onClose={handleClose}
-                        onClick={handleClose}
-                        PaperProps={{
-                            elevation: 0,
-                            sx: {
-                                overflow: "visible",
-                                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                                mt: 1.5,
-                                "& .MuiAvatar-root": {
-                                    width: 32,
-                                    height: 32,
-                                    ml: -0.5,
-                                    mr: 1,
-                                },
-                                "&:before": {
-                                    content: '""',
-                                    display: "block",
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 14,
-                                    width: 10,
-                                    height: 10,
-                                    bgcolor: "background.paper",
-                                    transform: "translateY(-50%) rotate(45deg)",
-                                    zIndex: 0,
-                                },
+
+                            <Typography
+                                variant="inherit"
+                                noWrap
+                                component="div"
+                            >
+                                <Clock />
+                            </Typography>
+                            <div style={{ flexGrow: 1 }}></div>
+
+                            {/* account menu start */}
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    textAlign: "center",
+                                }}
+                            >
+                                <div className="flex justify-center items-center">
+                                    <div>
+                                        <Tooltip title="Account settings">
+                                            <IconButton
+                                                onClick={MessagehandleClick}
+                                                size="medium"
+                                                sx={{ ml: 2 }}
+                                                aria-controls={
+                                                    messageEl
+                                                        ? "account-menu"
+                                                        : undefined
+                                                }
+                                                aria-haspopup="true"
+                                                aria-expanded={
+                                                    messageEl
+                                                        ? "true"
+                                                        : undefined
+                                                }
+                                            >
+                                                <Badge
+                                                    badgeContent={3}
+                                                    color="primary"
+                                                >
+                                                    <EmailIcon
+                                                        fontSize="medium"
+                                                        color="action"
+                                                    />
+                                                </Badge>
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Menu
+                                            id="account-menu"
+                                            anchorEl={messageEl}
+                                            open={Boolean(messageEl)}
+                                            onClose={MessagehandleClose}
+                                            PaperProps={{
+                                                elevation: 0,
+                                                sx: {
+                                                    overflow: "visible",
+                                                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.202))",
+                                                    mt: 1.5,
+                                                    "& .MuiAvatar-root": {
+                                                        width: 32,
+                                                        height: 32,
+                                                        ml: -0.0,
+                                                        mr: 2,
+                                                    },
+                                                    "&:before": {
+                                                        content: '""',
+                                                        display: "block",
+                                                        position: "absolute",
+                                                        top: 0,
+                                                        right: 14,
+                                                        width: 10,
+                                                        height: 10,
+                                                        bgcolor:
+                                                            "background.paper",
+                                                        transform:
+                                                            "translateY(-50%) rotate(45deg)",
+                                                        zIndex: 0,
+                                                    },
+                                                },
+                                            }}
+                                            transformOrigin={{
+                                                horizontal: "right",
+                                                vertical: "top",
+                                            }}
+                                            anchorOrigin={{
+                                                horizontal: "right",
+                                                vertical: "bottom",
+                                            }}
+                                        >
+                                            <MessageNotification />
+                                        </Menu>
+                                    </div>
+
+                                    <Tooltip title="Account settings">
+                                        <IconButton
+                                            onClick={handleClick}
+                                            size="medium"
+                                            sx={{ ml: 2 }}
+                                            aria-controls={
+                                                openAvatar
+                                                    ? "account-menu"
+                                                    : undefined
+                                            }
+                                            aria-haspopup="true"
+                                            aria-expanded={
+                                                openAvatar ? "true" : undefined
+                                            }
+                                        >
+                                            <Avatar
+                                                alt={user.name}
+                                                src="/static/images/avatar/2.jpg"
+                                            />
+                                        </IconButton>
+                                    </Tooltip>
+                                </div>
+                            </Box>
+                            <Menu
+                                anchorEl={anchorEl}
+                                id="account-menu"
+                                open={openAvatar}
+                                onClose={handleClose}
+                                onClick={handleClose}
+                                PaperProps={{
+                                    elevation: 0,
+                                    sx: {
+                                        overflow: "visible",
+                                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                        mt: 0.5,
+                                        "& .MuiAvatar-root": {
+                                            width: 32,
+                                            height: 32,
+                                            ml: -0.5,
+                                            mr: 1,
+                                        },
+                                        "&:before": {
+                                            content: '""',
+                                            display: "block",
+                                            position: "absolute",
+                                            top: 0,
+                                            right: 23,
+                                            width: 10,
+                                            height: 10,
+                                            bgcolor: "background.paper",
+                                            transform:
+                                                "translateY(-50%) rotate(45deg)",
+                                            zIndex: 0,
+                                        },
+                                    },
+                                }}
+                                transformOrigin={{
+                                    horizontal: "right",
+                                    vertical: "top",
+                                }}
+                                anchorOrigin={{
+                                    horizontal: "right",
+                                    vertical: "bottom",
+                                }}
+                            >
+                                <MenuItem>
+                                    <Stack direction="row" spacing={2}>
+                                        <div className="flex justify-center items-center gap-5">
+                                            <StyledBadge
+                                                overlap="circular"
+                                                anchorOrigin={{
+                                                    vertical: "bottom",
+                                                    horizontal: "right",
+                                                }}
+                                                variant="dot"
+                                            >
+                                                <Avatar
+                                                    alt={user.name}
+                                                    src="/static/images/avatar/1.jpg"
+                                                />
+                                            </StyledBadge>
+                                            {user.name}
+                                        </div>
+                                    </Stack>
+                                </MenuItem>
+                                <MenuItem>
+                                    <CustomizedSwitches
+                                        checked={DarkMode}
+                                        onChange={toggleDarkMode}
+                                    />
+
+                                    <Typography
+                                        variant="overline"
+                                        onClick={toggleDarkMode}
+                                    >
+                                        {DarkMode
+                                            ? "Switch to Light Mode"
+                                            : "Switch to Dark Mode"}
+                                    </Typography>
+                                </MenuItem>
+                                <Divider />
+                                <Link href={route("profile.edit")}>
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <Settings fontSize="small" />
+                                        </ListItemIcon>
+                                        Account Settings
+                                    </MenuItem>
+                                </Link>
+                                <MenuItem onClick={handleLogout}>
+                                    <ListItemIcon>
+                                        <Logout fontSize="small" />
+                                    </ListItemIcon>
+                                    Logout
+                                </MenuItem>
+                            </Menu>
+                            {/* account menu end */}
+                        </Toolbar>
+                    </AppBar>
+
+                    {/* breadCrumbs */}
+
+                    <Drawer
+                        sx={{
+                            width: drawerWidth,
+                            flexShrink: 0,
+                            "& .MuiDrawer-paper": {
+                                width: drawerWidth,
+                                boxSizing: "border-box",
                             },
                         }}
-                        transformOrigin={{
-                            horizontal: "right",
-                            vertical: "top",
-                        }}
-                        anchorOrigin={{
-                            horizontal: "right",
-                            vertical: "bottom",
-                        }}
+                        variant="persistent"
+                        anchor="left"
+                        open={open}
                     >
-                        <MenuItem>
-                            <Avatar /> {user.name}
-                        </MenuItem>
-                        <MenuItem>
-                            <Avatar /> My account
-                        </MenuItem>
+                        <DrawerHeader>
+                            <div className="ml-3 my-5">
+                                <Typography variant="subtitle">
+                                    Inventory Management System
+                                </Typography>
+                            </div>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === "ltr" ? (
+                                    <ChevronLeftIcon />
+                                ) : (
+                                    <ChevronRightIcon />
+                                )}
+                            </IconButton>
+                        </DrawerHeader>
                         <Divider />
-                        <MenuItem>
-                            <ListItemIcon>
-                                <PersonAdd fontSize="small" />
-                            </ListItemIcon>
-                            Add another account
-                        </MenuItem>
-                        <Link href={route("profile.edit")}>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <Settings fontSize="small" />
-                                </ListItemIcon>
-                                Settings
-                            </MenuItem>
-                        </Link>
-                        <MenuItem onClick={handleLogout}>
-                            <ListItemIcon>
-                                <Logout fontSize="small" />
-                            </ListItemIcon>
-                            Logout
-                        </MenuItem>
-                    </Menu>
-                    {/* account menu end */}
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    "& .MuiDrawer-paper": {
-                        width: drawerWidth,
-                        boxSizing: "border-box",
-                    },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === "ltr" ? (
-                            <ChevronLeftIcon />
-                        ) : (
-                            <ChevronRightIcon />
-                        )}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-                    <Link href={route("dashboard")}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <InboxIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Dashboard" />
-                            </ListItemButton>
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
+                        <List>
+                            <Link href={route("dashboard")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <DashboardSharpIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Dashboard" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+                        </List>
+                        <Divider />
 
-                <List>
-                    <Link href={route("library.index")}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
+                        {/* another sidenav list */}
+
+                        {/* start */}
+                        <List
+                            sx={{
+                                width: "100%",
+                                maxWidth: 360,
+                                bgcolor: "background.paper",
+                            }}
+                            component="nav"
+                            aria-labelledby="nested-list-subheader"
+                        >
+                            {/* categories start */}
+                            <Link href={route("categories.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <CategoryIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Category" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+
+                            {/* end categories */}
+
+                            {/* Equipment start */}
+                            <Link href={route("equipment.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <ConstructionIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Equipments" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+                            {/* Equipment End */}
+
+                            {/* Branch start */}
+                            <Link href={route("branch.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <StoreIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Branch" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+
+                            {/* end branch */}
+
+                            <Link href={route("borrowed_item.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <CompareArrowsIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Borrowed Item" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+
+                            {/* start of warranty list */}
+                            <List>
+                                <Link href={route("warranty.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <LoyaltyIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Warranty List" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+
+                                <Link href={route("products.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <Inventory2Icon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Inventory" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+
+                                <Link href={route("storage.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <SummarizeIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Generate Reports" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+                            </List>
+                            {/* End of warranty list */}
+                            <Link href={route("management.index")}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <VerifiedUserIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Manage User" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+                        </List>
+                        {/* end */}
+                        <List>
+                            <ListItemButton onClick={generateQr}>
                                 <ListItemIcon>
-                                    <InboxIcon />
+                                    <QrCodeIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Settings" />
+                                <ListItemText primary="QR" />
+                                {Qr ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
-                        </ListItem>
-                    </Link>
-                </List>
-            </Drawer>
-            <Main open={open}>
-                <DrawerHeader />
-                {children}
-            </Main>
-        </Box>
+                            <Collapse in={Qr} timeout="auto" unmountOnExit>
+                                <Link href={route("qr.index")}>
+                                    <List component="div" disablePadding>
+                                        <ListItemButton sx={{ pl: 4 }}>
+                                            <ListItemIcon>
+                                                <PostAddIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Manage Records" />
+                                        </ListItemButton>
+                                    </List>
+                                </Link>
+                                <Link href={route("generator.index")}>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemIcon>
+                                            <QrCodeScannerIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Genarate QR" />
+                                    </ListItemButton>
+                                </Link>
+                            </Collapse>
+                        </List>
+
+                        <div className="absolute bottom-0 w-full">
+                            <List>
+                                <Link href={route("library.index")}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton>
+                                            <ListItemIcon>
+                                                <SettingsApplicationsSharpIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Library Setting" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+                            </List>
+                        </div>
+                    </Drawer>
+                    <Main open={open}>
+                        <DrawerHeader />
+
+                        <div className="sm:mx-5 md:mx-2 lg:mx-10">
+                            <div>{children}</div>
+
+                            <div className="lg:hidden block">
+                                <CustomSpeedDial
+                                    actions={actions}
+                                    openIcon={<ExpandMoreSharpIcon />}
+                                />
+                            </div>
+                        </div>
+                    </Main>
+                </Box>
+            </CssBaseline>
+        </ThemeProvider>
     );
 }
